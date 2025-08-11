@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 def activity_02():
-
+    
     st.subheader("Procedimentos – Atividade 2")
 
     # Procedimento 1
@@ -87,5 +87,15 @@ def activity_02():
 
     df_result = pd.DataFrame(resultados, columns=["Escala", "Volume", "Desvio Percentual (%)"])
     st.table(df_result)
+
+if __name__ == "__main__":
+    st.sidebar.header("Aulas Práticas – Laboratório de Física")
     
-activity_02()
+    set_aula=st.sidebar.selectbox("Aulas",["Selecione uma aula","Atividade 1","Atividade 2"])
+    
+    if set_aula=="Atividade 1":
+        st.write("Aguardando aprovação")
+    elif set_aula=="Atividade 2":
+        activity_02()
+    else:
+        st.write("Aguardando escolha......")
