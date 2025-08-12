@@ -1,8 +1,83 @@
 # Aula 11-08-2025 protótipo 
-
+# Interface
 import streamlit as st
+# Listas e Matrizes
 import pandas as pd
 import numpy as np
+# Calculos
+import numbers
+import math
+# Listas
+from typing import List
+# IO e Imagens
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+import base64
+from io import BytesIO
+import json
+
+def plot_caixa():
+    # Configurar contexto para evitar interferências
+    with plt.ioff():
+        fig = plt.figure(figsize=(6,6))
+        ax = fig.add_subplot(111, projection='3d')
+        
+        # Definição dos vértices da caixa
+        vertices = np.array([
+            [0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0],  # base
+            [0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]   # topo
+        ])
+
+        faces = [
+            [vertices[0], vertices[1], vertices[2], vertices[3]],
+            [vertices[4], vertices[5], vertices[6], vertices[7]],
+            [vertices[0], vertices[1], vertices[5], vertices[4]],
+            [vertices[2], vertices[3], vertices[7], vertices[6]],
+            [vertices[1], vertices[2], vertices[6], vertices[5]],
+            [vertices[4], vertices[7], vertices[3], vertices[0]]
+        ]
+
+        # Plotar faces com cores específicas
+        poly3d = Poly3DCollection(
+            faces,
+            facecolors=['lightblue', 'lightblue', 'skyblue', 'skyblue', 'skyblue', 'lightblue'],
+            linewidths=1,
+            edgecolors='k',
+            alpha=0.9
+        )
+        ax.add_collection(poly3d)
+    # Adicionar rótulos
+        ax.text(0.5, -0.1, 0, 'A', fontsize=12) # type: ignore (Pylance com falso-negativo)
+        ax.text(1.05, 0.5, 0, 'B', fontsize=12) # type: ignore (Pylance com falso-negativo)
+        ax.text(-0.05, 0.5, 0.5, 'C', fontsize=12) # type: ignore (Pylance com falso-negativo)
+
+        # Configurar aspecto visual
+        ax.set_box_aspect([1.0, 1.0, 1.0]) # type: ignore (Pylance com falso-negativo)
+        ax.set_axis_off()
+        ax.set_xlim([-0.1, 1.1]) # type: ignore (Pylance com falso-negativo)
+        ax.set_ylim([-0.1, 1.1]) # type: ignore (Pylance com falso-negativo)
+        ax.set_zlim([-0.1, 1.1]) # type: ignore (Pylance com falso-negativo)
+        # Renderizar no Streamlit
+        st.pyplot(fig)
+        
+    # Fechar figura explicitamente
+    plt.close(fig)
+
+def plot_triangulo():
+    fig, ax = plt.subplots()
+    ax.plot([0, 4], [0, 0], 'k')  # base
+    ax.plot([0, 4], [0, 3], 'k')  # hipotenusa
+    ax.plot([4, 4], [0, 3], 'k')  # altura
+
+    # Marcar ângulo θ
+    angulo = np.linspace(0, np.pi/6, 50)
+    ax.plot(0.5*np.cos(angulo), 0.5*np.sin(angulo), 'k')
+    ax.text(0.3, 0.05, r'$\theta$', fontsize=14)
+
+    ax.axis('equal')
+    ax.axis('off')
+    st.pyplot(fig)
 
 def procedure_2_1():
     # Procedimento 1
