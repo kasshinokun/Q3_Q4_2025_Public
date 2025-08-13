@@ -155,15 +155,34 @@ def procedure_2_4():
     # st.image(BytesIO(read_json("image.json", "image9.png")),
             # caption="Figura 1 – Cubo", use_container_width=True)
     st.write("Insira as dimensões A, B e C nas três escalas:")
+
     col_dm, col_cm, col_mm = st.columns(3)
 
+    # Valores padrão para cada escala
+    defaults = {
+        "dm": [3.5, 2.4, 1.2],      # A, B, C em decímetros
+        "cm": [35.4, 24.1, 13.0],   # A, B, C em centímetros
+        "mm": [353.0, 247.0, 132.0] # A, B, C em milímetros
+    }
+
+    # Associa escala às colunas
+    colunas = {
+        "dm": col_dm,
+        "cm": col_cm,
+        "mm": col_mm
+    }
+
+    # Criação dos inputs
     medidas = {}
-    for escala, col in zip(["dm", "cm", "mm"], [col_dm, col_cm, col_mm]):
-        medidas[escala] = {
-            "A": col.number_input(f"A ({escala})", step=0.001),
-            "B": col.number_input(f"B ({escala})", step=0.001),
-            "C": col.number_input(f"C ({escala})", step=0.001)
-        }
+    for escala in ["dm", "cm", "mm"]:
+        col = colunas[escala]
+        medidas[escala] = {}
+        for letra, default_val in zip(["A", "B", "C"], defaults[escala]):
+            medidas[escala][letra] = col.number_input(
+                f"{letra} ({escala})",
+                step=0.001,
+                value=default_val
+            )
 
     # Cálculo volume e desvios
     resultados = []
