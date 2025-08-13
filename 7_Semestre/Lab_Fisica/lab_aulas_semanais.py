@@ -79,7 +79,7 @@ def plot_triangulo():
     ax.axis('off')
     st.pyplot(fig)
 
-def procedure_2_1()-> None:
+def procedure_2_1() -> None:
     # Configurações para cada tipo de objeto
     config = {
         "Folha A4": {
@@ -88,7 +88,13 @@ def procedure_2_1()-> None:
             "unidade": "cm",
             "A": 29.7,
             "B": 21.0,
-            "C": 0.001
+            "C": 0.001,
+            "paquimetro":0.05,
+            "unit_paq": "mm",
+            "C_paq":1.0,
+            "num_folha":20,
+            "micrometro":0.01,
+            "C_mic":20.0,
         },
         "Bloco de Madeira": {
             "artigo": "um",
@@ -96,13 +102,18 @@ def procedure_2_1()-> None:
             "unidade": "mm",
             "A": 79.1,
             "B": 74.0,
-            "C": 20.0
-        }
+            "C": 20.0,
+            "paquimetro":0.05,
+            "unit_paq": "mm",
+            "C_paq":20.0,
+            "micrometro":0.01,
+            "C_mic":20.0,
+        },
     }
 
     object_type = st.selectbox("Objeto de Estudo", list(config.keys()))
     cfg = config[object_type]
-
+    
     st.markdown(f"**Procedimento 1 – Medida de A, B e C {cfg['objeto']} {object_type}**")
     st.write(f"1)Com a régua meça o comprimento (A) e a largura (B) de {cfg['artigo']} {object_type} com a régua.")
     st.write(f"Para medir a espessura (C) {cfg['objeto']} {object_type}, utilize o paquímetro.")
@@ -121,26 +132,23 @@ def procedure_2_1()-> None:
         st.success(f"Volume {cfg['objeto']} {object_type}: {volume:.4f} {cfg['unidade']}³")
 
     if st.button("Zerar"):
-        st.session_state[f"A_{object_type}"] = cfg["A"]
-        st.session_state[f"B_{object_type}"] = cfg["B"]
-        st.session_state[f"C_{object_type}"] = cfg["C"]
         st.rerun()
 
     st.write(f"""2) Tente medir diretamente a espessura {cfg['objeto']} {object_type} com o micrômetro. 
              Compare com o valor do paquímetro.""")
     col4,col5=st.columns(2)
     if object_type == "Folha A4":
-        num_folhas=col4.number_input("Numero de folhas A4",value=1,step=1,key="num_folhas")
-        med_paq=col5.number_input("Espessura das folhas",value=1.0,step=0.001,key="esp_folhas",format="%.3f")
-        espessura_paq=float(col4.number_input(f"Espessura Paquímetro({cfg['unidade']})", value=float(med_paq)/float(num_folhas), step=0.0001, format="%.4f", key=f"C_paq_{object_type}")) 
+        num_folhas=col4.number_input("Numero de folhas A4",value=cfg["num_folha"],step=1,key="num_folhas")
+        med_paq=col5.number_input("Espessura das folhas",value=cfg["C_paq"],step=0.001,key="esp_folhas",format="%.3f")
+        espessura_paq=float(col4.number_input(f"Espessura Paquímetro({cfg['unit_paq']})", value=float(num_folhas)/float(med_paq), step=0.0001, format="%.4f", key=f"C_paq_{object_type}")) 
     else:
-        espessura_paq=float(col4.number_input(f"Espessura Paquímetro({cfg['unidade']})", value=cfg["C"], step=0.0001, format="%.4f", key=f"C_paq_{object_type}")) 
-    espessura_mic=float(col5.number_input(f"Espessura Micrômetro({cfg['unidade']})", value=cfg["C"], step=0.0001, format="%.4f", key=f"C_mic_{object_type}"))
-
+        espessura_paq=float(col4.number_input(f"Espessura Paquímetro({cfg['unit_paq']})", value=cfg["C_paq"], step=0.0001, format="%.4f", key=f"C_paq_{object_type}")) 
+    espessura_mic=float(col5.number_input(f"Espessura Micrômetro({cfg['unit_paq']})", value=cfg["C_mic"], step=0.0001, format="%.4f", key=f"C_mic_{object_type}"))
+    st.write(f"A diferença entre as medidas é de {"{:.4f}".format(abs(espessura_paq - espessura_mic))} {cfg['unit_paq']}." if espessura_paq!=espessura_mic else "As medidas são iguais.")
     st.write(f"3) Determine o volume {cfg['objeto']} {object_type} e apresente com a incerteza.")
     col6,col7=st.columns(2)
-    prec_paq=float(col6.number_input(f"Precisão Paquímetro({cfg['unidade']})", value=0.05, step=0.0001, format="%.4f", key=f"prec_paq_{object_type}")) 
-    prec_mic=float(col7.number_input(f"Precisão Micrômetro({cfg['unidade']})", value=0.05, step=0.0001, format="%.4f", key=f"prec_mic_{object_type}"))
+    prec_paq=float(col6.number_input(f"Precisão Paquímetro({cfg['unit_paq']})", value=cfg["paquimetro"], step=0.0001, format="%.4f", key=f"prec_paq_{object_type}")) 
+    prec_mic=float(col7.number_input(f"Precisão Micrômetro({cfg['unit_paq']})", value=cfg["micrometro"], step=0.0001, format="%.4f", key=f"prec_mic_{object_type}"))
 
 def procedure_2_2():
     # Procedimento 2
