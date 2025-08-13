@@ -79,32 +79,69 @@ def plot_triangulo():
     ax.axis('off')
     st.pyplot(fig)
 
-def procedure_2_1():
-    # Procedimento 1
-    st.markdown("**Procedimento 1 – Medida de A, B e C da folha A4**")
-    st.write("""1) Com a régua meça o comprimento (A) e a largura (B) de uma folha de papel A4. Para medir a 
-    espessura (C) da folha utilize o paquímetro. Como é impossível medir diretamente a espessura de 
-    uma única folha com o paquímetro, meça inicialmente a espessura de diversas folhas e divida o 
-    resultado pelo número de folhas.   
-    Escreva os resultados com as incertezas."""
-    )
-    col1, col2, col3 = st.columns(3)
-    A = col1.number_input("Comprimento A (cm)",value=29.7, step=0.01,format='%.2f',key="A")
-    B = col2.number_input("Largura B (cm)",value=21.0,step=0.01,format='%.2f',key="B")
-    C = col3.number_input("Espessura C (cm)",value=0.001, step=0.0001,format='%.4f',key="C")
+def procedure_2_1()-> None:
+    # Configurações para cada tipo de objeto
+    config = {
+        "Folha A4": {
+            "artigo": "uma",
+            "objeto": "da",
+            "unidade": "cm",
+            "A": 29.7,
+            "B": 21.0,
+            "C": 0.001
+        },
+        "Bloco de Madeira": {
+            "artigo": "um",
+            "objeto": "do",
+            "unidade": "mm",
+            "A": 79.1,
+            "B": 74.0,
+            "C": 20.0
+        }
+    }
 
-    if col1.button("Calcular"):
-        st.write(f"Volume da folha: {(A*B*C):.4f} cm³")
-    if col2.button("Zerar Volume"):
+    object_type = st.selectbox("Objeto de Estudo", list(config.keys()))
+    cfg = config[object_type]
+
+    st.markdown(f"**Procedimento 1 – Medida de A, B e C {cfg['objeto']} {object_type}**")
+    st.write(f"1)Com a régua meça o comprimento (A) e a largura (B) de {cfg['artigo']} {object_type} com a régua.")
+    st.write(f"Para medir a espessura (C) {cfg['objeto']} {object_type}, utilize o paquímetro.")
+
+    if object_type == "Folha A4":
+        st.write("""Como é impossível medir diretamente a espessura de uma única folha com o paquímetro, 
+                 meça inicialmente a espessura de diversas folhas e divida o resultado pelo número de folhas.""")
+
+    col1, col2, col3 = st.columns(3)
+    A = float(col1.number_input(f"Comprimento A ({cfg['unidade']})", value=cfg["A"], step=0.01, format="%.4f", key=f"A_{object_type}"))
+    B = float(col2.number_input(f"Largura B ({cfg['unidade']})", value=cfg["B"], step=0.01, format="%.4f", key=f"B_{object_type}"))
+    C = float(col3.number_input(f"Espessura C ({cfg['unidade']})", value=cfg["C"], step=0.0001, format="%.4f", key=f"C_{object_type}"))
+
+    if st.button("Calcular Volume"):
+        volume = A * B * C
+        st.success(f"Volume {cfg['objeto']} {object_type}: {volume:.4f} {cfg['unidade']}³")
+
+    if st.button("Zerar"):
+        st.session_state[f"A_{object_type}"] = cfg["A"]
+        st.session_state[f"B_{object_type}"] = cfg["B"]
+        st.session_state[f"C_{object_type}"] = cfg["C"]
         st.rerun()
-        
-    st.write(
-    """2) Tente medir diretamente a espessura da folha com o micrômetro. Compare o resultado com 
-    aquele encontrado com o paquímetro.""")
-    st.write(
-    """3) Determine o volume da folha e escreva o resultado com a incerteza. 
-    """    
-    )
+
+    st.write(f"""2) Tente medir diretamente a espessura {cfg['objeto']} {object_type} com o micrômetro. 
+             Compare com o valor do paquímetro.""")
+    col4,col5=st.columns(2)
+    if object_type == "Folha A4":
+        num_folhas=col4.number_input("Numero de folhas A4",value=1,step=1,key="num_folhas")
+        med_paq=col5.number_input("Espessura das folhas",value=1.0,step=0.001,key="esp_folhas",format="%.3f")
+        espessura_paq=float(col4.number_input(f"Espessura Paquímetro({cfg['unidade']})", value=float(med_paq)/float(num_folhas), step=0.0001, format="%.4f", key=f"C_paq_{object_type}")) 
+    else:
+        espessura_paq=float(col4.number_input(f"Espessura Paquímetro({cfg['unidade']})", value=cfg["C"], step=0.0001, format="%.4f", key=f"C_paq_{object_type}")) 
+    espessura_mic=float(col5.number_input(f"Espessura Micrômetro({cfg['unidade']})", value=cfg["C"], step=0.0001, format="%.4f", key=f"C_mic_{object_type}"))
+
+    st.write(f"3) Determine o volume {cfg['objeto']} {object_type} e apresente com a incerteza.")
+    col6,col7=st.columns(2)
+    prec_paq=float(col6.number_input(f"Precisão Paquímetro({cfg['unidade']})", value=0.05, step=0.0001, format="%.4f", key=f"prec_paq_{object_type}")) 
+    prec_mic=float(col7.number_input(f"Precisão Micrômetro({cfg['unidade']})", value=0.05, step=0.0001, format="%.4f", key=f"prec_mic_{object_type}"))
+
 def procedure_2_2():
     # Procedimento 2
     st.markdown("**Procedimento 2 – Dinamômetro**")
