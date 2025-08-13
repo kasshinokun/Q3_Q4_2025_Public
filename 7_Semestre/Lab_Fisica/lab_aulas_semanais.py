@@ -197,7 +197,7 @@ def procedure_2_4():
         procedure_2_4_b()
     else:
         st.write("Aguardando escolha........")
-def procedure_2_4_a()
+def procedure_2_4_a():
     # Procedimento 4
     st.markdown("**Procedimento 4 – Caixa**")
     st.write("""1) Meça as dimensões A, B e C da caixa, conforme ilustrado na Figura 8. Utilize primeiro a régua 
