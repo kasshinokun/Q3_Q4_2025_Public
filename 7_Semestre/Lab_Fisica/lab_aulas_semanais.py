@@ -186,13 +186,12 @@ def procedure_2_4():
 
     # Cálculo volume e desvios
     resultados = []
+    inc_por_escala = {"dm": 0.5, "cm": 0.5, "mm": 0.5}
     for escala, vals in medidas.items():
         A_, B_, C_ = vals["A"], vals["B"], vals["C"]
         volume = A_ * B_ * C_
-        inc_A = (0.5 / (10 if escala == "cm" else (1 if escala == "dm" else 1000)))
-        inc_B = inc_A
-        inc_C = inc_A
-        desv_percent = ((inc_A/A_) + (inc_B/B_) + (inc_C/C_)) * 100 if A_ and B_ and C_ else 0
+        inc = inc_por_escala[escala]
+        desv_percent = ((inc/A_) + (inc/B_) + (inc/C_)) * 100 if A_ and B_ and C_ else 0
         resultados.append([escala, volume, desv_percent])
 
     df_result = pd.DataFrame(resultados, columns=["Escala", "Volume", "Desvio Percentual (%)"])
