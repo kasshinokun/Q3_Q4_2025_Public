@@ -272,6 +272,7 @@ def procedure_2_4_a():
             st.write(f"O desvio em {escala} é {valor}")
         else:
             st.write(f"O desvio em {escala} é {valor} × 10^{expoente} {escala}^{3}")
+
 def procedure_2_4_b():
     # Valores padrão (dicionário aninhado)
     default_dados = {
@@ -329,18 +330,50 @@ def procedure_2_4_b():
                                           step=0.001)
             }
 
-    # Converter para DataFrame para exibição final
+    # Processar cálculos
     linhas = []
     for grupo, medidas in dados_editados.items():
-        linha = {"Grupo": grupo}
-        for letra, valores in medidas.items():
-            for unidade, val in valores.items():
-                linha[f"{letra} ({unidade})"] = val
-        linhas.append(linha)
+        for escala in ["dm", "cm", "mm"]:
+            A_ = medidas["A"][escala]
+            B_ = medidas["B"][escala]
+            C_ = medidas["C"][escala]
+            volume = A_ * B_ * C_
 
+            # meia divisão do instrumento
+            inc = 0.5
+
+            # desvio percentual
+            desv_percent = ((inc/A_) + (inc/B_) + (inc/C_)) * 100 if A_ and B_ and C_ else 0
+
+            # desvio absoluto (notação científica)
+            if volume > 0 and desv_percent > 0:
+                expoente = int(math.log10(volume * desv_percent))
+                valor = round((volume * desv_percent) / (10**expoente), 2)
+                desvio_abs_str = f"{valor} × 10^{expoente} {escala}³"
+            else:
+                desvio_abs_str = "0"
+
+            linhas.append({
+                "Grupo": grupo,
+                "Escala": escala,
+                "A": A_,
+                "B": B_,
+                "C": C_,
+                "Volume": round(volume, 4),
+                "Desvio Percentual (%)": round(desv_percent, 4),
+                "Desvio Absoluto": desvio_abs_str
+            })
+
+    # DataFrame final
     df = pd.DataFrame(linhas)
     st.dataframe(df, hide_index=True)
-
+    
+    st.subheader("Fórmulas usadas")
+    st.write("Formula para obter o valor do desvio percentual:")
+    st.latex(r"{Desvio} = \frac{incerteza}{medida} \times 100 \%")
+    st.write("Formula para obter o valor do desvio pelo desvio percentual em notação cientifica:")
+    st.latex(r"\frac{Volume \times Desvio}{\log_{10}(Volume \times Desvio)}")
+    
 def activity_02():
    
     st.subheader("Procedimentos – Atividade 2")
