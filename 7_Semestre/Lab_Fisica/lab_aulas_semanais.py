@@ -190,6 +190,14 @@ def procedure_2_3():
     if col2.button("Zerar Valores"):
         st.rerun()
 def procedure_2_4():
+    op=st.selectbox("Exibição",["Padrão","Apêndice"])
+    if op=="Padrão":
+        procedure_2_4_a()
+    elif op =="Apêndice":
+        procedure_2_4_b()
+    else:
+        st.write("Aguardando escolha........")
+def procedure_2_4_a()
     # Procedimento 4
     st.markdown("**Procedimento 4 – Caixa**")
     st.write("""1) Meça as dimensões A, B e C da caixa, conforme ilustrado na Figura 8. Utilize primeiro a régua 
@@ -264,6 +272,75 @@ def procedure_2_4():
             st.write(f"O desvio em {escala} é {valor}")
         else:
             st.write(f"O desvio em {escala} é {valor} × 10^{expoente} {escala}^{3}")
+def procedure_2_4_b():
+    # Valores padrão (dicionário aninhado)
+    default_dados = {
+        "Grupo 1": {
+            "A": {"dm": 3.5, "cm": 35.0, "mm": 355.0},
+            "B": {"dm": 2.4, "cm": 24.0, "mm": 242.0},
+            "C": {"dm": 1.3, "cm": 13.1, "mm": 131.0}
+        },
+        "Grupo 2": {
+            "A": {"dm": 3.5, "cm": 35.9, "mm": 357.0},
+            "B": {"dm": 2.4, "cm": 24.9, "mm": 250.0},
+            "C": {"dm": 1.3, "cm": 13.2, "mm": 134.0}
+        },
+        "Grupo 3": {
+            "A": {"dm": 3.5, "cm": 35.4, "mm": 353.0},
+            "B": {"dm": 2.4, "cm": 24.1, "mm": 247.0},
+            "C": {"dm": 1.2, "cm": 13.0, "mm": 132.0}
+        },
+        "Grupo 4": {
+            "A": {"dm": 3.5, "cm": 35.0, "mm": 354.0},
+            "B": {"dm": 2.4, "cm": 24.7, "mm": 247.0},
+            "C": {"dm": 1.3, "cm": 13.3, "mm": 129.0}
+        }
+    }
+
+    # Sidebar para escolher modo de exibição
+    opcoes_grupos = ["Todos"] + list(default_dados.keys())
+    escolha = st.sidebar.selectbox("Selecione o grupo", opcoes_grupos)
+
+    # Determinar grupos a exibir
+    if escolha == "Todos":
+        qtd_grupos = st.sidebar.slider("Quantidade de grupos", 1, 4, 4)
+        grupos_para_exibir = list(default_dados.keys())[:qtd_grupos]
+    else:
+        grupos_para_exibir = [escolha]
+
+    # Criar estrutura para armazenar valores editados
+    dados_editados = {}
+
+    # Exibir inputs para os grupos escolhidos
+    for grupo_nome in grupos_para_exibir:
+        st.subheader(grupo_nome)
+        col_dm, col_cm, col_mm = st.columns(3)
+        dados_editados[grupo_nome] = {}
+        for letra in ["A", "B", "C"]:
+            dados_editados[grupo_nome][letra] = {
+                "dm": col_dm.number_input(f"{letra} (dm) - {grupo_nome}",
+                                          value=default_dados[grupo_nome][letra]["dm"],
+                                          step=0.001),
+                "cm": col_cm.number_input(f"{letra} (cm) - {grupo_nome}",
+                                          value=default_dados[grupo_nome][letra]["cm"],
+                                          step=0.001),
+                "mm": col_mm.number_input(f"{letra} (mm) - {grupo_nome}",
+                                          value=default_dados[grupo_nome][letra]["mm"],
+                                          step=0.001)
+            }
+
+    # Converter para DataFrame para exibição final
+    linhas = []
+    for grupo, medidas in dados_editados.items():
+        linha = {"Grupo": grupo}
+        for letra, valores in medidas.items():
+            for unidade, val in valores.items():
+                linha[f"{letra} ({unidade})"] = val
+        linhas.append(linha)
+
+    df = pd.DataFrame(linhas)
+    st.dataframe(df, hide_index=True)
+
 def activity_02():
    
     st.subheader("Procedimentos – Atividade 2")
