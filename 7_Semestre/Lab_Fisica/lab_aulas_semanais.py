@@ -160,17 +160,13 @@ def procedure_2_4():
 
     # Valores padrão para cada escala
     defaults = {
-        "dm": [3.5, 2.4, 1.2],      # A, B, C em decímetros
-        "cm": [35.4, 24.1, 13.0],   # A, B, C em centímetros
-        "mm": [353.0, 247.0, 132.0] # A, B, C em milímetros
+        "dm": [3.5, 2.4, 1.2],
+        "cm": [35.4, 24.1, 13.0],
+        "mm": [353.0, 247.0, 132.0]
     }
 
     # Associa escala às colunas
-    colunas = {
-        "dm": col_dm,
-        "cm": col_cm,
-        "mm": col_mm
-    }
+    colunas = {"dm": col_dm, "cm": col_cm, "mm": col_mm}
 
     # Criação dos inputs
     medidas = {}
@@ -186,16 +182,43 @@ def procedure_2_4():
 
     # Cálculo volume e desvios
     resultados = []
-    inc_por_escala = {"dm": 0.5, "cm": 0.5, "mm": 0.5}
+    desvio_valores_abs = {}
+    st.write("Formula para obter o valor do desvio percentual:")
+    st.latex(r"{Desvio} = \frac{incerteza}{medida} \times 100 \%")
     for escala, vals in medidas.items():
         A_, B_, C_ = vals["A"], vals["B"], vals["C"]
         volume = A_ * B_ * C_
-        inc = inc_por_escala[escala]
+
+        # meia divisão do instrumento (na mesma unidade da escala)
+        inc = 0.5  
+
+        # desvio percentual
         desv_percent = ((inc/A_) + (inc/B_) + (inc/C_)) * 100 if A_ and B_ and C_ else 0
+        
+        # desvio absoluto
+        if volume > 0:
+            #if volume >= 1000:
+            expoente = int(math.log10(volume * desv_percent))
+            valor = round((volume * desv_percent) / (10**expoente), 2)
+            desvio_valores_abs[escala] = (valor, expoente)
+            #else:
+                #desvio_valores_abs[escala] = (round(volume * desv_percent, 2), None)
+        else:
+            desvio_valores_abs[escala] = (0, None)
+
         resultados.append([escala, volume, desv_percent])
 
+    # Exibição tabela principal
     df_result = pd.DataFrame(resultados, columns=["Escala", "Volume", "Desvio Percentual (%)"])
     st.table(df_result)
+    st.write("Formula para obter o valor do desvio pelo desvio percentual em notação cientifica:")
+    st.latex(r"\frac{Volume \times Desvio}{\log_{10}(Volume \times Desvio)}")
+    # Exibição dos desvios absolutos calculados automaticamente
+    for escala, (valor, expoente) in desvio_valores_abs.items():
+        if expoente is None:
+            st.write(f"O desvio em {escala} é {valor}")
+        else:
+            st.write(f"O desvio em {escala} é {valor} × 10^{expoente} {escala}^{3}")
 def activity_02():
    
     st.subheader("Procedimentos – Atividade 2")
