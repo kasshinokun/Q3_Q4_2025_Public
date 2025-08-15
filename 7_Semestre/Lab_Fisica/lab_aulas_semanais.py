@@ -85,8 +85,9 @@ def generate_json():
         with open("image.json", "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         st.success("Arquivo JSON de imagens criado")
+        laboratorio()
     else:
-        st.error("O arquivo existe")
+        laboratorio()
 def update_json(str_image64: str, name_image: str):
     # Carregar dados existentes ou iniciar dicionário vazio
     try:
