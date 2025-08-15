@@ -1070,5 +1070,5 @@ def laboratorio():
         """)
         #st.write("Aguardando escolha.......")
 if __name__ == "__main__":
-    #generate_json()
-    laboratorio()
+    generate_json()
+    #laboratorio()
