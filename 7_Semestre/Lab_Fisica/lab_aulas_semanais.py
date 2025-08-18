@@ -7,15 +7,15 @@ from matplotlib.patches import Rectangle, Circle, Arc
 st.set_page_config(page_title="Resolução de Vetores", layout="wide")
 st.title("📐 Exercício 3 - Decomposição Vetorial")
 st.markdown("""
-**Enunciado:**  
-Três vetores de deslocamento **A**, **B** e **C** são dispostos sequencialmente. 
+**Enunciado:**
+Três vetores de deslocamento **A**, **B** e **C** são dispostos sequencialmente.
 A soma resultante **R** é paralela ao eixo **x**. Determine:
-1. O módulo do vetor resultante **|R|**  
-2. O ângulo **θ** que define sua direção  
+1. O módulo do vetor resultante **|R|**
+2. O ângulo **θ** que define sua direção
 
-**Dados:**  
-- |**A**| = 35.0 m (direção horizontal)  
-- |**B**| = 23.0 m (ângulo de 50.0° com o eixo +x)  
+**Dados:**
+- |**A**| = 35.0 m (direção horizontal)
+- |**B**| = 23.0 m (ângulo de 50.0° com o eixo +x)
 - |**C**| = 10.0 m (direção vertical, sentido -y)
 """)
 
@@ -31,7 +31,7 @@ st.markdown(r"""
 ### Vetor A (horizontal, +x):
 $$
 \begin{cases}
-A_x = 35.0  \text{m} \\
+A_x = 35.0 \text{m} \\
 A_y = 0
 \end{cases}
 $$
@@ -48,7 +48,7 @@ $$
 $$
 \begin{cases}
 C_x = 0 \\
-C_y = -10.0  \text{m}
+C_y = -10.0 \text{m}
 \end{cases}
 $$
 """)
@@ -58,9 +58,9 @@ b_x = 23.0 * np.cos(np.radians(50))
 b_y = 23.0 * np.sin(np.radians(50))
 
 st.markdown(f"""
-**Cálculos:**  
-- $B_x = 23.0 \\times \\cos(50^\\circ) \\approx 23.0 \\times 0.6428 = \\boxed{{{b_x:.2f}  \\text{{m}}}$  
-- $B_y = 23.0 \\times \\sin(50^\\circ) \\approx 23.0 \\times 0.7660 = \\boxed{{{b_y:.2f}  \\text{{m}}}$
+**Cálculos:**
+- $B_x = 23.0 \\times \\cos(50^\\circ) \\approx 23.0 \\times 0.6428 = \\boxed{{{b_x:.2f}}} \\text{{m}}$
+- $B_y = 23.0 \\times \\sin(50^\\circ) \\approx 23.0 \\times 0.7660 = \\boxed{{{b_y:.2f}}} \\text{{m}}$
 """)
 
 # Passo 2: Componentes da resultante
@@ -99,9 +99,9 @@ $$
 """)
 
 st.markdown(f"""
-**Resultados dos componentes:**  
-- $R_x = 35.0 + {b_x:.2f} + 0 = \\boxed{{{r_x:.2f}  \\text{{m}}}}$  
-- $R_y = 0 + {b_y:.2f} - 10.0 = \\boxed{{{r_y:.2f}  \\text{{m}}}}$
+**Resultados dos componentes:**
+- $R_x = 35.0 + {b_x:.2f} + 0 = \\boxed{{{r_x:.2f}}} \\text{{m}}$
+- $R_y = 0 + {b_y:.2f} - 10.0 = \\boxed{{{r_y:.2f}}} \\text{{m}}$
 """)
 
 st.markdown(r"""
@@ -112,8 +112,8 @@ $$
 """)
 
 st.markdown(f"""
-**Cálculo do Módulo:**  
-- $|\vec{{R}}| = \sqrt{{ ({r_x:.2f})^2 + ({r_y:.2f})^2 }} = \\boxed{{{modulo_r:.1f}  \\text{{m}}}}$
+**Cálculo do Módulo:**
+- $|\vec{{R}}| = \sqrt{{ ({r_x:.2f})^2 + ({r_y:.2f})^2 }} = \\boxed{{{modulo_r:.1f}}} \\text{{m}}$
 """)
 
 # Passo 4: Direção do vetor
@@ -126,7 +126,7 @@ $$
 """)
 
 st.markdown(f"""
-**Cálculo do Ângulo:**  
+**Cálculo do Ângulo:**
 - $\\tan(\\theta) = \\frac{{{r_y:.2f}}}{{{r_x:.2f}}} \\implies \\theta \\approx \\boxed{{{angulo_r_deg:.1f}^\\circ}}$
 """)
 
@@ -170,18 +170,18 @@ st.divider()
 # Conclusão
 st.header("✅ Conclusão")
 st.markdown(f"""
-**Resultado final:**  
-| Grandeza       | Valor              |
-|----------------|--------------------|
-| Módulo de **R** | $\\boxed{{{modulo_r:.1f}  \\text{{m}}}$ |
-| Ângulo **θ**   | $\\boxed{{{angulo_r_deg:.1f}^\\circ}}$ |
+**Resultado final:**
+| Grandeza | Valor |
+|---|---|
+| Módulo de **R** | $\\boxed{{{modulo_r:.1f}}} \\text{{m}}$ |
+| Ângulo **θ** | $\\boxed{{{angulo_r_deg:.1f}^\\circ}}$ |
 
-**Fundamentação teórica:**  
-- Decomposição vetorial (p. 33-39 da apostila)  
+**Fundamentação teórica:**
+- Decomposição vetorial (p. 33-39 da apostila)
 - Soma por componentes (p. 40-45 da apostila)
 """)
 
 st.info("""
-**Nota explicativa:**  
+**Nota explicativa:**
 Existe uma contradição entre os dados fornecidos e a afirmação do enunciado de que a resultante R é paralela ao eixo x. Os cálculos demonstram que, com os dados fornecidos, a resultante possui uma componente vertical ($R_y \\neq 0$) e, portanto, não é paralela ao eixo x. O exercício foi resolvido considerando os dados e calculando a resultante, que tem um ângulo de aproximadamente 8.7° com o eixo x.
 """)
