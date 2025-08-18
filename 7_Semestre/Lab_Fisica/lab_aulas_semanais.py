@@ -111,10 +111,10 @@ $$
 $$
 """)
 
-st.markdown(f"""
-**Cálculo do Módulo:**
-- $|\vec{{R}}| = \sqrt{{ ({r_x:.2f})^2 + ({r_y:.2f})^2 }} = \\boxed{{{modulo_r:.1f}}} \\text{{m}}$
-""")
+st.subheader("Cálculo do Módulo")
+st.latex(
+    f"|\\vec{{R}}| = \\sqrt{{({r_x:.2f})^2 + ({r_y:.2f})^2}} = \\boxed{{{modulo_r:.1f}}} \\text{{m}}"
+)
 
 # Passo 4: Direção do vetor
 st.subheader("Passo 4: Direção do vetor resultante")
