@@ -204,11 +204,10 @@ def exercises_3():
     $$
     """)
 
-    st.markdown(f"""
-    **Cálculo do Módulo:**
-    - $|\vec{{R}}| = \sqrt{{ ({r_x:.2f})^2 + ({r_y:.2f})^2 }} = \\boxed{{{modulo_r:.1f}}} \\text{{m}}$
-    """)
-
+    st.subheader("Cálculo do Módulo")
+    st.latex(
+        f"|\\vec{{R}}| = \\sqrt{{({r_x:.2f})^2 + ({r_y:.2f})^2}} = \\boxed{{{modulo_r:.1f}}} \\text{{m}}"
+    )
     st.subheader("Passo 4: Direção do vetor resultante")
     angulo_r_rad = np.arctan2(r_y, r_x)
     angulo_r_deg = np.degrees(angulo_r_rad)
