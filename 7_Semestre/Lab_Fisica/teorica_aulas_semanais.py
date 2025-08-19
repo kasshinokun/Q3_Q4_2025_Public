@@ -1,3 +1,6 @@
+# Aula Teórica de Física Mecânica 
+# rev.2b 18-08-2025
+
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
