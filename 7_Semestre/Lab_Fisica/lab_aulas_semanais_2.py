@@ -1,4 +1,5 @@
-# Aula 12-08-2025 protótipo 
+# Aula 19-08-2025 protótipo 
+# Preparação para integrar com Fisica Mecanica Teoria
 # Interface
 import streamlit as st
 # Listas e Matrizes
@@ -662,16 +663,20 @@ def concept_01():
     cols = st.columns(num_groups)    
     for i in range(num_groups):
         with cols[i]:
-            tabela2_df.loc[f"{i+1}", "$t_{med}(s)$"] = st.number_input(f"Grupo {i+1} - $t_{{med}}(s)$", 
-                                                                    key=f"tmed_group_{i+1}",
-                                                                    step=0.001,
-                                                                        format="%.3f"
-                                                                    )
-            tabela2_df.loc[f"{i+1}", "$\\Delta t(s)$"] = st.number_input(f"Grupo {i+1} - $\\Delta t(s)$", 
-                                                                        key=f"deltat_group_{i+1}",
-                                                                    step=0.001,
-                                                                        format="%.3f"
-                                                                    )
+            # Adaptação para evitar de zerar epsilon no momento errado(Pylance Tentativa 4)
+            input1=st.number_input(f"Grupo {i+1} - $t_{{med}}(s)$", 
+                                    key=f"tmed_group_{i+1}",
+                                    step=0.001,
+                                        format="%.3f"
+                                    )
+            tabela2_df.loc[f"{i+1}", "$t_{med}(s)$"] = input1
+            input2=st.number_input(f"Grupo {i+1} - $\\Delta t(s)$", 
+                                    key=f"deltat_group_{i+1}",
+                                step=0.001,
+                                    format="%.3f"
+                                )
+            tabela2_df.loc[f"{i+1}", "$\\Delta t(s)$"] = input2
+            tabela2_df.loc[f"{i+1}","$\\epsilon(\\%)$"] = (float(input1)/float(input2)) *100 if not(input2==0) else 0
     
         # Calculate epsilon
     # Calculate epsilon(Pylance apresentou falso-negativo)
@@ -685,11 +690,11 @@ def concept_01():
 
         
     # Tentativa 2 - Falso-negativo Pylance (mais simples e estável)
-    if not(tabela2_df["$t_{med}(s)$"].isna or tabela2_df["$t_{med}(s)$"]=="0.000"):
-        tabela2_df["$\\epsilon(\\%)$"] = (tabela2_df["$\\Delta t(s)$"] / tabela2_df["$t_{med}(s)$"])*100
-    else:
-        st.error("Coloque valores diferentes de zero.")
-        tabela2_df["$\\epsilon(\\%)$"] = 0
+    #if not(tabela2_df["$t_{med}(s)$"].isna or tabela2_df["$t_{med}(s)$"]=="0.000"):
+        #tabela2_df["$\\epsilon(\\%)$"] = (tabela2_df["$\\Delta t(s)$"] / tabela2_df["$t_{med}(s)$"])*100
+    #else:
+        #st.error("Coloque valores diferentes de zero.")
+        #tabela2_df["$\\epsilon(\\%)$"] = 0
     #----------------------------> Código original(Tentativa 1)
     #for i in range(num_groups):
         #t_med_val = tabela2_df.loc[f"{i+1}", "$t_{med}(s)$"]
