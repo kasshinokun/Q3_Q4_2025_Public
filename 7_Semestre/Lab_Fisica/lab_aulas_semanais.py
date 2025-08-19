@@ -329,7 +329,8 @@ def concept_01():
                                     format="%.3f"
                                 )
             tabela2_df.loc[f"{i+1}", "$\\Delta t(s)$"] = input2
-            tabela2_df.loc[f"{i+1}","$\\epsilon(\\%)$"] = (float(input1)/float(input2)) *100 if not(input2==0) else 0
+            # Epsilon=(delta_t/t_medio)*100
+            tabela2_df.loc[f"{i+1}","$\\epsilon(\\%)$"] = (float(input2)/float(input1)) *100 if not(input1==0 and input2==0) else 0
     
         # Calculate epsilon
     # Calculate epsilon(Pylance apresentou falso-negativo)
