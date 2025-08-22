@@ -31,6 +31,7 @@ st.markdown("""
         border-radius: 0.5rem;
         border-left: 4px solid #4B8BBE;
         margin: 1rem 0;
+        color: #000000;  /* Texto preto */
     }
     .footer {
         text-align: center;
