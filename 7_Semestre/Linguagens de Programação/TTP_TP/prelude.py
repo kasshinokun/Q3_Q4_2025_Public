@@ -54,8 +54,9 @@ if section == "Introdução":
     
     st.markdown("""
     <div style="text-align: center; margin-bottom: 2rem;">
-        <strong>Data:</strong> 23 de maio de 2024 | 
-        <strong>Autor:</strong> Assistente de IA
+        <strong>Data:</strong> 22 de Agosto de 2025 | 
+        <strong>Status:</strong>Em Desenvolvimento
+        <strong>Criado e adaptado por:</strong> Gabriel da Silva Cassino 
     </div>
     """, unsafe_allow_html=True)
     
