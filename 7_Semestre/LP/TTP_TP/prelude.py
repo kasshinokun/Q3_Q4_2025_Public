@@ -61,18 +61,17 @@ if section == "Introdução":
     </div>
     """, unsafe_allow_html=True)
     
-    st.markdown("""
+   st.markdown("""
     <div class="highlight">
-    '<div style="color: #000000;">'
-    <h3>Sumário Executivo</h3>
-    <p>Python é uma linguagem de programação de alto nível, interpretada, de propósito geral e multiparadigma. 
-    Criada por Guido van Rossum no final dos anos 1980, sua filosofia de design enfatiza a legibilidade do código, 
-    a simplicidade e a produtividade do desenvolvedor. Este relatório detalha a história e genealogia de Python, 
-    seus paradigmas de programação, suas características mais marcantes e faz um paralelo com linguagens relacionadas, 
-    sejam elas influenciadoras, influenciadas ou concorrentes. O documento conclui que o sucesso duradouro de Python 
-    é diretamente atribuível à sua combinação única de facilidade de aprendizado, poder e um ecossistema comunitário vibrante.</p>
+        <h3 style="color: #000000;">Sumário Executivo</h3>
+        <p style="color: #000000;">Python é uma linguagem de programação de alto nível, interpretada, de propósito geral e multiparadigma. 
+        Criada por Guido van Rossum no final dos anos 1980, sua filosofia de design enfatiza a legibilidade do código, 
+        a simplicidade e a produtividade do desenvolvedor. Este relatório detalha a história e genealogia de Python, 
+        seus paradigmas de programação, suas características mais marcantes e faz um paralelo com linguagens relacionadas, 
+        sejam elas influenciadoras, influenciadas ou concorrentes. O documento conclui que o sucesso duradouro de Python 
+        é diretamente atribuível à sua combinação única de facilidade de aprendizado, poder e um ecossistema comunitário vibrante.</p>
     </div>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # Conteúdo do Histórico
 elif section == "Histórico":
