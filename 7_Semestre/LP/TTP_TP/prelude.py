@@ -63,6 +63,7 @@ if section == "Introdução":
     
     st.markdown("""
     <div class="highlight">
+    '<div style="color: #000000;">'
     <h3>Sumário Executivo</h3>
     <p>Python é uma linguagem de programação de alto nível, interpretada, de propósito geral e multiparadigma. 
     Criada por Guido van Rossum no final dos anos 1980, sua filosofia de design enfatiza a legibilidade do código, 
