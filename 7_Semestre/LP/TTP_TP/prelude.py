@@ -1,5 +1,5 @@
 import streamlit as st
-
+# versão 3a 22-08-2025
 # Configuração da página
 st.set_page_config(
     page_title="Relatório Técnico: Python",
