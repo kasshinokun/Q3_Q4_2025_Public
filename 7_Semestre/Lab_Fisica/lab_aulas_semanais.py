@@ -1,6 +1,6 @@
 # Aula Teórica de Física Mecânica 
 # rev.2b 18-08-2025 e
-# Aula 12-08-2025 laboratorio 
+# Aula 1-25-08-2025 laboratorio 
 # Interface
 import streamlit as st
 # Listas e Matrizes
@@ -958,7 +958,7 @@ def activity_04():
         """)
     elif parts=="C - Apêndice":
         # Physics explanation
-        st.markdown("##### Física de Movimento Unifrome Acelerado")
+        st.markdown("##### Física de Movimento Uniforme Acelerado")
         st.markdown(r"""
         A equação de Movimento para aceleração constante é:
 
