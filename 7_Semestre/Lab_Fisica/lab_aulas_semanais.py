@@ -509,7 +509,7 @@ def ex4_4_practice():
                 <b>F_B</b>, vertical para baixo. Determine o ângulo φ 
                 <br>da força de Camila e o módulo da força de F_B para que o pneu permaneça em 
                 equilíbrio.</p></div>""",unsafe_allow_html=True)
-    letters=st.selectbox("Tarefas",["A","B"])
+    letters=st.selectbox("Tarefas",["Selecione","A","B"])
 
 def ex4_5_practice():
     st.write("Criando")
@@ -530,7 +530,7 @@ def week4_practice():
 
 def week4_theory():  
     st.sidebar.subheader("Semana 4 - teoria")  
-    op = st.sidebar.selectbox("Exercícios", ["2", "3", "4", "5"])
+    op = st.sidebar.selectbox("Exercícios", ["Selecione","2", "3", "4", "5"])
     if op == "2":
         ex4_2_theory()
     elif op == "3":
@@ -584,7 +584,7 @@ def week_4_lab_theory():
     st.write("Em desenvolvimento")
 
 def practice_4_lab():
-    op = st.sidebar.selectbox("Estudo e Prática", ["Selcione","Teoria","Exercicio"])
+    op = st.sidebar.selectbox("Estudo e Prática", ["Selecione","Teoria","Exercicio"])
     if op == "Teoria":
         week_4_lab_theory()
     elif op =="Exercicio":
