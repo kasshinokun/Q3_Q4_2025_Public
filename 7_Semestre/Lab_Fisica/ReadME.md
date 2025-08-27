@@ -1,5 +1,5 @@
 ### Aulas semanais Laboratório de Física 
-rev 4-20-08-2025
+rev 1-27-08-2025
 <br>
 Código para execução semanal 
 não será um arquivo constante poderá mudar a cada aula prática 
@@ -8,9 +8,8 @@ não será um arquivo constante poderá mudar a cada aula prática
 A partir de 19/08/2025, foi integrado os exercícios teóricos de Física Mecânica.
 ##### Descrição:
 Aula atual:
-- 19/08/2025 Prática 3 - **Laboratório**
-- 18/08/2025 Prática 2 - **Teórica**
+- 25/08/2025 Prática 4 - **Teórica**
 <br>
-**Detalhes adicionais:** Prática 4 e Conceitos da prática 4 em desenvolvimento.
+**Detalhes adicionais:** Laboratório em desenvolvimento.
 
 Link: [Pratica Laboratório de Física](https://praticafisica20252.streamlit.app/)
