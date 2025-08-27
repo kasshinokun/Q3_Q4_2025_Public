@@ -516,7 +516,7 @@ def ex4_5_practice():
 #=============================================================================
 def week4_practice():    
     st.sidebar.subheader("Semana 4 - Prática")
-    op = st.sidebar.selectbox("Exercícios", ["2", "3", "4", "5"])
+    op = st.sidebar.selectbox("Exercícios", ["Selecione","2", "3", "4", "5"])
     if op == "2":
         ex4_2_practice()
     elif op == "3":
@@ -542,7 +542,7 @@ def week4_theory():
     else:
         st.write("Aguardando escolha.....")
 def practice_4_theory():
-    op = st.sidebar.selectbox("Estudo e Prática", ["Teoria", "Prática"])
+    op = st.sidebar.selectbox("Estudo e Prática", ["Selecione","Teoria", "Prática"])
     if op == "Teoria":
         week4_theory()
     elif op == "Prática":
