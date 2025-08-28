@@ -277,7 +277,7 @@ def ex4_3_theory():
 
         st.latex(r"T_1 \cos(10^\circ) - \frac{T_1 \sin(10^\circ)}{\sin(80^\circ)} \cos(80^\circ) = 3150")
 
-        st.markdown(f"$T_1$({math.cos(theta1)}-{((math.sin(theta1)/math.sin(theta2))*math.cos(theta2)}) = 3150")
+        st.markdown(f"$T_1$({math.cos(theta1)}-{(math.sin(theta1)/math.sin(theta2))*math.cos(theta2)}) = 3150")
 
         st.success(f"Resultados: **T₁ ≈ {abs(T1):.2f} N** ; **T₂ ≈ {T2:.2f} N**")
 
