@@ -1,7 +1,6 @@
 # Aula Teórica de Física Mecânica 
 # rev.1 28-08-2025 
-# Aula Teórica de Física Mecânica 
-# rev.1 27-08-2025 
+
 # Interface
 import streamlit as st
 # Listas e Matrizes
