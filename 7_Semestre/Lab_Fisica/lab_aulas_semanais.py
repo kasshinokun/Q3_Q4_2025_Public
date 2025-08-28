@@ -271,13 +271,13 @@ def ex4_3_theory():
         T_1\cos(10^\circ)+(-\,T_2\cos(80^\circ))=3150
         \end{cases}
         """)
-        st.latex(r"""
+        st.markdown(r"""
         **Deixando em termos de T_1**
 
-        T_2=\frac{T_1\sin(10^\circ)}{\sin(80^\circ)}
+        $T_2=\frac{T_1\sin(10^\circ)}{\sin(80^\circ)}
 
         T_1\cos(10^\circ)+(-\,\frac{T_1\sin(10^\circ)}{\sin(80^\circ)}\cos(80^\circ))=3150
-        T_1\cos(10^\circ)+(-\,T_2\cos(80^\circ))=3150
+        T_1\cos(10^\circ)+(-\,T_2\cos(80^\circ))=3150$
         """)
         st.success(f"Resultados: **T₁ ≈ {abs(T1):.2f} N** ; **T₂ ≈ {T2:.2f} N**")
 
