@@ -271,7 +271,7 @@ def ex4_3_theory():
         T_1\cos(10^\circ)+(-\,T_2\cos(80^\circ))=3150
         \end{cases}
         """)
-        st.markdown(r"""
+        st.latex(r"""
         **Deixando em termos de T_1**
 
         T_2=\frac{T_1\sin(10^\circ)}{\sin(80^\circ)}
