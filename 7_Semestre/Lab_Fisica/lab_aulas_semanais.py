@@ -474,8 +474,8 @@ Resp.:582 N; 3300,69N
 
     st.latex(r"""
     \begin{cases}
-    T_1\cos(10^\circ)+T_2\cos(80^\circ)=0\\
-    T_1\sin(10^\circ)+T_2\sin(80^\circ)=3150
+    -\,T_1\cos(10^\circ)+T_2\cos(80^\circ)=0\\
+    T_1\sin(10^\circ)+(-\,T_2\sin(80^\circ))=3150
     \end{cases}
     """)
 
