@@ -184,6 +184,7 @@ def ex4_3_theory():
         \phantom{-}\,T_1\cos(10^\circ)+T_2\sin(80^\circ)=3150
         \end{cases}
         """)
+        
         st.markdown(f"**Resultado desta leitura:** T₁ ≈ **{T1:.2f} N**, T₂ ≈ **{T2:.2f} N** (nesse arranjo, ficam praticamente iguais, ~1600 N cada).")
 
         # Diagrama
@@ -266,11 +267,18 @@ def ex4_3_theory():
 
         st.latex(r"""
         \begin{cases}
-        -\,T_1\cos(10^\circ)+T_2\cos(80^\circ)=0\\
-        T_1\sin(10^\circ)+(-\,T_2\sin(80^\circ))=3150
+        -\,T_1\sin(10^\circ)+T_2\sin(80^\circ)=0\\
+        T_1\cos(10^\circ)+(-\,T_2\cos(80^\circ))=3150
         \end{cases}
         """)
+        st.markdown(r"""
+        **Deixando em termos de T_1**
 
+        T_2=\frac{T_1\sin(10^\circ)}{\sin(80^\circ)}
+
+        T_1\cos(10^\circ)+(-\,\frac{T_1\sin(10^\circ)}{\sin(80^\circ)}\cos(80^\circ))=3150
+        T_1\cos(10^\circ)+(-\,T_2\cos(80^\circ))=3150
+        """)
         st.success(f"Resultados: **T₁ ≈ {abs(T1):.2f} N** ; **T₂ ≈ {T2:.2f} N**")
 
         # Vetores para plotagem
