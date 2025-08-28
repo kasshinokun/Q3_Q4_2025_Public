@@ -271,21 +271,22 @@ def ex4_3_theory():
         T_1\cos(10^\circ)+(-\,T_2\cos(80^\circ))=3150
         \end{cases}
         """)
-        st.markdown("**Deixando em termos de $T_1$**")
-
-        st.latex(r"T_2 = \frac{T_1 \sin(10^\circ)}{\sin(80^\circ)}")
-
-        st.latex(r"T_1 \cos(10^\circ) - \frac{T_1 \sin(10^\circ)}{\sin(80^\circ)} \cos(80^\circ) = 3150")
-       
-        st.markdown(f"$T_1$({math.cos(theta1):.4f}-{(math.sin(theta1)/math.sin(theta2))*math.cos(theta2):.4f}) = 3150")
 
         sum_T2f = math.cos(theta1) - ((math.sin(theta1)/math.sin(theta2)) * math.cos(theta2))
 
-        st.markdown(
-        fr"""
-        $$
-        T_1 = \frac{{3150}}{{{sum_T2f:.4f}}} \;\;\approx\;\; {abs(T1):.4f}
-        $$
+        
+        st.markdown("""
+        #### Deixando em termos de $T_1$:
+        """)
+        st.latex(r"""
+        T_2 = \frac{T_1 \sin(10^\circ)}{\sin(80^\circ)}
+        """)
+        st.latex(r"""
+        T_1 \cos(10^\circ) - \frac{T_1 \sin(10^\circ)}{\sin(80^\circ)} \cos(80^\circ) = 3150
+        """)
+        st.latex(fr"""T_1 ({math.cos(theta1):.4f}-{(math.sin(theta1)/math.sin(theta2))*math.cos(theta2):.4f}) = 3150 
+        """)
+        st.latex(fr"""T_1 = \frac{{3150}}{{{sum_T2f:.4f}}} \approx {{{abs(T2):.4f}}}
         """
         )
         st.success(f"Resultados: **T₁ ≈ {abs(T1):.2f} N** ; **T₂ ≈ {T2:.2f} N**")
