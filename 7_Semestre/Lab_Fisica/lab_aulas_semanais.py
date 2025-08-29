@@ -1,5 +1,5 @@
 # Aula Teórica de Física Mecânica 
-# rev.1 28-08-2025 
+# rev.1a 28-08-2025 
 
 # Interface
 import streamlit as st
@@ -10,16 +10,17 @@ import numpy as np
 import numbers
 import math
 # Listas
-from typing import List
+
 # IO e Imagens
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle, Arc
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import os 
 
-import base64
-from io import BytesIO
-import json
+
+# ------------------------------------------------------------
+# Configuração geral
+# ------------------------------------------------------------
 
 #==============================================================================
 #                                  Semana 4 - Física Mecânica
@@ -790,8 +791,305 @@ def practice_4_theory():
 #==============================================================================
 #                     Semana 4 - Laboratorio de Física Mecânica
 #==============================================================================
-def week_4_lab():
-    st.write("Em desenvolvimento")
+
+# ------------------------------------------------------------
+# JSON: textos-base, dados e observações
+# ------------------------------------------------------------
+TEXTOS: Dict[str, Any] = {
+    "thread_1": {
+        "titulo": "Exercício – Construção de Gráfico e Regressão Linear",
+        "intro": (
+            "Construa o gráfico **Peso (N)** em função da **Massa (kg)** e estime a gravidade **g** "
+            "via regressão linear. Apresente a incerteza (erro-padrão) do coeficiente angular."
+        ),
+        "observacoes": [
+            "Converta massas informadas em gramas (g) para quilogramas (kg): m_kg = m_g / 1000.",
+            "O ajuste deve ser P = g * m + b. Idealmente b≈0; valores pequenos de b podem refletir erro sistemático.",
+            "Use a incerteza do coeficiente angular (erro-padrão) como estimativa de incerteza de g.",
+            "Propague e discuta unidades: g em N/kg (= m/s²)."
+        ],
+        # Dados-base do enunciado (m em g; P em N)
+        "dados": {
+            "m_g": [100, 132, 184, 205, 271],
+            "P_N": [0.954, 1.302, 1.608, 2.018, 2.704]
+        },
+        "colunas": {"massa_g": "Massa (g)", "massa_kg": "Massa (kg)", "peso_N": "Peso (N)"}
+    },
+    "thread_2": {
+        "titulo": "Aula Envio – Trajetos Manual e Sensores",
+        "intro": (
+            "Dados de posição (mm) e tempo (s) para dois conjuntos: **Manual** e **Sensores**. "
+            "É possível analisar como **posição varia com o tempo** (x(t)) ou como **tempo varia com a posição** (t(x)). "
+            "No ajuste linear, o coeficiente angular representa velocidade (quando x=f(t)) ou 1/velocidade (quando t=f(x))."
+        ),
+        "observacoes": [
+            "Para x=f(t): x = S0 + V·t → slope = V (mm/s), intercepto S0 (mm).",
+            "Para t=f(x): t = t0 + (1/V)·x → slope = 1/V (s/mm), de onde V = 1/slope (mm/s).",
+            "Compare os ajustes de **Manual** e **Sensores** e discuta linearidade e resíduos.",
+            "Se a inclinação (velocidade) cresce com o tempo, a aceleração não é nula – verifique via ajuste por janelas ou comparação de segmentos."
+        ],
+        # Pares (posição_mm, tempo_s) — extraídos do PDF (vírgula decimal convertida)
+        "manual": {
+            "pos_mm":  [0, 50, 100, 150, 200, 250, 300, 350, 400],
+            "tempo_s": [0.00000, 0.84810, 1.72415, 2.59935, 3.55420, 4.41590, 5.25940, 6.18030, 7.02990]
+        },
+        "sensores": {
+            "pos_mm":  [0, 50, 100, 150, 200, 250, 300, 350, 400],
+            "tempo_s": [0.00000, 0.18890, 0.36335, 0.41335, 0.50440, 0.57160, 0.60565, 0.67855, 0.80030]
+        },
+        # Observações originais do PDF (como referências para discussão em aula)
+        "anotacoes_pdf": {
+            "manual": [
+                "A medida será a cada 50 mm resultando em 8 intervalos.",
+                "Regressão linear mostrada no relatório (sugere modelo t(x) ou x(t)).",
+                "Resultados exemplares citam intercepto ≈1,22 e slope ≈56,60 (unidades no PDF estão confusas)."
+            ],
+            "sensores": [
+                "A inclinação tangente ao gráfico representa a velocidade instantânea da esfera.",
+                "A inclinação aumenta com o tempo mostrando que a velocidade cresce.",
+                "Portanto a aceleração é diferente de zero."
+            ]
+        }
+    }
+}
+
+# ------------------------------------------------------------
+# Utilitários: regressão linear + incertezas
+# ------------------------------------------------------------
+def regressao_linear(x: np.ndarray, y: np.ndarray) -> Dict[str, float]:
+    """
+    Ajuste y = a*x + b. Retorna coeficientes, erro-padrão, R^2 e resíduos.
+    """
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+    n = len(x)
+    A = np.vstack([x, np.ones(n)]).T
+    # coeficientes via mínimos quadrados
+    a, b = np.linalg.lstsq(A, y, rcond=None)[0]
+    # resíduos e métricas
+    y_pred = a * x + b
+    resid = y - y_pred
+    sse = np.sum(resid**2)
+    sst = np.sum((y - np.mean(y))**2)
+    r2 = 1 - sse/sst if sst > 0 else 1.0
+    # erro-padrão do slope e intercepto
+    sigma2 = sse / (n - 2) if n > 2 else np.nan
+    sx2 = np.sum((x - np.mean(x))**2)
+    se_a = math.sqrt(sigma2 / sx2) if sx2 > 0 and np.isfinite(sigma2) else np.nan
+    se_b = math.sqrt(sigma2 * (1/n + (np.mean(x)**2)/sx2)) if sx2 > 0 and np.isfinite(sigma2) else np.nan
+    return {
+        "a": a, "b": b,
+        "se_a": se_a, "se_b": se_b,
+        "r2": r2,
+        "sse": sse,
+        "n": n
+    }
+
+def plot_scatter_fit(x, y, xlabel, ylabel, titulo):
+    fig, ax = plt.subplots()
+    ax.scatter(x, y)
+    # linha de melhor ajuste
+    a, b = np.polyfit(x, y, 1)
+    x_line = np.linspace(min(x), max(x), 200)
+    y_line = a * x_line + b
+    ax.plot(x_line, y_line)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_title(titulo)
+    st.pyplot(fig)
+
+# ------------------------------------------------------------
+# Thread 1 – Regressão para estimar g
+# ------------------------------------------------------------
+def thread_1():
+    meta = TEXTOS["thread_1"]
+    st.header(meta["titulo"])
+    st.write(meta["intro"])
+
+    # Dados-base
+    m_g = meta["dados"]["m_g"]
+    P_N = meta["dados"]["P_N"]
+
+    # DataFrame
+    df = pd.DataFrame({
+        meta["colunas"]["massa_g"]: m_g,
+        meta["colunas"]["peso_N"]: P_N
+    })
+    df[meta["colunas"]["massa_kg"]] = df[meta["colunas"]["massa_g"]] / 1000.0
+    df = df[[meta["colunas"]["massa_g"], meta["colunas"]["massa_kg"], meta["colunas"]["peso_N"]]]
+
+    st.subheader("Tabela de dados")
+    st.dataframe(df, use_container_width=True)
+
+    # Regressão: P = g*m + b (usar massa em kg)
+    x = df[meta["colunas"]["massa_kg"]].to_numpy()
+    y = df[meta["colunas"]["peso_N"]].to_numpy()
+    res = regressao_linear(x, y)
+
+    g = res["a"]
+    g_se = res["se_a"]
+    b = res["b"]
+    b_se = res["se_b"]
+
+    col1, col2 = st.columns(2)
+    with col1:
+        plot_scatter_fit(
+            x, y,
+            xlabel="Massa (kg)",
+            ylabel="Peso (N)",
+            titulo="Peso × Massa – Ajuste Linear"
+        )
+    with col2:
+        st.markdown("### Resultados do ajuste")
+        st.write(f"- **g (coef. angular)** = {g:.4f} ± {g_se:.4f} N/kg  (≈ m/s²)")
+        st.write(f"- **Intercepto (b)** = {b:.4f} ± {b_se:.4f} N")
+        st.write(f"- **R²** = {res['r2']:.4f}")
+        st.caption(
+            "O ideal é b≈0; desvios podem indicar erros sistemáticos (ex.: tara do dinamômetro, "
+            "atrito, leitura inicial não nula)."
+        )
+
+    with st.expander("Observações & considerações didáticas"):
+        for obs in meta["observacoes"]:
+            st.markdown(f"- {obs}")
+
+# ------------------------------------------------------------
+# Thread 2 – Aula Envio (Manual e Sensores)
+# ------------------------------------------------------------
+def _make_df_trilha(pos_mm: List[float], tempo_s: List[float]) -> pd.DataFrame:
+    df = pd.DataFrame({"Posição (mm)": pos_mm, "Tempo (s)": tempo_s})
+    # Conversões auxiliares
+    df["Posição (m)"] = df["Posição (mm)"] / 1000.0
+    return df
+
+def _ajustes_basicos(df: pd.DataFrame, modo: str):
+    """
+    modo: 'x(t)'  -> x = a*t + b   (velocidade = a [mm/s])
+          't(x)'  -> t = a*x + b   (1/velocidade = a [s/mm], velocidade = 1/a [mm/s])
+    """
+    if modo == "x(t)":
+        x = df["Tempo (s)"].to_numpy()
+        y = df["Posição (mm)"].to_numpy()
+        res = regressao_linear(x, y)
+        V = res["a"]
+        V_se = res["se_a"]
+        return res, ("Tempo (s)", "Posição (mm)"), f"Velocidade (slope) ≈ {V:.3f} ± {V_se:.3f} mm/s"
+    else:
+        x = df["Posição (mm)"].to_numpy()
+        y = df["Tempo (s)"].to_numpy()
+        res = regressao_linear(x, y)
+        invV = res["a"]
+        invV_se = res["se_a"]
+        V = 1.0/invV if invV != 0 else np.nan
+        # Propagação simples de incerteza de V = 1/a: sV ≈ s_a / a^2
+        V_se = invV_se / (invV**2) if invV not in (0, np.nan) and np.isfinite(invV) and np.isfinite(invV_se) else np.nan
+        return res, ("Posição (mm)", "Tempo (s)"), f"Velocidade ≈ {V:.3f} ± {V_se:.3f} mm/s (derivada de t=f(x))"
+
+def _plotar(df: pd.DataFrame, eixo_x: str, eixo_y: str, titulo: str):
+    fig, ax = plt.subplots()
+    ax.scatter(df[eixo_x], df[eixo_y])
+    a, b = np.polyfit(df[eixo_x], df[eixo_y], 1)
+    x_line = np.linspace(df[eixo_x].min(), df[eixo_x].max(), 200)
+    y_line = a * x_line + b
+    ax.plot(x_line, y_line)
+    ax.set_xlabel(eixo_x)
+    ax.set_ylabel(eixo_y)
+    ax.set_title(titulo)
+    st.pyplot(fig)
+
+def _analise_segmentada(df: pd.DataFrame) -> Tuple[float, float]:
+    """
+    Ajusta x=f(t) em duas metades para verificar possível aumento de velocidade.
+    Retorna (V1, V2) em mm/s.
+    """
+    mid = len(df)//2
+    df1 = df.iloc[:mid]
+    df2 = df.iloc[mid:]
+    # x = a*t + b em cada segmento
+    r1 = regressao_linear(df1["Tempo (s)"].to_numpy(), df1["Posição (mm)"].to_numpy())
+    r2 = regressao_linear(df2["Tempo (s)"].to_numpy(), df2["Posição (mm)"].to_numpy())
+    return r1["a"], r2["a"]
+
+def thread_2():
+    meta = TEXTOS["thread_2"]
+    st.header(meta["titulo"])
+    st.write(meta["intro"])
+
+    # Dados-base
+    df_manual = _make_df_trilha(meta["manual"]["pos_mm"], meta["manual"]["tempo_s"])
+    df_sens = _make_df_trilha(meta["sensores"]["pos_mm"], meta["sensores"]["tempo_s"])
+
+    tab1, tab2 = st.tabs(["Manual", "Sensores"])
+    for nome, df, anot in [("Manual", df_manual, meta["anotacoes_pdf"]["manual"]),
+                           ("Sensores", df_sens, meta["anotacoes_pdf"]["sensores"])]:
+        with (tab1 if nome=="Manual" else tab2):
+            st.subheader(f"Conjunto: {nome}")
+            st.dataframe(df, use_container_width=True)
+
+            # Seletor de modelo
+            modo = st.radio(
+                f"Escolha o modelo para {nome}",
+                options=["x(t) – posição em função do tempo", "t(x) – tempo em função da posição"],
+                horizontal=True,
+                key=f"modelo_{nome}"
+            )
+            modo_curto = "x(t)" if modo.startswith("x(t)") else "t(x)"
+            res, (xlabel, ylabel), resumoV = _ajustes_basicos(df, modo_curto)
+
+            col1, col2 = st.columns(2)
+            with col1:
+                _plotar(df, xlabel, ylabel, f"{nome}: {ylabel} × {xlabel}")
+            with col2:
+                st.markdown("### Ajuste linear")
+                st.write(f"- **Slope (a)** = {res['a']:.6f} ± {res['se_a']:.6f}")
+                st.write(f"- **Intercepto (b)** = {res['b']:.6f} ± {res['se_b']:.6f}")
+                st.write(f"- **R²** = {res['r2']:.4f}")
+                st.write(f"- {resumoV}")
+
+            # Checagem simples de aceleração via análise segmentada (x=f(t))
+            V1, V2 = _analise_segmentada(df)
+            with st.expander("Aceleração (diagnóstico simples)"):
+                st.write(
+                    "Comparamos a velocidade estimada (slope em x=f(t)) na primeira metade vs. segunda metade da série."
+                )
+                st.write(f"- **V (1ª metade)** ≈ {V1:.3f} mm/s")
+                st.write(f"- **V (2ª metade)** ≈ {V2:.3f} mm/s")
+                if np.isfinite(V1) and np.isfinite(V2):
+                    if V2 > V1:
+                        st.success("A velocidade aumentou — indício de aceleração positiva.")
+                    elif V2 < V1:
+                        st.warning("A velocidade diminuiu — indício de aceleração negativa (ou atrito).")
+                    else:
+                        st.info("Velocidade aproximadamente constante dentro da incerteza.")
+                st.caption("Este teste é apenas indicativo; um ajuste quadrático x(t)=S0+V0 t + ½ a t² seria mais apropriado para quantificar a aceleração.")
+
+            with st.expander("Observações & notas do relatório"):
+                for a in anot:
+                    st.markdown(f"- {a}")
+            with st.expander("Considerações didáticas"):
+                for obs in meta["observacoes"]:
+                    st.markdown(f"- {obs}")
+
+# ------------------------------------------------------------
+# Seletor principal (lab_threads) Laboratório 
+# ------------------------------------------------------------
+def lab_threads():
+    st.title("Laboratório de Física – Threads de Análise")
+    escolha = st.selectbox(
+        "Selecione a thread:",
+        options=[
+            "Exercício – Construção de Gráfico e Regressão Linear (thread_1)",
+            "Aula Envio – Trajetos Manual e Sensores (thread_2)"
+        ],
+        index=0
+    )
+    if escolha.startswith("Exercício"):
+        thread_1()
+    else:
+        thread_2()
+
+
+    
 
 def week_4_lab_theory():
     st.write("Em desenvolvimento")
@@ -801,7 +1099,7 @@ def practice_4_lab():
     if op == "Teoria":
         week_4_lab_theory()
     elif op =="Exercicio":
-        week_4_lab()
+        lab_threads()
     else:
         st.header("Seja Bem-vindo")
         st.markdown("""
