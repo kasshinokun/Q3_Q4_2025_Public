@@ -1,7 +1,7 @@
 # Aula Teórica de Física Mecânica 
 # rev.1 29-08-2025 
 # Aula Laboratório de Física Mecânica 
-# rev.1 29-08-2025 
+# rev.1a 29-08-2025 
 
 # Interface
 import streamlit as st
@@ -12,7 +12,7 @@ import numpy as np
 import numbers
 import math
 # Listas
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Union
 # IO e Imagens
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle, Arc
@@ -878,7 +878,7 @@ TEXTOS: Dict[str, Any] = {
 # ------------------------------------------------------------
 # Utilitários: regressão linear + incertezas
 # ------------------------------------------------------------
-def regressao_linear(x: np.ndarray, y: np.ndarray) -> Dict[str, float]:
+def regressao_linear(x: np.ndarray, y: np.ndarray) -> Dict[str, Union[float, int]]:
     """
     Ajuste y = a*x + b. Retorna coeficientes, erro-padrão, R^2 e resíduos.
     """
@@ -900,11 +900,47 @@ def regressao_linear(x: np.ndarray, y: np.ndarray) -> Dict[str, float]:
     se_a = math.sqrt(sigma2 / sx2) if sx2 > 0 and np.isfinite(sigma2) else np.nan
     se_b = math.sqrt(sigma2 * (1/n + (np.mean(x)**2)/sx2)) if sx2 > 0 and np.isfinite(sigma2) else np.nan
     return {
-        "a": a, "b": b,
-        "se_a": se_a, "se_b": se_b,
+        "a": float(a),
+        "b": float(b),
+        "se_a": float(se_a),
+        "se_b": float(se_b),
+        "r2": float(r2),
+        "sse": float(sse),
+        "n": float(n)  # força tudo ser float
+    }
+def regressao_polinomial_graduada(grau: int, x: np.ndarray, y: np.ndarray) -> Dict[str, Any]:
+    """
+    Ajuste polinomial de grau 'grau' aos dados x e y.
+    Retorna coeficientes, matriz de covariância, R² e resíduos.
+    """
+    x = np.asarray(x, dtype=float)
+    y = np.asarray(y, dtype=float)
+    n = len(x)
+    
+    # Ajuste polinomial usando numpy.polyfit
+    coeficientes, covariancia = np.polyfit(x, y, grau, cov=True)
+    
+    # Previsões
+    p = np.poly1d(coeficientes)
+    y_pred = p(x)
+    residuos = y - y_pred
+    
+    # Cálculo do R²
+    sse = np.sum(residuos**2)
+    sst = np.sum((y - np.mean(y))**2)
+    r2 = 1 - sse/sst if sst > 0 else 1.0
+    
+    # Erro padrão dos coeficientes
+    se_coef = np.sqrt(np.diag(covariancia))
+    
+    return {
+        "coeficientes": coeficientes,
+        "erros_padrao": se_coef,
+        "covariancia": covariancia,
         "r2": r2,
         "sse": sse,
-        "n": n
+        "n": n,
+        "residuos": residuos
     }
 
 def plot_scatter_fit(x, y, xlabel, ylabel, titulo):
@@ -1035,13 +1071,14 @@ def _analise_segmentada(df: pd.DataFrame) -> Tuple[float, float]:
 def thread_2():
     meta = TEXTOS["thread_2"]
     st.header(meta["titulo"])
-    st.markdown(meta["intro"],unsafe_allow_html=True)
+    st.markdown(meta["intro"], unsafe_allow_html=True)
 
     # Dados-base
     df_manual = _make_df_trilha(meta["manual"]["pos_mm"], meta["manual"]["tempo_s"])
     df_sens = _make_df_trilha(meta["sensores"]["pos_mm"], meta["sensores"]["tempo_s"])
 
     tab1, tab2 = st.tabs(["Manual", "Sensores"])
+    
     for nome, df, anot in [("Manual", df_manual, meta["anotacoes_pdf"]["manual"]),
                            ("Sensores", df_sens, meta["anotacoes_pdf"]["sensores"])]:
         with (tab1 if nome=="Manual" else tab2):
@@ -1056,43 +1093,83 @@ def thread_2():
                 key=f"modelo_{nome}"
             )
             modo_curto = "x(t)" if modo.startswith("x(t)") else "t(x)"
-            res, (xlabel, ylabel), resumoV = _ajustes_basicos(df, modo_curto)
-
-            col1, col2 = st.columns(2)
-            with col1:
-                _plotar(df, xlabel, ylabel, f"{nome}: {ylabel} × {xlabel}")
-            with col2:
-                st.markdown("### Ajuste linear")
-                st.write(f"- **Slope (a)** = {res['a']:.6f} ± {res['se_a']:.6f}")
-                st.write(f"- **Intercepto (b)** = {res['b']:.6f} ± {res['se_b']:.6f}")
-                st.write(f"- **R²** = {res['r2']:.4f}")
-                st.write(f"- {resumoV}")
+            
+            if nome == "Sensores" and modo_curto == "x(t)":
+                # Para sensores, usar regressão quadrática
+                grau = 2
+                x = df["Tempo (s)"].to_numpy()
+                y = df["Posição (mm)"].to_numpy()
+                res = regressao_polinomial_graduada(grau, x, y)
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    fig, ax = plt.subplots()
+                    ax.scatter(x, y, label='Dados')
+                    
+                    # Plot da curva quadrática
+                    x_line = np.linspace(min(x), max(x), 200)
+                    y_line = np.polyval(res["coeficientes"], x_line)
+                    ax.plot(x_line, y_line, 'r-', label='Ajuste quadrático')
+                    
+                    ax.set_xlabel("Tempo (s)")
+                    ax.set_ylabel("Posição (mm)")
+                    ax.set_title(f"{nome}: Posição × Tempo - Ajuste Quadrático")
+                    ax.legend()
+                    st.pyplot(fig)
+                
+                with col2:
+                    st.markdown("### Ajuste quadrático")
+                    st.write(f"**Equação:** x = {res['coeficientes'][0]:.3f}t² + {res['coeficientes'][1]:.3f}t + {res['coeficientes'][2]:.3f}")
+                    st.write(f"**R²** = {res['r2']:.4f}")
+                    
+                    # Calcular velocidade e aceleração
+                    aceleracao = 2 * res['coeficientes'][0]  # mm/s²
+                    velocidade_inicial = res['coeficientes'][1]  # mm/s
+                    st.write(f"**Aceleração** = {aceleracao:.2f} mm/s²")
+                    st.write(f"**Velocidade inicial** = {velocidade_inicial:.2f} mm/s")
+                    
+                    # Exibir erros padrão dos coeficientes
+                    st.write("**Erros padrão dos coeficientes:**")
+                    for i, se in enumerate(res['erros_padrao']):
+                        st.write(f"- Coeficiente {i}: ± {se:.4f}")
+            else:
+                # Para manual ou t(x), manter regressão linear
+                res, (xlabel, ylabel), resumoV = _ajustes_basicos(df, modo_curto)
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    _plotar(df, xlabel, ylabel, f"{nome}: {ylabel} × {xlabel}")
+                with col2:
+                    st.markdown("### Ajuste linear")
+                    st.write(f"- **Slope (a)** = {res['a']:.6f} ± {res['se_a']:.6f}")
+                    st.write(f"- **Intercepto (b)** = {res['b']:.6f} ± {res['se_b']:.6f}")
+                    st.write(f"- **R²** = {res['r2']:.4f}")
+                    st.write(f"- {resumoV}")
 
             # Checagem simples de aceleração via análise segmentada (x=f(t))
-            V1, V2 = _analise_segmentada(df)
-            with st.expander("Aceleração (diagnóstico simples)"):
-                st.write(
-                    "Comparamos a velocidade estimada (slope em x=f(t)) na primeira metade vs. segunda metade da série."
-                )
-                st.write(f"- **V (1ª metade)** ≈ {V1:.3f} mm/s")
-                st.write(f"- **V (2ª metade)** ≈ {V2:.3f} mm/s")
-                if np.isfinite(V1) and np.isfinite(V2):
-                    if V2 > V1:
-                        st.success("A velocidade aumentou — indício de aceleração positiva.")
-                    elif V2 < V1:
-                        st.warning("A velocidade diminuiu — indício de aceleração negativa (ou atrito).")
-                    else:
-                        st.info("Velocidade aproximadamente constante dentro da incerteza.")
-                st.caption("Este teste é apenas indicativo; um ajuste quadrático x(t)=S0+V0 t + ½ a t² seria mais apropriado para quantificar a aceleração.")
+            if modo_curto == "x(t)":
+                V1, V2 = _analise_segmentada(df)
+                with st.expander("Aceleração (diagnóstico simples)"):
+                    st.write(
+                        "Comparamos a velocidade estimada (slope em x=f(t)) na primeira metade vs. segunda metade da série."
+                    )
+                    st.write(f"- **V (1ª metade)** ≈ {V1:.3f} mm/s")
+                    st.write(f"- **V (2ª metade)** ≈ {V2:.3f} mm/s")
+                    if np.isfinite(V1) and np.isfinite(V2):
+                        if V2 > V1:
+                            st.success("A velocidade aumentou — indício de aceleração positiva.")
+                        elif V2 < V1:
+                            st.warning("A velocidade diminuiu — indício de aceleração negativa (ou atrito).")
+                        else:
+                            st.info("Velocidade aproximadamente constante dentro da incerteza.")
+                    st.caption("Este teste é apenas indicativo; um ajuste quadrático x(t)=S0+V0 t + ½ a t² seria mais apropriado para quantificar a aceleração.")
 
             with st.expander("Observações & notas do relatório"):
                 for a in anot:
                     st.markdown(f"- {a}")
             with st.expander("Considerações didáticas"):
                 for obs in meta["observacoes"]:
-                    st.markdown(f"- {obs}")
-
-# ------------------------------------------------------------
+                    st.markdown(f"- {obs}")# ------------------------------------------------------------
 # Seletor principal (lab_threads) Laboratório 
 # ------------------------------------------------------------
 def lab_threads():
