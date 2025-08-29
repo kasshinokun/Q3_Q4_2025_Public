@@ -10,7 +10,7 @@ import numpy as np
 import numbers
 import math
 # Listas
-
+from typing import Dict, Any, List, Tuple
 # IO e Imagens
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle, Circle, Arc
