@@ -28,6 +28,7 @@ disponível nesta pasta
 ### Objetivo
 Me treinar para entender a teoria de grafos aplicado um possível caso real ou ideia,
 
-![admin](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/admin.jpeg)
+![admin](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/admin.jpg)
 
-![busca](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/busca.jpeg)
+![busca](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/busca.jpg)
+
