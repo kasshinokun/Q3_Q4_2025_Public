@@ -18,7 +18,7 @@ SimpleMaps.com is a product of Pareto Software, LLC. © 2010-2025.
 #### Licença 
 [**Em inglês**](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/license.txt)
 
-[**Em português**](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/license_pt.txt)
+[**Em português**](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/license_pt.docx)
 ### Tecnologias
 **Python 3.13.5**
 
@@ -44,5 +44,6 @@ Me treinar para entender a teoria de grafos aplicado um possível caso real ou i
 ![admin](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/admin.jpg)
 
 ![busca](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/busca.jpg)
+
 
 
