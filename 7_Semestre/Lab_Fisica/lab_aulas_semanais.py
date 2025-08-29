@@ -1,5 +1,7 @@
 # Aula Teórica de Física Mecânica 
-# rev.1a 28-08-2025 
+# rev.1 29-08-2025 
+# Aula Laboratório de Física Mecânica 
+# rev.1 29-08-2025 
 
 # Interface
 import streamlit as st
@@ -783,7 +785,7 @@ def practice_4_theory():
         uso do framework Streamlit, que grava as imagens em um arquivo JSON e 
         também carrega as imagens a partir do mesmo.
         
-        **Versão** 1-28-08-2025
+        **Versão** 1-29-08-2025
         
         """)
 
@@ -797,10 +799,15 @@ def practice_4_theory():
 # ------------------------------------------------------------
 TEXTOS: Dict[str, Any] = {
     "thread_1": {
-        "titulo": "Exercício – Construção de Gráfico e Regressão Linear",
+        "titulo": "1 - Construção de Gráfico e Regressão Linear",
         "intro": (
-            "Construa o gráfico **Peso (N)** em função da **Massa (kg)** e estime a gravidade **g** "
-            "via regressão linear. Apresente a incerteza (erro-padrão) do coeficiente angular."
+            """
+            <div>Tarefa 1 - Envio pela Plataforma
+            <br>Construa o gráfico <strong>Peso (N)</strong> em função da <strong>Massa (kg)</strong> 
+            <br>e estime a gravidade <strong>g</strong> via regressão linear. Apresente a incerteza 
+            <br>(erro-padrão) do coeficiente angular."
+            </div>
+            """
         ),
         "observacoes": [
             "Converta massas informadas em gramas (g) para quilogramas (kg): m_kg = m_g / 1000.",
@@ -816,11 +823,17 @@ TEXTOS: Dict[str, Any] = {
         "colunas": {"massa_g": "Massa (g)", "massa_kg": "Massa (kg)", "peso_N": "Peso (N)"}
     },
     "thread_2": {
-        "titulo": "Aula Envio – Trajetos Manual e Sensores",
+        "titulo": "2 – Trajetos Manual e Sensores",
         "intro": (
-            "Dados de posição (mm) e tempo (s) para dois conjuntos: **Manual** e **Sensores**. "
-            "É possível analisar como **posição varia com o tempo** (x(t)) ou como **tempo varia com a posição** (t(x)). "
-            "No ajuste linear, o coeficiente angular representa velocidade (quando x=f(t)) ou 1/velocidade (quando t=f(x))."
+            """
+            <div>Tarefa 2 - Aula em 26/08/2025
+            <br>Dados de posição (mm) e tempo (s) para dois conjuntos: <strong>Manual</strong> e <strong>Sensores</strong>. 
+            <br>É possível analisar como <strong>posição varia com o tempo</strong> (x(t)) 
+            <br>ou como <strong>tempo varia com a posição</strong> (t(x)). 
+            <br>No ajuste linear, o coeficiente angular representa velocidade (quando x=f(t)) ou 
+            <br>1/velocidade (quando t=f(x)).
+            </div>
+            """
         ),
         "observacoes": [
             "Para x=f(t): x = S0 + V·t → slope = V (mm/s), intercepto S0 (mm).",
@@ -850,8 +863,17 @@ TEXTOS: Dict[str, Any] = {
                 "Portanto a aceleração é diferente de zero."
             ]
         }
+    },
+    "thread_3": {
+        "titulo": "3 - Em desenvolvimento",
+        "intro": ("Tarefa 3 - Em desenvolvimento"),
+        "observacoes": [],
+        "dados":{"dado1":[],
+                 "dado2":[]}
     }
 }
+
+
 
 # ------------------------------------------------------------
 # Utilitários: regressão linear + incertezas
@@ -904,7 +926,7 @@ def plot_scatter_fit(x, y, xlabel, ylabel, titulo):
 def thread_1():
     meta = TEXTOS["thread_1"]
     st.header(meta["titulo"])
-    st.write(meta["intro"])
+    st.markdown(meta["intro"],unsafe_allow_html=True)
 
     # Dados-base
     m_g = meta["dados"]["m_g"]
@@ -1013,7 +1035,7 @@ def _analise_segmentada(df: pd.DataFrame) -> Tuple[float, float]:
 def thread_2():
     meta = TEXTOS["thread_2"]
     st.header(meta["titulo"])
-    st.write(meta["intro"])
+    st.markdown(meta["intro"],unsafe_allow_html=True)
 
     # Dados-base
     df_manual = _make_df_trilha(meta["manual"]["pos_mm"], meta["manual"]["tempo_s"])
@@ -1074,22 +1096,23 @@ def thread_2():
 # Seletor principal (lab_threads) Laboratório 
 # ------------------------------------------------------------
 def lab_threads():
-    st.title("Laboratório de Física – Threads de Análise")
+    st.markdown("#### Laboratório de Física – Tarefas de Análise")
     escolha = st.selectbox(
-        "Selecione a thread:",
+        "Tarefas:",
         options=[
-            "Exercício – Construção de Gráfico e Regressão Linear (thread_1)",
-            "Aula Envio – Trajetos Manual e Sensores (thread_2)"
+            "Selecione a tarefa",
+            TEXTOS["thread_1"]["titulo"],
+            TEXTOS["thread_2"]["titulo"],
+            TEXTOS["thread_3"]["titulo"],
         ],
         index=0
     )
-    if escolha.startswith("Exercício"):
+    if escolha.startswith("1 "):
         thread_1()
-    else:
+    elif escolha.startswith("2 "):
         thread_2()
-
-
-    
+    else:
+        st.write("Aguardando escolha .....")
 
 def week_4_lab_theory():
     st.write("Em desenvolvimento")
@@ -1122,7 +1145,7 @@ def practice_4_lab():
         uso do framework Streamlit, que grava as imagens em um arquivo JSON e 
         também carrega as imagens a partir do mesmo.
         
-        **Versão** 1-28-08-2025""")
+        **Versão** 1-29-08-2025""")
 
 #==============================================================================
 def main():
