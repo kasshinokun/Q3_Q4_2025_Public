@@ -1,8 +1,11 @@
-## Correção Exercício 4 Prática 4 
 # Aula Teórica de Física Mecânica 
 # rev.1 29-08-2025 
 # Aula Laboratório de Física Mecânica 
 # rev.1a 29-08-2025 
+
+# Update 1-02-09-2025:
+# Processo de correção da questão 4 Iniciado
+# O cálculo deve ser feito com cos(47°) e sen(47°)
 
 # Interface
 import streamlit as st
@@ -661,7 +664,7 @@ Resp.:582 N; 3300,69N
     st.pyplot(fig, use_container_width=True)
 
 
-def ex4_4_practice_1():#------------------------------------------------------------------Primeira Versão
+def ex4_4_practice():
     F_A = 220
     F_C = 170
     st.markdown(f"""<div class="enunciado-container">
@@ -729,112 +732,7 @@ def ex4_4_practice_1():#--------------------------------------------------------
     st.pyplot(fig, use_container_width=True)
 
     st.caption("Nota: Como a orientação de F_C não é dada explicitamente no texto, aqui ela é **deduzida** do equilíbrio (mantendo os módulos de F_A e F_C).")
-#-----------------------------------------------------------------------------------------Segunda Versão
-# Função para normalizar ângulos em [-90°, +90°]
-def normalize_angle(angle_deg: float) -> float:
-    a = angle_deg % 360
-    if a > 180:
-        a -= 360
-    if a > 90:
-        a -= 180
-    if a < -90:
-        a += 180
-    return a
 
-def ex4_4_practice():
-    st.title("Exercício 4.4 — Cabo de Guerra Bidimensional (Ângulos reduzidos)")
-
-    st.write(
-        "Três pessoas puxam um pneu em equilíbrio. "
-        "Ana Clara aplica **F_A = 220 N** em um ângulo de **137°**, "
-        "que será representado como **-47°** (mesma direção, mas ângulo reduzido). "
-        "Camila aplica **F_C = 170 N** em ângulo φ desconhecido. "
-        "A terceira pessoa aplica **F_B**, vertical para baixo."
-    )
-
-    # === Valores fixos ===
-    FA = 220.0
-    thetaA_deg = 137.0
-    thetaA_reduced = normalize_angle(thetaA_deg)  # converte para -47°
-    FC = 170.0
-
-    # --- Passo 1: componentes da força de Ana Clara ---
-    FAx = round(FA * math.cos(math.radians(thetaA_reduced)), 2)
-    FAy = round(FA * math.sin(math.radians(thetaA_reduced)), 2)
-
-    st.subheader("Passo 1: Componentes de F_A")
-    st.latex(r"F_{Ax} = F_A \cdot \cos\theta_A")
-    st.latex(rf"F_{{Ax}} = 220 \cdot \cos({thetaA_reduced}^\circ) = {FAx}")
-    st.latex(r"F_{Ay} = F_A \cdot \sin\theta_A")
-    st.latex(rf"F_{{Ay}} = 220 \cdot \sin({thetaA_reduced}^\circ) = {FAy}")
-
-    # --- Passo 2: Equilíbrio em x ---
-    FCx = -FAx
-    st.subheader("Passo 2: Equilíbrio em x")
-    st.latex(r"\sum F_x = 0 \;\;\Rightarrow\;\; F_{Ax} + F_{Cx} = 0")
-    st.latex(rf"F_{{Cx}} = -F_{{Ax}} = {-FAx} \Rightarrow F_{{Cx}} = {FCx}")
-
-    # --- Passo 3: Determinar FCy com Pitágoras ---
-    FCy = round(math.sqrt(FC**2 - FCx**2), 2)
-    st.subheader("Passo 3: Determinar F_Cy pelo Teorema de Pitágoras")
-    st.latex(r"F_C^2 = F_{Cx}^2 + F_{Cy}^2 \;\;\Rightarrow\;\; F_{Cy} = \sqrt{F_C^2 - F_{Cx}^2}")
-    st.latex(rf"F_{{Cy}} = \sqrt{{170^2 - ({FCx})^2}} = {FCy}")
-
-    # --- Passo 4: Ângulo φ da Camila ---
-    phi = math.degrees(math.atan2(FCy, FCx))
-    phi_reduced = normalize_angle(phi)
-    phi = round(phi_reduced, 2)
-
-    st.subheader("Passo 4: Ângulo φ da Camila")
-    st.latex(r"\tan \varphi = \frac{F_{Cy}}{F_{Cx}}")
-    st.latex(rf"\varphi = \arctan\left(\frac{{{FCy}}}{{{FCx}}}\right) = {phi}^\circ")
-
-    # --- Passo 5: Equilíbrio em y para achar F_B ---
-    FB = round(FAy + FCy, 2)
-    st.subheader("Passo 5: Equilíbrio em y")
-    st.latex(r"\sum F_y = 0 \;\;\Rightarrow\;\; F_{Ay} + F_{Cy} - F_B = 0")
-    st.latex(rf"F_B = {FAy} + {FCy} = {FB} \;\; \text{{N (para baixo)}}")
-
-    # === Resultado final ===
-    st.success(f"Resultado Final: φ = {phi}° e F_B = {FB} N (para baixo)")
-
-    # === Gráfico estático (matplotlib) ===
-    st.subheader("Diagrama Vetorial (matplotlib)")
-    fig, ax = plt.subplots(figsize=(5.5, 5.5))
-    ax.quiver(0, 0, FAx, FAy, angles='xy', scale_units='xy', scale=1, width=0.004, label="F_A")
-    ax.quiver(0, 0, FCx, FCy, angles='xy', scale_units='xy', scale=1, width=0.004, label="F_C(φ)")
-    ax.quiver(0, 0, 0, -FB, angles='xy', scale_units='xy', scale=1, width=0.004, label="F_B (↓)")
-
-    max_len = max(FA, FC, abs(FB)) * 1.2
-    ax.set_xlim(-max_len, max_len)
-    ax.set_ylim(-max_len, max_len)
-    ax.set_aspect('equal', 'box')
-    ax.grid(True, linestyle=':')
-    ax.legend()
-    st.pyplot(fig, clear_figure=True)
-
-    # === Gráfico interativo (plotly) ===
-    st.subheader("Diagrama Vetorial Interativo (plotly)")
-    fig2 = go.Figure()
-
-    def add_arrow(fig, x0, y0, x1, y1, name):
-        fig.add_trace(go.Scatter(x=[x0, x1], y=[y0, y1], mode="lines+markers", name=name))
-        fig.add_annotation(x=x1, y=y1, ax=x0, ay=y0,
-                           xref="x", yref="y", axref="x", ayref="y",
-                           showarrow=True, arrowsize=1.5, arrowwidth=2)
-
-    add_arrow(fig2, 0, 0, FAx, FAy, "F_A")
-    add_arrow(fig2, 0, 0, FCx, FCy, "F_C(φ)")
-    add_arrow(fig2, 0, 0, 0, -FB, "F_B (↓)")
-
-    fig2.update_layout(
-        xaxis=dict(scaleanchor="y", scaleratio=1, zeroline=True),
-        yaxis=dict(zeroline=True),
-        width=600, height=600,
-        title="Interativo: Ângulos reduzidos em [-90°, +90°]",
-        showlegend=True
-    )
-    st.plotly_chart(fig2, use_container_width=True)
 #=============================================================================
 def week4_practice():    
     st.sidebar.subheader("Semana 4 - Prática")
@@ -844,7 +742,8 @@ def week4_practice():
     elif op == "3":
         ex4_3_practice()
     elif op == "4":
-        ex4_4_practice()
+        st.write("Em processo de correção junto ao orientador")
+        #ex4_4_practice()
     elif op == "5":
         # A teeoria e a prática são idênticas pois foram aceitas
         ex4_5_theory()
@@ -859,7 +758,8 @@ def week4_theory():
     elif op == "3":
         ex4_3_theory()
     elif op == "4":
-        ex4_4_theory()
+        st.write("Em processo de correção junto ao orientador")
+        #ex4_4_theory()
     elif op == "5":
         ex4_5_theory()
     else:
