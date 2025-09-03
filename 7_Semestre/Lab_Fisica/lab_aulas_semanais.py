@@ -806,12 +806,81 @@ def week4_theory():
         ex4_5_theory()
     else:
         st.write("Aguardando escolha.....")
+## ==========================================================> Semana 5
+def ex4_5_practice():
+    st.title("Exercício de Física - Para Casa 5")
+    st.subheader("Asteroide empurrado por astronautas 🚀")
+
+    st.markdown("""
+    **Enunciado:**  
+    Três astronautas, impulsionados por mochilas a jato, empurram e guiam um asteroide de **120 kg** para uma base de manutenção, exercendo as forças:
+    
+    - F₁ = 32 N com θ₁ = 30°  
+    - F₂ = 55 N (no eixo x)  
+    - F₃ = 41 N com θ₃ = 60°  
+    
+    Determine a aceleração do asteroide em:  
+    (a) notação vetorial;  
+    (b) módulo;  
+    (c) ângulo em relação ao eixo x positivo.
+    """)
+
+    # Dados do problema
+    m = 120  # massa em kg
+    F1, theta1 = 32, math.radians(30)
+    F2, theta2 = 55, math.radians(0)
+    F3, theta3 = 41, math.radians(180 + 60)  # supondo que esteja no quadrante correto
+
+    # Componentes das forças
+    F1x, F1y = F1 * math.cos(theta1), F1 * math.sin(theta1)
+    F2x, F2y = F2 * math.cos(theta2), F2 * math.sin(theta2)
+    F3x, F3y = F3 * math.cos(theta3), F3 * math.sin(theta3)
+
+    st.latex(r"F_{1x} = F_1 \cos(\theta_1) = %.2f \quad N" % F1x)
+    st.latex(r"F_{1y} = F_1 \sin(\theta_1) = %.2f \quad N" % F1y)
+
+    st.latex(r"F_{2x} = %.2f \quad N" % F2x)
+    st.latex(r"F_{2y} = %.2f \quad N" % F2y)
+
+    st.latex(r"F_{3x} = F_3 \cos(\theta_3) = %.2f \quad N" % F3x)
+    st.latex(r"F_{3y} = F_3 \sin(\theta_3) = %.2f \quad N" % F3y)
+
+    # Força resultante
+    Fx = F1x + F2x + F3x
+    Fy = F1y + F2y + F3y
+
+    st.markdown("### Força Resultante")
+    st.latex(r"F_x = %.2f \quad N" % Fx)
+    st.latex(r"F_y = %.2f \quad N" % Fy)
+
+    # Aceleração resultante
+    ax, ay = Fx / m, Fy / m
+    a_mod = math.sqrt(ax**2 + ay**2)
+    ang = math.degrees(math.atan2(ay, ax))
+
+    st.markdown("### Aceleração do asteroide")
+    st.latex(r"\vec{a} = (%.2f \, \hat{i} \; %+ .2f \, \hat{j}) \; m/s^2" % (ax, ay))
+    st.latex(r"|a| = %.3f \; m/s^2" % a_mod)
+    st.latex(r"\theta = %.2f^\circ" % ang)
+
+    st.success("Resposta esperada: (0,86i -0,16j) m/s² ; |a| = 0,875 m/s² ; θ = 10,67°")
+
+def week_5_theory():
+    options=st.sidebar.selectbox("Semana 5",["Selecione","Exercicio 4"])
+    if options=="Exercicio 4":
+        ex4_5_practice()
+    else:
+        st.write("Aguardando escolha.....")
+#============================================================================================================
+  
 def practice_4_theory():
-    op = st.sidebar.selectbox("Estudo e Prática", ["Selecione","Teoria", "Prática"])
+    op = st.sidebar.selectbox("Estudo e Prática", ["Selecione","Teoria", "Prática", "Prática 5"])
     if op == "Teoria":
         week4_theory()
     elif op == "Prática":
         week4_practice()
+    elif op == "Prática 5":
+        week_5_theory()
     else:
         st.header("Seja Bem-vindo")
         st.markdown("""
