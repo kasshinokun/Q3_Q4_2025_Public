@@ -732,7 +732,51 @@ def ex4_4_practice():
     st.pyplot(fig, use_container_width=True)
 
     st.caption("Nota: Como a orientação de F_C não é dada explicitamente no texto, aqui ela é **deduzida** do equilíbrio (mantendo os módulos de F_A e F_C).")
+def ex4_4_practice_2():
+    st.markdown("""
+    #### Exercício 4 — Cabo de Guerra Bidimensional (Ângulos reduzidos) 
+    Três pessoas puxam um pneu em equilíbrio. \\
+    Ana Clara aplica """r"$F_{A}$"""" = 220 N em um ângulo de 137"""r"$^\circ$"""" , \\
+    que será representado como -47"""r"$^\circ$""""  (mesma direção, mas ângulo reduzido). \\
+    Camila aplica """r"$F_{C}$"""" = 170 N em ângulo """r"$\phi$"""" desconhecido. \\
+    Brenda aplica """r"$F_{B}$"""", vertical para baixo. \\
+    Calcule """r"$\phi$"""" e o módulo de F_B. \\
+    Respostas:  """r"$\phi \approx$"""" 28.04"""r"$^\circ$""""  F_B"""r" $\approx$"""" 240.8 N
+    """)
 
+    # Forças conhecidas
+    FA=220
+    FB=None
+    FC=170
+
+    st.markdown("Passo 1: Componentes de "r"$F_{A}$")
+    st.markdown(r"$F_{Ax}$"" = "r"$F_A \cdot \cos\theta_A$")
+    # Resultante x
+    FA_x=-FA*np.cos(math.radians(47))
+    st.latex(fr"F_{{Ax}}: {FA_x:2f}")
+
+    # Resultante y
+    st.markdown(r"$F_{Ay}$"" = "r"$F_A \cdot \sin\theta_A$")
+    FA_y=-FA*np.sin(math.radians(47))
+    st.latex(fr"F_{{Ay}}: {FA_y:.2f}")
+
+    st.markdown("Passo 2: Localizando "r"$\phi$")
+    st.markdown(r"$\cos (\phi)$ = $\frac{-\,F_{Ax}} {F_{C}}$")
+    cos_phi=-FA_x/ FC 
+    st.latex(fr"\cos (\phi): {cos_phi:.2f}")
+
+    phi=math.degrees(math.acos(cos_phi))
+
+    st.markdown(r"$\arccos (\phi)$ = $\phi$")
+    st.latex(fr"\phi: {phi:.2f}")
+
+    st.markdown("Passo 3: Calculando "r"$F_{B}$")
+
+    st.markdown(r"$F_{By}$"" = "r"$-\,F_{Ay} + F_{C} \sin\phi$")
+
+    F_B=-FA_y+FC*np.sin(math.radians(phi))
+
+    st.latex(fr"F_{{B}}: {F_B:.2f}")
 #=============================================================================
 def week4_practice():    
     st.sidebar.subheader("Semana 4 - Prática")
@@ -742,8 +786,7 @@ def week4_practice():
     elif op == "3":
         ex4_3_practice()
     elif op == "4":
-        st.write("Em processo de correção junto ao orientador")
-        #ex4_4_practice()
+        ex4_4_practice_2()# Correção 03-09-2025(carece análise do professor)
     elif op == "5":
         # A teeoria e a prática são idênticas pois foram aceitas
         ex4_5_theory()
@@ -758,8 +801,7 @@ def week4_theory():
     elif op == "3":
         ex4_3_theory()
     elif op == "4":
-        st.write("Em processo de correção junto ao orientador")
-        #ex4_4_theory()
+        ex4_4_practice_2()# Correção 03-09-2025(carece análise do professor)
     elif op == "5":
         ex4_5_theory()
     else:
