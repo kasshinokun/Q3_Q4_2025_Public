@@ -829,12 +829,12 @@ def ex4_5_practice():
     m = 120  # massa em kg
     F1, theta1 = 32, math.radians(30)
     F2, theta2 = 55, math.radians(0)
-    F3, theta3 = 41, math.radians(180+60)  # supondo que esteja no quadrante correto
+    F3, theta3 = 41, -math.radians(60)  # supondo que esteja no quadrante correto
 
     # Componentes das forças
     F1x, F1y = F1 * math.cos(theta1), F1 * math.sin(theta1)
     F2x, F2y = F2 * math.cos(theta2), F2 * math.sin(theta2)
-    F3x, F3y = -F3 * math.cos(theta3), F3 * math.sin(theta3)
+    F3x, F3y = F3 * math.cos(theta3), F3 * math.sin(theta3)
 
     st.latex(r"F_{1x} = F_1 \cos(\theta_1) = %.2f \quad N" % F1x)
     st.latex(r"F_{1y} = F_1 \sin(\theta_1) = %.2f \quad N" % F1y)
