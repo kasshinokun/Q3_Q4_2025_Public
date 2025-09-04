@@ -1,11 +1,14 @@
 # Aula Teórica de Física Mecânica 
-# rev.1 29-08-2025 
+# rev.1 04-09-2025 
 # Aula Laboratório de Física Mecânica 
 # rev.1a 29-08-2025 
 
-# Update 1-02-09-2025:
+# Correção e adição de conteúdo em Física Mecânica Teórica
+# Update 1-03-09-2025:
 # Processo de correção da questão 4 Iniciado
 # O cálculo deve ser feito com cos(47°) e sen(47°)
+# Update 1-04-09-2025:
+# Exercício 4 da semana 5 de Física Mecânica Teórica
 
 # Interface
 import streamlit as st
@@ -808,7 +811,7 @@ def week4_theory():
         st.write("Aguardando escolha.....")
 ## ==========================================================> Semana 5
 def ex4_5_practice():
-    st.title("Exercício de Física - Para Casa 5")
+        st.title("Exercício de Física - Para Casa 5")
     st.subheader("Asteroide empurrado por astronautas 🚀")
 
     st.markdown("""
@@ -829,29 +832,31 @@ def ex4_5_practice():
     m = 120  # massa em kg
     F1, theta1 = 32, math.radians(30)
     F2, theta2 = 55, math.radians(0)
-    F3, theta3 = 41, -math.radians(60)  # supondo que esteja no quadrante correto
+    F3, theta3 = 41, math.radians(-60)  # supondo que esteja no quadrante correto
 
     # Componentes das forças
     F1x, F1y = F1 * math.cos(theta1), F1 * math.sin(theta1)
     F2x, F2y = F2 * math.cos(theta2), F2 * math.sin(theta2)
     F3x, F3y = F3 * math.cos(theta3), F3 * math.sin(theta3)
 
-    st.latex(r"F_{1x} = F_1 \cos(\theta_1) = %.2f \quad N" % F1x)
+    st.markdown("### Decompor a Força em suas componentes:")
+    st.markdown(r"##### Força $F_{1}$:")
+    st.latex(r"F_{1x} = F_1 \cos(\theta_1) \approx %.2f \quad N" % F1x)
     st.latex(r"F_{1y} = F_1 \sin(\theta_1) = %.2f \quad N" % F1y)
-
-    st.latex(r"F_{2x} = %.2f \quad N" % F2x)
-    st.latex(r"F_{2y} = %.2f \quad N" % F2y)
-
-    st.latex(r"F_{3x} = F_3 \cos(\theta_3) = %.2f \quad N" % F3x)
-    st.latex(r"F_{3y} = F_3 \sin(\theta_3) = %.2f \quad N" % F3y)
+    st.markdown(r"##### Força $F_{2}$:")
+    st.latex(r"F_{1x} = F_1 \cos(\theta_2) = %.2f \quad N" % F2x)
+    st.latex(r"F_{1y} = F_1 \sin(\theta_2) = %.2f \quad N" % F2y)
+    st.markdown(r"##### Força $F_{3}$:")
+    st.latex(r"F_{3x} = F_3 \cos(-\,\theta_3) = %.2f \quad N" % F3x)
+    st.latex(r"F_{3y} = F_3 \sin(-\,\theta_3) \approx %.2f \quad N" % F3y)
 
     # Força resultante
     Fx = F1x + F2x + F3x
     Fy = F1y + F2y + F3y
 
     st.markdown("### Força Resultante")
-    st.latex(r"F_x = %.2f \quad N" % Fx)
-    st.latex(r"F_y = %.2f \quad N" % Fy)
+    st.latex(r"F_x = F_{1x} + F_{2x} + F_{3x} \approx %.2f \quad N" % Fx)
+    st.latex(r"F_y = F_{1y} + F_{2y} + F_{3y} \approx %.2f \quad N" % Fy)
 
     # Aceleração resultante
     ax, ay = Fx / m, Fy / m
@@ -859,11 +864,12 @@ def ex4_5_practice():
     ang = math.degrees(math.atan2(ay, ax))
 
     st.markdown("### Aceleração do asteroide")
-    st.latex(r"\vec{a} = (%.2f \, \hat{i} \; %+ .2f \, \hat{j}) \; m/s^2" % (ax, ay))
-    st.latex(r"|a| = %.3f \; m/s^2" % a_mod)
-    st.latex(r"\theta = %.2f^\circ" % ang)
+    st.latex(r"\vec{a} \approx (%.2f \, \hat{i} \; %+ .2f \, \hat{j}) \; m/s^2" % (ax, ay))
+    st.latex(r"|a| \approx %.3f \; m/s^2" % a_mod)
+    st.latex(r"abs(\theta) \approx %.2f^\circ" % abs(ang))
 
-    st.success("Resposta esperada: (0,86i -0,16j) m/s² ; |a| = 0,875 m/s² ; θ = 10,67°")
+    st.info("Resposta esperada: (0,86i -0,16j) m/s² ; |a| = 0,875 m/s² ; θ = 10,67°")
+
 
 def week_5_theory():
     options=st.sidebar.selectbox("Semana 5",["Selecione","Exercicio 4"])
