@@ -811,7 +811,7 @@ def week4_theory():
         st.write("Aguardando escolha.....")
 ## ==========================================================> Semana 5
 def ex4_5_practice():
-        st.title("Exercício de Física - Para Casa 5")
+    st.title("Exercício de Física - Para Casa 5")
     st.subheader("Asteroide empurrado por astronautas 🚀")
 
     st.markdown("""
