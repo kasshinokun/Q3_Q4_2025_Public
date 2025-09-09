@@ -756,7 +756,7 @@ def ex4_4_practice_2():
     st.markdown(r"$F_{Ax}$"" = "r"$F_A \cdot \cos\ (-\,47^\circ)$")
     # Resultante x
     FA_x=-FA*np.cos(math.radians(47))
-    st.markdown(fr"$F_{{Ax}}: {FA_x:2f}$")
+    st.markdown(fr"$F_{{Ax}}: {FA_x:.2f}$")
     
     # Resultante y
     st.markdown(r"$F_{Ay}$"" = "r"$F_A \cdot \sin\ (-\,47^\circ)$")
