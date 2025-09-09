@@ -753,26 +753,31 @@ def ex4_4_practice_2():
     FC=170
 
     st.markdown("Passo 1: Componentes de "r"$F_{A}$")
-    st.markdown(r"$F_{Ax}$"" = "r"$F_A \cdot \cos\theta_A$")
+    st.markdown(r"$F_{Ax}$"" = "r"$F_A \cdot \cos\ (-\,47^\circ)$")
     # Resultante x
     FA_x=-FA*np.cos(math.radians(47))
-    st.latex(fr"F_{{Ax}}: {FA_x:2f}")
-
+    st.markdown(fr"$F_{{Ax}}: {FA_x:2f}$")
+    
     # Resultante y
-    st.markdown(r"$F_{Ay}$"" = "r"$F_A \cdot \sin\theta_A$")
+    st.markdown(r"$F_{Ay}$"" = "r"$F_A \cdot \sin\ (-\,47^\circ)$")
     FA_y=-FA*np.sin(math.radians(47))
-    st.latex(fr"F_{{Ay}}: {FA_y:.2f}")
-
+    st.markdown(fr"$F_{{Ay}}: {FA_y:.2f}$")
+    
     st.markdown("Passo 2: Localizando "r"$\phi$")
-    st.markdown(r"$\cos (\phi)$ = $\frac{-\,F_{Ax}} {F_{C}}$")
+    st.markdown(r"""Para localizar $\phi$ precisamos considerar $F_{B}$ como o oposto a $F_{R}$ de $F_{A}$ + $F_{C}$
+    Para isto, buscaremos o equilíbrio na direção do eixo $x$
+    Então:""")
+    st.markdown(r"$F_{Rx} = F_{A} \cos\theta_{A} + F_{C} \cos\theta_{C}$")
     cos_phi=-FA_x/ FC 
-    st.latex(fr"\cos (\phi): {cos_phi:.2f}")
+    st.markdown(r"$F_{Rx} = F_A \cos\ (-\,47^\circ) + F_C \cos\phi$")
+    st.markdown(fr"$F_{{Rx}} = {FA_x:.2f} + {FC} \cos\phi$")
+    st.markdown(fr"${-FA_x:.2f} = {FC} \cos\phi$")
+    st.markdown(rf"$\cos(\phi) = \frac{{-\,F_{{Ax}}}} {{F_{{C}}}} = {cos_phi:.2f}$")
 
     phi=math.degrees(math.acos(cos_phi))
-
-    st.markdown(r"$\arccos (\phi)$ = $\phi$")
-    st.latex(fr"\phi: {phi:.2f}")
-
+ 
+    st.markdown(rf"$\arccos(\phi) = \arccos(\frac{{-\,F_{{Ax}}}} {{F_{{C}}}}) = \phi = {phi:.2f}$")
+    
     st.markdown("Passo 3: Calculando "r"$F_{B}$")
 
     st.markdown(r"$F_{By}$"" = "r"$-\,F_{Ay} + F_{C} \sin\phi$")
