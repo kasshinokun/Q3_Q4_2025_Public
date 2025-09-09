@@ -1,11 +1,11 @@
 # Aula Teórica de Física Mecânica 
-# rev.1 04-09-2025 
+# rev.1 09-09-2025 
 # Aula Laboratório de Física Mecânica 
 # rev.1a 29-08-2025 
 
 # Correção e adição de conteúdo em Física Mecânica Teórica
-# Update 1-03-09-2025:
-# Processo de correção da questão 4 Iniciado
+# Update 1-09-09-2025:
+# Processo de correção da questão 4 Continuação rev.C
 # O cálculo deve ser feito com cos(47°) e sen(47°)
 # Update 1-04-09-2025:
 # Exercício 4 da semana 5 de Física Mecânica Teórica
@@ -776,15 +776,17 @@ def ex4_4_practice_2():
 
     phi=math.degrees(math.acos(cos_phi))
  
-    st.markdown(rf"$\arccos(\phi) = \arccos(\frac{{-\,F_{{Ax}}}} {{F_{{C}}}}) = \phi = {phi:.2f}$")
+    st.markdown(rf"$\arccos(\phi) = \arccos(\frac{{-\,F_{{Ax}}}} {{F_{{C}}}}) = \phi = {phi:.2f}^\circ$")
     
     st.markdown("Passo 3: Calculando "r"$F_{B}$")
 
-    st.markdown(r"$F_{By}$"" = "r"$-\,F_{Ay} + F_{C} \sin\phi$")
+    FC_y=FC*np.sin(math.radians(phi))
 
-    F_B=-FA_y+FC*np.sin(math.radians(phi))
-
-    st.latex(fr"F_{{B}}: {F_B:.2f}")
+    F_B=-FA_y+FC_y
+    
+    st.markdown(fr"- $F_{{By}}\approx {-FA_y:.4f} \text{{  N}} + {FC_y:.4f} \text{{  N}}$")
+    
+    st.markdown(fr"$Devido\ a\ F_{{Bx}} = 0,\ então\ F_{{B}} = F_{{By}}: {F_B:.2f} \text{{ N}}$")
 #=============================================================================
 def week4_practice():    
     st.sidebar.subheader("Semana 4 - Prática")
