@@ -1,5 +1,7 @@
 ## Pasta para teste World Graphos
 
+- versão 24-09-2025-a
+
 Esta pasta destina-se a fornecer os bancos de dados ou arquivo .csv para uma aplicação 
 <br>
 privada baseada em Streamlit Python que está em testes
@@ -47,12 +49,29 @@ Este projeto usa dados do Simple World Cities Basic Database (v1.901), licenciad
 
 **time**
 
+**or-tools**
+
+**pyvroom**
+
 ### Objetivo
+
 Me treinar para entender a teoria de grafos aplicado um possível caso real ou ideia,
 
+## arquivo adicional para o modelo de teste de 24-09-2025
+Arquivo de exemplo ```country_continent_mapping_full.csv``` com a estrutura correta (iso3, country, continent, subcontinent).
+
+⚠️ Importante: 
+- Este exemplo é uma lista para todos os ~250 países ISO-3166(todos os países da ONU/ISO-3166).
+- Regras simplificadas para alguns blocos regionais (ONU M49 resumido).
+- Países não listados explicitamente caem em Unknown.
+- Esse mapeamento não está refinado para alinhar exatamente com a classificação ONU M49 oficial (continente e sub-regiões detalhadas)
+### objetivo do arquivo adicional
+- Otimizar para uso de pseudo-modelo de IA para otimizar busca
+# Versão 0 
 ![admin](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/admin.jpg)
 
 ![busca](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/data_world_graphos/busca.jpg)
+
 
 
 
