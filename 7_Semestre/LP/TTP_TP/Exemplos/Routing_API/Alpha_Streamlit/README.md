@@ -1,6 +1,6 @@
 # 🌍 Sistema de Roteamento Hierárquico Global Otimizado
 
-Este projeto visa apenas demonstrar o desenvolvimento parcial da aplicação final e os conceitos objetivados, ele não se equivale ao projeto final em Streamlit(Privado) mas serviu de base para o [Projeto em Flask](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/LICENSE.md).
+Este projeto visa apenas demonstrar o desenvolvimento parcial da aplicação final e os conceitos objetivados, ele não se equivale ao projeto final em Streamlit(Privado) mas serviu de base para o [Projeto em Flask](https://github.com/kasshinokun/Q3_Q4_2025_Public/tree/main/7_Semestre/LP/TTP_TP/Exemplos/Routing_API/Flask).
 
 ## 📄 Licença
 
