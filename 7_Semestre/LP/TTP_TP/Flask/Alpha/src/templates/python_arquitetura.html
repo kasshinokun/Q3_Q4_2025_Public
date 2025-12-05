@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="slide">
+        <div class="slide-header">
+            <h1 class="slide-title">{{ data.title }}</h1>
+        </div>
+        
+        <div class="slide-content">
+            <p>O design do Python é uma tapeçaria complexa que equilibra a simplicidade para o programador com uma engenharia sofisticada em seu núcleo. Compreender a arquitetura do Python envolve analisar como a linguagem é projetada, desde a interpretação de seu código até a abstração que oferece aos desenvolvedores.</p>
+        </div>
+        
+        <div class="key-points">
+            <div class="key-point">
+                <h4>🧘 Filosofia de Design</h4>
+                <p><strong>{{ data.philosophy }}</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Modelo de Execução</h2>
+        </div>
+        
+        <div class="paradigms-grid">
+            {% for step in data.execution_model %}
+            <div class="paradigm-card">
+                <div class="paradigm-name">{{ step.step }}</div>
+                <div class="paradigm-description">{{ step.description }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Abstrações de Alto Nível</h2>
+        </div>
+        
+        <div class="key-points">
+            {% for abstraction in data.abstractions %}
+            <div class="key-point">
+                <p>{{ abstraction }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

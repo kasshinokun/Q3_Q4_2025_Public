@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="slide">
+        <div class="slide-header">
+            <h1 class="slide-title">{{ data.title }}</h1>
+        </div>
+        
+        <div class="slide-content">
+            <p>Python, ao longo de sua história, foi tanto um produto de influências de outras linguagens quanto uma fonte de inspiração para novas. Essa interconexão é fundamental para entender seu design e sua posição no ecossistema de programação.</p>
+        </div>
+    </div>
+
+    <div class="languages-section">
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Linguagens que Influenciaram o Python</h2>
+            </div>
+            
+            <div class="languages-grid">
+                {% for influence in data.influences %}
+                <div class="language-category">
+                    <div class="language-item">
+                        <div class="language-name">{{ influence.name }}</div>
+                        <div class="language-description">{{ influence.description }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Linguagens Influenciadas pelo Python</h2>
+            </div>
+            
+            <div class="languages-grid">
+                {% for influenced in data.influenced %}
+                <div class="language-category">
+                    <div class="language-item">
+                        <div class="language-name">{{ influenced.name }}</div>
+                        <div class="language-description">{{ influenced.description }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

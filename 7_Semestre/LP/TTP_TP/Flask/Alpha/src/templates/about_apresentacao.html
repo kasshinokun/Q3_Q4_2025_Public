@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Sobre{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Sobre esta Apresentação</h2>
+        </div>
+        
+        <div class="slide-content">
+            <p>Esta apresentação foi desenvolvida como uma <strong>aplicação monolítica em Flask</strong>, demonstrando na prática os paradigmas e características marcantes do Python:</p>
+            
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>🏗️ Programação Orientada a Objetos</h4>
+                    <p>Uso de classes para organizar dados da apresentação, encapsulamento de funcionalidades e métodos bem estruturados.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🔧 Programação Funcional</h4>
+                    <p>Aplicação de decoradores (@lru_cache), list comprehensions e funções de alta ordem quando apropriado.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>📖 Legibilidade e Simplicidade</h4>
+                    <p>Código Python claro, bem documentado e seguindo as melhores práticas da linguagem.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🌐 Aplicação Web Completa</h4>
+                    <p>Flask como framework web, templates Jinja2, CSS responsivo e JavaScript interativo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

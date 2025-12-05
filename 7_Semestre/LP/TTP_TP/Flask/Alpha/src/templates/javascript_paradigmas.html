@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="slide">
+        <div class="slide-header">
+            <h1 class="slide-title">{{ data.title }}</h1>
+        </div>
+        
+        <div class="slide-content">
+            <p>Python é uma linguagem de programação <strong>multiparadigma</strong>, o que significa que ela não impõe um estilo de programação único, mas permite que os desenvolvedores escolham a abordagem que melhor se adapta ao problema em questão.</p>
+        </div>
+        
+        <div class="paradigms-grid">
+            {% for paradigm in data.paradigms %}
+            <div class="paradigm-card">
+                <div class="paradigm-name">{{ paradigm.name }}</div>
+                <div class="paradigm-description">{{ paradigm.description }}</div>
+                
+                <h5 style="color: var(--primary-color); margin: 15px 0 10px 0;">Características:</h5>
+                <ul class="paradigm-features">
+                    {% for feature in paradigm.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Exemplos Práticos dos Paradigmas</h2>
+        </div>
+        
+        <div class="code-examples">
+            <div class="code-example">
+                <div class="code-header">Programação Orientada a Objetos</div>
+                <div class="code-description">Definição de uma classe com herança e encapsulamento</div>
+                <pre><code class="language-python">class Animal:
+    def __init__(self, nome):
+        self._nome = nome  # Atributo protegido (encapsulamento)
+    
+    def fazer_som(self):
+        pass  # Método abstrato
+    
+    @property
+    def nome(self):
+        return self._nome
+
+class Cachorro(Animal):  # Herança
+    def fazer_som(self):  # Polimorfismo
+        return f"{self.nome} faz: Au au!"
+
+# Uso
+meu_cachorro = Cachorro("Rex")
+print(meu_cachorro.fazer_som())  # Rex faz: Au au!</code></pre>
+            </div>
+
+            <div class="code-example">
+                <div class="code-header">Programação Funcional</div>
+                <div class="code-description">Uso de funções de alta ordem, lambda e list comprehensions</div>
+                <pre><code class="language-python"># Funções como objetos de primeira classe
+def aplicar_operacao(lista, operacao):
+    return [operacao(x) for x in lista]
+
+# Lambda functions
+quadrado = lambda x: x ** 2
+numeros = [1, 2, 3, 4, 5]
+
+# Map, filter, reduce
+quadrados = list(map(quadrado, numeros))
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+
+# List comprehension (inspirada em linguagens funcionais)
+cubos_pares = [x**3 for x in numeros if x % 2 == 0]
+
+print(f"Quadrados: {quadrados}")
+print(f"Pares: {pares}")
+print(f"Cubos dos pares: {cubos_pares}")</code></pre>
+            </div>
+
+            <div class="code-example">
+                <div class="code-header">Programação Imperativa/Procedural</div>
+                <div class="code-description">Execução sequencial com funções e controle de fluxo</div>
+                <pre><code class="language-python">def calcular_media_notas(notas):
+    """Função que calcula a média de uma lista de notas"""
+    if not notas:
+        return 0
+    
+    soma = 0
+    contador = 0
+    
+    # Estrutura de repetição
+    for nota in notas:
+        if nota >= 0 and nota <= 10:  # Validação
+            soma += nota
+            contador += 1
+    
+    # Estrutura condicional
+    if contador > 0:
+        media = soma / contador
+        return media
+    else:
+        return 0
+
+# Execução sequencial
+notas_aluno = [8.5, 7.0, 9.2, 6.8, 8.0]
+media = calcular_media_notas(notas_aluno)
+
+if media >= 7.0:
+    status = "Aprovado"
+else:
+    status = "Reprovado"
+
+print(f"Média: {media:.2f} - Status: {status}")</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Flexibilidade Multiparadigma</h2>
+        </div>
+        
+        <div class="slide-content">
+            <p>A flexibilidade de Python em suportar múltiplos paradigmas é uma de suas grandes forças, permitindo que os desenvolvedores:</p>
+            
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>🔄 Combinem Abordagens</h4>
+                    <p>Misturem diferentes paradigmas no mesmo projeto, usando POO para estrutura, programação funcional para transformações de dados e imperativa para lógica de controle.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🎯 Escolham a Melhor Ferramenta</h4>
+                    <p>Selecionem o paradigma mais apropriado para cada parte do problema, otimizando tanto a legibilidade quanto a eficiência do código.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>📈 Evoluam Gradualmente</h4>
+                    <p>Comecem com código simples e imperativo e evoluam para estruturas mais complexas conforme a necessidade, sem reescrever tudo do zero.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🌐 Adaptem-se a Domínios</h4>
+                    <p>Utilizem o paradigma mais adequado para cada domínio: POO para modelagem de sistemas, funcional para análise de dados, imperativa para scripts.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

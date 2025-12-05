@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Início{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="hero">
+        <img src="https://www.pucminas.br/Style%20Library/STATIC/img/2025/brasao-pucminas-2025-versao-positiva.png" alt="PUC Minas Logo">
+        <h1 class="hero-title">{{ title }}</h1>
+        <p class="hero-subtitle">Uma análise detalhada de duas linguagens fundamentais</p>
+        <p class="hero-author">Autores</p>
+        <p class="hero-author">{{ author }}</p>
+        <p class="hero-author">{{ author2 }}</p>
+        <br>
+        <img src="https://wallpapers.com/images/featured/github-logo-png-s8wb6yxlatsyp8s1.jpg" alt="Github Logo" width="100em" height="40em"><br>
+        <a href="https://github.com/kasshinokun/Q3_Q4_2025_Public/tree/main/7_Semestre/LP/TTP_TP" target="_blank">Repositório no GitHub</a>
+    </div>
+</div>
+{% endblock %}
+

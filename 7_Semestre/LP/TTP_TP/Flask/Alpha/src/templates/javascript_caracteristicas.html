@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="slide">
+        <div class="slide-header">
+            <h1 class="slide-title">{{ data.title }}</h1>
+        </div>
+        
+        <div class="slide-content">
+            <p>Python se destaca por uma série de características que contribuem para sua popularidade e ampla adoção em diversos domínios da programação e tecnologia.</p>
+        </div>
+        
+        <div class="paradigms-grid">
+            {% for feature in data.features %}
+            <div class="paradigm-card">
+                <div class="paradigm-name">{{ feature.name }}</div>
+                <div class="paradigm-description">{{ feature.description }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Demonstração das Características</h2>
+        </div>
+        
+        <div class="code-examples">
+            <div class="code-example">
+                <div class="code-header">Simplicidade e Legibilidade</div>
+                <div class="code-description">Comparação: Python vs outras linguagens</div>
+                <pre><code class="language-python"># Python - Simples e legível
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Lista dos primeiros 10 números de Fibonacci
+fib_sequence = [fibonacci(i) for i in range(10)]
+print(fib_sequence)
+
+# Comparação com Java (conceitual):
+# public class Fibonacci {
+#     public static int fibonacci(int n) {
+#         if (n <= 1) return n;
+#         return fibonacci(n-1) + fibonacci(n-2);
+#     }
+#     public static void main(String[] args) {
+#         // ... mais código necessário
+#     }
+# }</code></pre>
+            </div>
+
+            <div class="code-example">
+                <div class="code-header">Tipagem Dinâmica e Forte</div>
+                <div class="code-description">Flexibilidade com segurança de tipos</div>
+                <pre><code class="language-python"># Tipagem dinâmica - não precisa declarar tipos
+numero = 42          # int
+texto = "Python"     # str
+lista = [1, 2, 3]    # list
+dicionario = {"chave": "valor"}  # dict
+
+# Tipagem forte - não permite conversões implícitas perigosas
+try:
+    resultado = "5" + 3  # Erro! Não converte automaticamente
+except TypeError as e:
+    print(f"Erro de tipo: {e}")
+
+# Conversão explícita é necessária
+resultado_correto = int("5") + 3  # 8
+print(f"Resultado correto: {resultado_correto}")
+
+# Type hints (Python 3.5+) para melhor documentação
+def somar(a: int, b: int) -> int:
+    return a + b</code></pre>
+            </div>
+
+            <div class="code-example">
+                <div class="code-header">Biblioteca Padrão Rica ("Batteries Included")</div>
+                <div class="code-description">Exemplos de módulos da biblioteca padrão</div>
+                <pre><code class="language-python">import os
+import json
+import datetime
+import urllib.request
+from collections import Counter
+from pathlib import Path
+
+# Manipulação de arquivos e diretórios
+current_dir = Path.cwd()
+files = list(current_dir.glob("*.py"))
+print(f"Arquivos Python encontrados: {len(files)}")
+
+# Trabalhar com JSON
+data = {"nome": "Python", "ano": 1991, "criador": "Guido van Rossum"}
+json_string = json.dumps(data, indent=2)
+parsed_data = json.loads(json_string)
+
+# Data e hora
+agora = datetime.datetime.now()
+print(f"Data atual: {agora.strftime('%d/%m/%Y %H:%M:%S')}")
+
+# Contadores e estatísticas
+palavras = ["python", "java", "python", "javascript", "python"]
+contador = Counter(palavras)
+print(f"Linguagem mais mencionada: {contador.most_common(1)[0]}")
+
+# Requisições HTTP (sem bibliotecas externas)
+try:
+    with urllib.request.urlopen('https://httpbin.org/json') as response:
+        data = json.loads(response.read().decode())
+        print("Requisição HTTP realizada com sucesso!")
+except Exception as e:
+    print(f"Erro na requisição: {e}")</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Áreas de Aplicação</h2>
+        </div>
+        
+        <div class="slide-content">
+            <p>A versatilidade do Python permite que ele seja usado em uma ampla gama de aplicações:</p>
+            
+            <div class="paradigms-grid">
+                <div class="paradigm-card">
+                    <div class="paradigm-name">🌐 Desenvolvimento Web</div>
+                    <div class="paradigm-description">
+                        Frameworks como Django, Flask e FastAPI para criar aplicações web robustas e escaláveis.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">📊 Ciência de Dados</div>
+                    <div class="paradigm-description">
+                        Bibliotecas como Pandas, NumPy, Matplotlib e Seaborn para análise e visualização de dados.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">🤖 Inteligência Artificial</div>
+                    <div class="paradigm-description">
+                        TensorFlow, PyTorch, Scikit-learn para machine learning e deep learning.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">⚙️ Automação</div>
+                    <div class="paradigm-description">
+                        Scripts para automação de tarefas, administração de sistemas e DevOps.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">🎮 Desenvolvimento de Jogos</div>
+                    <div class="paradigm-description">
+                        Pygame, Panda3D para criação de jogos 2D e 3D.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">🖥️ Aplicações Desktop</div>
+                    <div class="paradigm-description">
+                        Tkinter, PyQt, Kivy para interfaces gráficas multiplataforma.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Por que Python é Popular?</h2>
+        </div>
+        
+        <div class="slide-content">
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>📚 Curva de Aprendizado Suave</h4>
+                    <p>Sintaxe próxima à linguagem natural torna Python ideal para iniciantes, mas poderoso o suficiente para especialistas.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🌍 Comunidade Global</h4>
+                    <p>Uma das maiores comunidades de desenvolvedores do mundo, com suporte ativo e recursos abundantes.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🚀 Produtividade</h4>
+                    <p>Permite desenvolvimento rápido de protótipos e soluções, reduzindo o time-to-market.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🔧 Ecossistema Rico</h4>
+                    <p>PyPI (Python Package Index) com centenas de milhares de pacotes para praticamente qualquer necessidade.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>💼 Demanda no Mercado</h4>
+                    <p>Alta demanda por profissionais Python em áreas como data science, web development e automação.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🔬 Suporte Acadêmico</h4>
+                    <p>Amplamente usado em universidades e pesquisas, especialmente em ciências exatas e engenharia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

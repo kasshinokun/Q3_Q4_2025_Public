@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }} - Tópicos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="navigation-cards">
+        <a href="{{ url_for('python_intro') }}" class="nav-card">
+            <span class="nav-card-icon">🐍</span>
+            <h3 class="nav-card-title">Python</h3>
+            <p class="nav-card-description">
+                Explore a linguagem conhecida por sua simplicidade, legibilidade e versatilidade. 
+                Descubra sua história, paradigmas e características marcantes.
+            </p>
+        </a>
+
+        <a href="{{ url_for('javascript_intro') }}" class="nav-card">
+            <span class="nav-card-icon">⚡</span>
+            <h3 class="nav-card-title">JavaScript</h3>
+            <p class="nav-card-description">
+                Conheça a linguagem que revolucionou a web moderna. 
+                Entenda sua evolução e impacto no desenvolvimento atual.
+            </p>
+        </a>
+
+        <a href="{{ url_for('consideracoes_finais') }}" class="nav-card">
+            <span class="nav-card-icon">📊</span>
+            <h3 class="nav-card-title">Análise Comparativa</h3>
+            <p class="nav-card-description">
+                Considerações finais sobre as duas linguagens e suas 
+                contribuições para o cenário tecnológico moderno.
+            </p>
+        </a>
+
+        <a href="{{ url_for('bibliografia') }}" class="nav-card">
+            <span class="nav-card-icon">📚</span>
+            <h3 class="nav-card-title">Bibliografia</h3>
+            <p class="nav-card-description">
+                Fontes e referências utilizadas na elaboração 
+                deste relatório detalhado.
+            </p>
+        </a>
+    </div>
+</div>
+{% endblock %}
+

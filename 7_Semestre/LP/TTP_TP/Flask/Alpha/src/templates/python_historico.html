@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}{{ data.title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="slide">
+        <div class="slide-header">
+            <h1 class="slide-title">{{ data.title }}</h1>
+        </div>
+        
+        <div class="slide-content">
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>👨‍💻 Criador</h4>
+                    <p><strong>{{ data.creator }}</strong> - Desenvolveu o Python no {{ data.origin }}</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>💡 Inspiração</h4>
+                    <p>{{ data.inspiration }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <h3 style="color: var(--primary-color); margin: 30px 0 20px 0; font-size: 1.5rem;">Cronologia do Python</h3>
+        
+        <div class="timeline">
+            {% for item in data.timeline %}
+            <div class="timeline-item">
+                <div class="timeline-year">{{ item.year }}</div>
+                <div class="timeline-event">{{ item.event }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Marcos Importantes</h2>
+        </div>
+        
+        <div class="slide-content">
+            <div class="paradigms-grid">
+                <div class="paradigm-card">
+                    <div class="paradigm-name">Python 0.9.1 (1991)</div>
+                    <div class="paradigm-description">
+                        Primeira versão pública com características fundamentais como classes com herança, 
+                        tratamento de exceções, funções e tipos de dados essenciais.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">Python 2.0 (2000)</div>
+                    <div class="paradigm-description">
+                        Introduziu list comprehensions, coletor de lixo com detecção de ciclo, 
+                        suporte a Unicode e processo de desenvolvimento mais transparente.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">Python 3.0 (2008)</div>
+                    <div class="paradigm-description">
+                        Versão incompatível com Python 2, focada em corrigir falhas fundamentais 
+                        da linguagem e modernizar sua base.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">Fim do Python 2 (2020)</div>
+                    <div class="paradigm-description">
+                        Encerramento oficial do suporte ao Python 2, consolidando o Python 3 
+                        como a versão padrão da linguagem.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Filosofia e Governança</h2>
+        </div>
+        
+        <div class="slide-content">
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>🏛️ BDFL (Benevolent Dictator for Life)</h4>
+                    <p>Guido van Rossum atuou como BDFL até 2018, quando se afastou do papel de líder, 
+                    mas continua sendo uma figura influente na comunidade Python.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🏢 Python Software Foundation</h4>
+                    <p>Organização sem fins lucrativos fundada em 2001, responsável por gerenciar 
+                    o desenvolvimento da linguagem e apoiar sua comunidade global.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>📜 Zen do Python</h4>
+                    <p>Conjunto de princípios que guiam o design da linguagem, enfatizando 
+                    legibilidade, simplicidade e clareza. Acessível via <code>import this</code>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
