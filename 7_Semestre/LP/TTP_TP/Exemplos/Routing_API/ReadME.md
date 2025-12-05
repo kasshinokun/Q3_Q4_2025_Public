@@ -112,6 +112,7 @@ A API expõe os seguintes endpoints principais sob o prefixo `/api`:
     ```
     A aplicação será aberta no seu navegador. Na primeira execução, ela fará o download dos dados globais e construirá o banco de dados hierárquico otimizado.
 
+A aplicação será iniciada em `http://0.0.0.0:8501`.
 
 
 ---
