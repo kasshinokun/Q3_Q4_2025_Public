@@ -6,8 +6,13 @@ Este repositório consolida diversos projetos desenvolvidos como prática do **T
 
 Os projetos foram desenvolvidos pelos alunos:
 
-*   **Gabriel da Silva Cassino**
-*   **Welbert Junio Afonso de Almeida**
+* [**Gabriel da Silva Cassino**](https://github.com/kasshinokun)
+
+* [**Welbert Junio Afonso de Almeida** ](https://github.com/welbertalmeida)
+
+## 📄 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/LICENSE.md) para detalhes.
 
 ## 🎯 Objetivo Geral
 
@@ -29,6 +34,4 @@ A tabela a seguir lista e descreve cada um dos projetos contidos neste repositó
 
 ---
 
-## 📄 Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/LICENSE.md) para detalhes.
