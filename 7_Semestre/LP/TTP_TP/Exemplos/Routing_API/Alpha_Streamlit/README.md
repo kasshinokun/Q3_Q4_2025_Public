@@ -140,12 +140,7 @@ PRAGMA temp_store = MEMORY
 - **hierarchical_edges**: Conexões entre níveis hierárquicos
 - **precomputed_distances**: Distâncias pré-calculadas
 - **route_cache**: Cache persistente de rotas
-
-## 🌐 URLs de Acesso
-
-- **Aplicação Principal**: https://8501-i4mdipcmkremhtbtab5ux-24cfa627.manus.computer
-- **Aplicação de Teste**: https://8502-i4mdipcmkremhtbtab5ux-24cfa627.manus.computer
-
+  
 ## 🎯 Casos de Uso
 
 ### 1. Logística e Transporte
