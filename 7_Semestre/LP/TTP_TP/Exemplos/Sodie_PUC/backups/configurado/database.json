@@ -1,0 +1,242 @@
+{
+    "Empresa": {
+        "Nome Comercial": "Sodiê PUC",
+        "Razão Social": "Sodiê PUC S/A",
+        "CNPJ": "16.256.1024-32",
+        "Slogan": "O alimento do conhecimento",
+        "logomarca": "F:\\GitHub\\Q3_Q4_2025_Private\\Project_Idea\\Joy_Delicious\\testes\\27-11-2025\\images\\logo.png",
+        "Endereço": {
+            "Rua": "Confeitos de Computação",
+            "Numero": "1024",
+            "Complemento": "Complemento de 2",
+            "Bairro": "Engenharia",
+            "Cidade": "Computação",
+            "Municipalidade": "BH",
+            "Estado/Província": "Minas Gerais",
+            "País": "Brasil",
+            "CEP": "64.128-256"
+        },
+        "Telefone": [],
+        "Email": []
+    },
+    "Usuários": {
+        "Proxima ID Novo Registro": 5,
+        "Administrator": {
+            "Id": 1,
+            "Nome Completo": "Administrator",
+            "Nome de Usuário": "Admin",
+            "Senha de Usuário": "Admin",
+            "Nível de Acesso": "Administrador"
+        },
+        "Tecnico": {
+            "Id": 2,
+            "Nome Completo": "Tecnico",
+            "Nome de Usuário": "Tecnico",
+            "Senha de Usuário": "Tecnico",
+            "Nível de Acesso": "Tecnico"
+        },
+        "Gerente": {
+            "Id": 3,
+            "Nome Completo": "Gerencia",
+            "Nome de Usuário": "Gerencia",
+            "Senha de Usuário": "Gerencia",
+            "Nível de Acesso": "Gerencia"
+        },
+        "Funcionários": {
+            "Id": 4,
+            "Nome Completo": "Funcionário",
+            "Nome de Usuário": "Funcionário",
+            "Senha de Usuário": "Funcionario",
+            "Nível de Acesso": "Comum"
+        }
+    },
+    "Produtos": {
+        "Proxima ID Novo Registro": 10,
+        "1": {
+            "nome": "Bolo de Laranja",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789731053003",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "224 kcal",
+                "Carboidratos": "48.9g",
+                "Proteínas": "4.3g",
+                "Gorduras totais": "1.2g",
+                "Fibra alimentar": "0.9g",
+                "Sódio": "57mg"
+            }
+        },
+        "2": {
+            "nome": "Bolo de Chocolate",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789638233195",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "217 kcal",
+                "Carboidratos": "45.2g",
+                "Proteínas": "4.3g",
+                "Gorduras totais": "2.3g",
+                "Fibra alimentar": "1.6g",
+                "Sódio": "53mg"
+            }
+        },
+        "3": {
+            "nome": "Bolo de Limão",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789039378790",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "224 kcal",
+                "Carboidratos": "48.9g",
+                "Proteínas": "4.3g",
+                "Gorduras totais": "1.2g",
+                "Fibra alimentar": "0.9g",
+                "Sódio": "57mg"
+            }
+        },
+        "4": {
+            "nome": "Bolo Formigueiro",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789357328379",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "224 kcal",
+                "Carboidratos": "46.8g",
+                "Proteínas": "4.0g",
+                "Gorduras totais": "2.4g",
+                "Fibra alimentar": "1.2g",
+                "Sódio": "48mg"
+            }
+        },
+        "5": {
+            "nome": "Bolo de Côco",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789071197020",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "224 kcal",
+                "Carboidratos": "48.9g",
+                "Proteínas": "4.3g",
+                "Gorduras totais": "1.2g",
+                "Fibra alimentar": "0.9g",
+                "Sódio": "57mg"
+            }
+        },
+        "6": {
+            "nome": "Bolo Mesclado",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789736502384",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "224 kcal",
+                "Carboidratos": "48.9g",
+                "Proteínas": "4.3g",
+                "Gorduras totais": "1.2g",
+                "Fibra alimentar": "0.9g",
+                "Sódio": "57mg"
+            }
+        },
+        "7": {
+            "nome": "Bolo Mesclado com Cenoura",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789736502385",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "224 kcal",
+                "Carboidratos": "48.9g",
+                "Proteínas": "4.3g",
+                "Gorduras totais": "1.2g",
+                "Fibra alimentar": "0.9g",
+                "Sódio": "57mg"
+            }
+        },
+        "8": {
+            "nome": "Broa de Fubá Comum",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789739468477",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "306 kcal",
+                "Carboidratos": "33.0g",
+                "Proteínas": "3.1g",
+                "Gorduras totais": "18.5g",
+                "Fibra alimentar": "0.9g",
+                "Sódio": "73mg"
+            }
+        },
+        "9": {
+            "nome": "Broa de Milho Comum",
+            "porcao": "1 fatia (80g)",
+            "codigoBarras12": "789739468478",
+            "Pesos": [],
+            "Valores": [],
+            "tabelaNutricional": {
+                "Valor energético": "306 kcal",
+                "Carboidratos": "33.0g",
+                "Proteínas": "3.1g",
+                "Gorduras totais": "18.5g",
+                "Fibra alimentar": "0.9g",
+                "Sódio": "73mg"
+            }
+        }
+    },
+    "Clientes": {
+        "Proxima ID Novo Registro": 1,
+        "1": {
+            "Nome Comercial": "",
+            "Razão Social": "",
+            "CNPJ": "",
+            "Endereço": {
+                "Rua": "",
+                "Numero": "",
+                "Complemento": "",
+                "Bairro": "",
+                "Cidade": "",
+                "Municipalidade": "",
+                "Estado/Província": "",
+                "País": "",
+                "CEP": ""
+            },
+            "Telefone": [],
+            "Email": []
+        }
+    },
+    "Lotes": {
+        "Proxima ID Novo Registro": 1,
+        "1": {
+            "ID Produto": "",
+            "Numero do Lote": "",
+            "Fabricação do Lote": "",
+            "Validade do Lote": ""
+        }
+    },
+    "Pedidos": {
+        "Proxima ID Novo Registro": 1,
+        "1": {
+            "ID Cliente": "",
+            "ID Lote": "",
+            "Quantidade": "",
+            "Valor": "",
+            "Status": "",
+            "Data de Pagamento": ""
+        }
+    },
+    "Valores_Diarios": {
+        "Valor Energético": 2000,
+        "Carboidratos": 300,
+        "Proteínas": 75,
+        "Gorduras Totais": 55,
+        "Gorduras Saturadas": 22,
+        "Gorduras Trans": 2,
+        "Fibra Alimentar": 25,
+        "Sódio": 2400
+    }
+}

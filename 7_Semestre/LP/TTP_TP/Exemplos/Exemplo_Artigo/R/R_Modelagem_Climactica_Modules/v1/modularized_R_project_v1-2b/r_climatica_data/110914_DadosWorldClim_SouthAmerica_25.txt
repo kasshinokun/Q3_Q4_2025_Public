@@ -1,0 +1,17 @@
+Dados WorldClim   2.5arc minut para America do Sul
+
+Tmin
+Tmax
+Prec
+Alt
+Bioclimaticas
+
+BOX:
+
+LL:
+X: -82	Y: 13
+UR:
+X: -34	Y:-41
+
+
+Dimensions: 1298 x 1154; Cell Size: 0.04167
