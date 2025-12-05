@@ -64,7 +64,7 @@ streamlit run app_graphos_optimized.py
 # Versão de teste
 streamlit run test_simple_app.py
 ```
-
+A aplicação estará disponivel no navegador em https://0.0.0.0:8501
 ## 📊 Complexidade Algorítmica
 
 ### Antes (Aplicação Original)
