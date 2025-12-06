@@ -15,7 +15,7 @@ class SlideData:
     content: str
     code_examples: List[str] = None
     highlights: List[str] = None
-    
+
     def __post_init__(self):
         if self.code_examples is None:
             self.code_examples = []
@@ -28,25 +28,25 @@ class PresentationData:
     Classe principal que contém todos os dados da apresentação.
     Demonstra uso de POO, encapsulamento e métodos organizados.
     """
-    
+
     def __init__(self):
         """Inicializa a classe com dados estruturados"""
         self._initialize_data()
-    
+
     def _initialize_data(self):
         """Método privado para inicializar os dados (encapsulamento)"""
         self._python_data = self._create_python_data()
         self._javascript_data = self._create_javascript_data()
         self._general_data = self._create_general_data()
-    
+
     @lru_cache(maxsize=None)
     def get_python_intro(self) -> Dict[str, Any]:
         """Retorna dados da introdução ao Python (uso de cache para otimização)"""
         return {
             'title': 'Python',
             'subtitle': 'Uma linguagem versátil e poderosa',
-            'description': '''Python é uma das linguagens de programação mais populares e versáteis da atualidade. 
-                           Criada por Guido van Rossum no final da década de 1980, Python se destaca por sua 
+            'description': '''Python é uma das linguagens de programação mais populares e versáteis da atualidade.
+                           Criada por Guido van Rossum no final da década de 1980, Python se destaca por sua
                            sintaxe clara, legibilidade e filosofia de design que prioriza a simplicidade.''',
             'key_points': [
                 'Linguagem interpretada e de alto nível',
@@ -56,76 +56,82 @@ class PresentationData:
                 'Comunidade ativa e ecossistema rico'
             ]
         }
-    
+
     def get_python_historico(self) -> Dict[str, Any]:
         """Retorna dados do histórico do Python"""
         return self._python_data['historico']
-    
+
     def get_python_paradigmas(self) -> Dict[str, Any]:
         """Retorna dados dos paradigmas do Python"""
         return self._python_data['paradigmas']
-    
+
     def get_python_caracteristicas(self) -> Dict[str, Any]:
         """Retorna características do Python"""
         return self._python_data['caracteristicas']
-    
+
     def get_python_linguagens_relacionadas(self) -> Dict[str, Any]:
         """Retorna linguagens relacionadas ao Python"""
         return self._python_data['linguagens_relacionadas']
-    
+
     def get_python_exemplos(self) -> Dict[str, Any]:
         """Retorna exemplos de código Python"""
         return self._python_data['exemplos']
-    
+
     def get_python_arquitetura(self) -> Dict[str, Any]:
         """Retorna dados da arquitetura do Python"""
         return self._python_data['arquitetura']
-    
+
     def get_javascript_intro(self) -> Dict[str, Any]:
         """Retorna dados da introdução ao JavaScript"""
         return {
             'title': 'JavaScript',
-            'subtitle': 'A linguagem da web moderna',
-            'description': '''JavaScript é uma das linguagens mais ubíquas e influentes da web, criada em 1995 
-                           por Brendan Eich. Originalmente desenvolvida para adicionar interatividade às páginas web, 
-                           hoje é usada tanto no frontend quanto no backend.''',
+            'subtitle': 'A linguagem ubíqua da web moderna',
+            'description': '''JavaScript é a linguagem de programação mais utilizada no mundo, criada em 1995
+                       por Brendan Eich. Originalmente desenvolvida para adicionar interatividade às páginas web,
+                       evoluiu para uma linguagem full-stack que domina a web, servidores, aplicações móveis,
+                       desktop e até IoT.''',
             'key_points': [
-                'Linguagem interpretada e dinâmica',
-                'Multiparadigma com foco em programação funcional',
-                'Execução no navegador e servidor (Node.js)',
-                'Ecossistema vasto com NPM',
-                'Padrão ECMAScript em constante evolução'
+                'Linguagem interpretada com compilação JIT',
+                'Multiparadigma: funcional, baseada em protótipos, orientada a eventos',
+                'Única linguagem nativa dos navegadores web',
+                'Ecossistema gigantesco (npm) com mais de 1.5 milhão de pacotes',
+                'Padrão ECMAScript com evolução anual contínua',
+                'Modelo de execução single-threaded com Event Loop',
+                'Programação assíncrona não-bloqueante nativa',
+                'Tipagem dinâmica e fraca com TypeScript opcional',
+                'Comunidade global extremamente ativa e inovadora',
+                'Demanda de mercado ubíqua em todas as áreas de desenvolvimento'
             ]
         }
-    
+
     def get_javascript_historico(self) -> Dict[str, Any]:
         """Retorna dados do histórico do JavaScript"""
         return self._javascript_data['historico']
-    
+
     def get_javascript_paradigmas(self) -> Dict[str, Any]:
         """Retorna dados dos paradigmas do JavaScript"""
         return self._javascript_data['paradigmas']
-    
+
     def get_javascript_caracteristicas(self) -> Dict[str, Any]:
         """Retorna características do JavaScript"""
         return self._javascript_data['caracteristicas']
-    
+
     def get_javascript_linguagens_relacionadas(self) -> Dict[str, Any]:
         """Retorna linguagens relacionadas ao JavaScript"""
         return self._javascript_data['linguagens_relacionadas']
-    
+
     def get_javascript_exemplos(self) -> Dict[str, Any]:
         """Retorna exemplos de código JavaScript"""
         return self._javascript_data['exemplos']
-    
+
     def get_consideracoes_finais(self) -> Dict[str, Any]:
         """Retorna considerações finais"""
         return self._general_data['consideracoes_finais']
-    
+
     def get_bibliografia(self) -> Dict[str, Any]:
         """Retorna bibliografia"""
         return self._general_data['bibliografia']
-    
+
     def _create_python_data(self) -> Dict[str, Any]:
         """Cria dados estruturados sobre Python (método privado)"""
         return {
@@ -271,128 +277,313 @@ print(f"O fatorial de {num} é {fatorial(num)}.")''',
                 ]
             }
         }
-    
+
     def _create_javascript_data(self) -> Dict[str, Any]:
         """Cria dados estruturados sobre JavaScript (método privado)"""
         return {
             'historico': {
                 'title': 'Histórico do JavaScript',
                 'timeline': [
-                    {'year': '1995', 'event': 'Criação por Brendan Eich em 10 dias'},
-                    {'year': '1995', 'event': 'Lançamento no Netscape Navigator 2.0'},
-                    {'year': '1996', 'event': 'Microsoft lança JScript'},
-                    {'year': '1997', 'event': 'Padronização ECMAScript'},
-                    {'year': '2005', 'event': 'Termo Ajax cunhado - renascimento do JS'},
-                    {'year': '2009', 'event': 'Node.js - JavaScript no servidor'},
-                    {'year': '2015', 'event': 'ES6/ES2015 - Revolução da linguagem'}
+                        {"year": "1995", "event": "Criação do JavaScript por Brendan Eich na Netscape"},
+                        {"year": "1996", "event": "Lançamento do JavaScript 1.0 no Netscape Navigator 2.0"},
+                        {"year": "1997", "event": "Padronização como ECMAScript pela ECMA International"},
+                        {"year": "1999", "event": "ECMAScript 3 torna-se o padrão amplamente adotado"},
+                        {"year": "2005", "event": "Introdução do AJAX (Google Maps, Gmail) populariza JavaScript"},
+                        {"year": "2009", "event": "Lançamento do Node.js e ECMAScript 5"},
+                        {"year": "2015", "event": "ECMAScript 6 (ES2015) com grandes atualizações na linguagem"},
+                        {"year": "2020", "event": "JavaScript completa 25 anos com ecossistema maduro"}
                 ],
-                'creator': 'Brendan Eich',
-                'company': 'Netscape Communications',
-                'original_names': ['Mocha', 'LiveScript', 'JavaScript']
+                "creator": "Brendan Eich",
+                "origin": "1995 na Netscape Communications Corporation",
+                "inspiration": "Sintaxe inspirada em Java, funcionalidades de linguagens como Scheme e Self",
+                "development": "Criado em apenas 10 dias para a Netscape Navigator 2.0, inicialmente chamado de Mocha, depois LiveScript, e finalmente JavaScript"
             },
             'paradigmas': {
-                'title': 'Paradigmas de Programação',
+                'title': 'Paradigmas de Programação no JavaScript',
                 'paradigms': [
                     {
+                        'name': 'Programação Baseada em Protótipos',
+                        'description': 'Modelo de herança único onde objetos herdam diretamente de outros objetos',
+                        'features': [
+                            'Herança prototípica (não baseada em classes)',
+                            'Objetos como protótipos para outros objetos',
+                            'Classes ES6+ como "açúcar sintático" sobre protótipos',
+                            'Flexibilidade na criação e modificação de objetos em runtime'
+                        ]
+                    },
+                    {
                         'name': 'Programação Funcional',
-                        'description': 'Funções como cidadãos de primeira classe',
-                        'features': ['Higher-order functions', 'Closures', 'Arrow functions']
+                        'description': 'Funções como cidadãos de primeira classe com suporte a closures',
+                        'features': [
+                            'Funções de primeira classe e de alta ordem',
+                            'Closures e currying',
+                            'Imutabilidade (opcional, encorajada)',
+                            'Map, filter, reduce para coleções',
+                            'Composição de funções'
+                        ]
                     },
                     {
-                        'name': 'Orientação a Objetos',
-                        'description': 'Baseada em protótipos, não classes tradicionais',
-                        'features': ['Prototypes', 'Classes (ES6+)', 'Herança prototípica']
+                        'name': 'Programação Orientada a Eventos',
+                        'description': 'Programação assíncrona e reativa baseada em callbacks e eventos',
+                        'features': [
+                            'Callbacks para operações assíncronas',
+                            'Promises e async/await',
+                            'Event loop e programação não-bloqueante',
+                            'Event listeners e handlers no DOM'
+                        ]
                     },
                     {
-                        'name': 'Programação Imperativa',
-                        'description': 'Execução sequencial de comandos',
-                        'features': ['Loops', 'Condicionais', 'Manipulação de estado']
+                        'name': 'Programação Imperativa/Procedural',
+                        'description': 'Estilo tradicional de programação com sequências de comandos',
+                        'features': [
+                            'Execução sequencial de instruções',
+                            'Variáveis mutáveis e estado',
+                            'Estruturas de controle (if, for, while)',
+                            'Funções procedurais'
+                        ]
                     }
                 ]
             },
             'caracteristicas': {
-                'title': 'Características Marcantes',
+                'title': 'Características Marcantes do JavaScript',
                 'features': [
                     {
                         'name': 'Tipagem Dinâmica e Fraca',
-                        'description': 'Coerção automática entre tipos'
+                        'description': 'Variáveis não têm tipo fixo; podem ser reatribuídas com diferentes tipos e permitem coerção implícita entre tipos'
                     },
                     {
-                        'name': 'Interpretada',
-                        'description': 'Execução direta pelo motor JavaScript'
+                        'name': 'Interpretada Just-In-Time (JIT)',
+                        'description': 'Executada por motores que compilam para código nativo em tempo de execução (V8, SpiderMonkey, JavaScriptCore)'
                     },
                     {
-                        'name': 'Event-driven',
-                        'description': 'Programação orientada a eventos'
+                        'name': 'Programação Assíncrona e Não-Bloqueante',
+                        'description': 'Modelo baseado em Event Loop com callbacks, promises e async/await para operações I/O'
                     },
                     {
-                        'name': 'Assíncrona',
-                        'description': 'Callbacks, Promises, async/await'
+                        'name': 'Orientada a Eventos',
+                        'description': 'Desenvolvimento baseado em eventos, especialmente para interfaces de usuário e operações assíncronas'
                     },
                     {
-                        'name': 'Multiplataforma',
-                        'description': 'Navegador, servidor, mobile, desktop'
+                        'name': 'Baseada em Protótipos',
+                        'description': 'Herança prototípica em vez de herança baseada em classes (embora classes ES6+ sejam suportadas como açúcar sintático)'
+                    },
+                    {
+                        'name': 'Multiplataforma e Ubíqua',
+                        'description': 'Executa em navegadores, servidores (Node.js), mobile, desktop, IoT e até em bancos de dados'
+                    },
+                    {
+                        'name': 'Single-Threaded com Concorrência',
+                        'description': 'Modelo de execução single-threaded que simula concorrência através do Event Loop'
+                    },
+                    {
+                        'name': 'Primeira Classe de Funções',
+                        'description': 'Funções são objetos de primeira classe que podem ser atribuídas a variáveis, passadas como argumentos e retornadas de outras funções'
+                    },
+                    {
+                        'name': 'Closures e Escopo Lexical',
+                        'description': 'Funções "lembram" do escopo onde foram criadas, permitindo padrões avançados como factory functions e módulos'
+                    },
+                    {
+                        'name': 'Padronização ECMAScript',
+                        'description': 'Evolução gerenciada pelo TC39 com releases anuais que trazem novas funcionalidades constantemente'
                     }
                 ]
             },
             'linguagens_relacionadas': {
-                'title': 'Linguagens Relacionadas',
+                'title': 'Linguagens Relacionadas ao JavaScript',
                 'influences': [
-                    {'name': 'Scheme', 'type': 'Influenciou', 'description': 'Programação funcional'},
-                    {'name': 'Self', 'type': 'Influenciou', 'description': 'Herança prototípica'},
-                    {'name': 'Java', 'type': 'Influenciou', 'description': 'Sintaxe similar'},
-                    {'name': 'C', 'type': 'Influenciou', 'description': 'Estruturas de controle'}
+                    {
+                        'name': 'Java',
+                        'type': 'Influência Sintática',
+                        'description': 'JavaScript foi nomeado para se aproveitar da popularidade do Java em 1995, mas é uma linguagem fundamentalmente diferente.',
+                        'features': [
+                            'Sintaxe similar (chaves, ponto e vírgula)',
+                            'Nomenclatura "JavaScript" para marketing',
+                            'Algumas construções de controle (for, while, if)'
+                        ]
+                    },
+                    {
+                        'name': 'Scheme',
+                        'type': 'Influência Funcional',
+                        'description': 'Brendan Eich era fã de Scheme e incorporou conceitos de programação funcional na linguagem.',
+                        'features': [
+                            'Funções como cidadãos de primeira classe',
+                            'Closures e escopo léxico',
+                            'Recursos de programação funcional'
+                        ]
+                    },
+                    {
+                        'name': 'Self',
+                        'type': 'Influência de Protótipos',
+                        'description': 'Linguagem de pesquisa que introduziu o conceito de herança prototípica.',
+                        'features': [
+                            'Sistema de herança baseado em protótipos',
+                            'Objetos dinâmicos sem classes',
+                            'Delegação de protótipos'
+                        ]
+                    },
+                    {
+                        'name': 'C',
+                        'type': 'Influência de Sintaxe',
+                        'description': 'A família de linguagens C influenciou a sintaxe básica de JavaScript.',
+                        'features': [
+                            'Sintaxe de chaves para blocos',
+                            'Operadores e precedência',
+                            'Estruturas de controle básicas'
+                        ]
+                    },
+                    {
+                        'name': 'AWK',
+                        'type': 'Influência de Design',
+                        'description': 'Linguagem de processamento de texto que influenciou o design inicial de JavaScript.',
+                        'features': [
+                            'Tipagem dinâmica e fraca',
+                            'Manipulação fácil de strings',
+                            'Foco em tarefas práticas'
+                        ]
+                    },
+                    {
+                        'name': 'HyperTalk',
+                        'type': 'Influência de Scripting',
+                        'description': 'Linguagem de script do HyperCard da Apple que influenciou o modelo de eventos.',
+                        'features': [
+                            'Modelo de programação orientado a eventos',
+                            'Scripting de alto nível',
+                            'Fácil acesso a objetos do sistema'
+                        ]
+                    }
                 ],
                 'influenced': [
-                    {'name': 'TypeScript', 'description': 'Superset tipado do JavaScript'},
-                    {'name': 'CoffeeScript', 'description': 'Sintaxe mais limpa'},
-                    {'name': 'Dart', 'description': 'Alternativa do Google'}
+                    {
+                        'name': 'TypeScript',
+                        'year': '2012',
+                        'description': 'Superset tipado do JavaScript desenvolvido pela Microsoft que adiciona tipos estáticos opcionais.',
+                        'use_case': 'Desenvolvimento de aplicações web em grande escala'
+                    },
+                    {
+                        'name': 'CoffeeScript',
+                        'year': '2009',
+                        'description': 'Linguagem que transpila para JavaScript com sintaxe inspirada no Ruby e Python.',
+                        'use_case': 'Desenvolvimento mais conciso e elegante'
+                    },
+                    {
+                        'name': 'Dart',
+                        'year': '2011',
+                        'description': 'Linguagem desenvolvida pelo Google como alternativa ao JavaScript, usada no Flutter.',
+                        'use_case': 'Desenvolvimento mobile multiplataforma'
+                    },
+                    {
+                        'name': 'Kotlin/JS',
+                        'year': '2017',
+                        'description': 'Kotlin compilado para JavaScript, permitindo desenvolvimento full-stack com uma linguagem.',
+                        'use_case': 'Desenvolvimento web com interoperabilidade JavaScript'
+                    },
+                    {
+                        'name': 'ReasonML/ReScript',
+                        'year': '2016',
+                        'description': 'Sintaxe amigável para OCaml que compila para JavaScript mantendo segurança de tipos.',
+                        'use_case': 'Aplicações web com garantias de tipo fortes'
+                    },
+                    {
+                        'name': 'WebAssembly',
+                        'year': '2017',
+                        'description': 'Formato binário que pode ser executado em navegadores, complementando JavaScript.',
+                        'use_case': 'Aplicações web de alto desempenho'
+                    }
+                ],
+                'transpilation_ecosystem': [
+                    'TypeScript → JavaScript',
+                    'CoffeeScript → JavaScript',
+                    'Elm → JavaScript',
+                    'PureScript → JavaScript',
+                    'ClojureScript → JavaScript',
+                    'Scala.js → JavaScript',
+                    'Babel (ES6+ → ES5)'
                 ]
             },
             'exemplos': {
                 'title': 'Exemplos de Código JavaScript',
                 'examples': [
                     {
-                        'name': 'Olá, Mundo!',
-                        'code': 'console.log("Olá, Mundo!");',
-                        'description': 'Saída no console'
+                        'name': 'Manipulação do DOM',
+                        'code': '''// Selecionar elemento
+const elemento = document.getElementById('meuElemento');
+
+// Modificar conteúdo
+elemento.textContent = 'Olá, JavaScript!';
+
+// Adicionar evento
+elemento.addEventListener('click', function() {
+    this.style.backgroundColor = 'blue';
+});''',
+                        'description': 'Interação com a página web usando DOM API'
                     },
                     {
-                        'name': 'Manipulação DOM',
-                        'code': '''document.getElementById("demo").innerHTML = "Olá, JavaScript!";''',
-                        'description': 'Alterando conteúdo HTML'
-                    },
-                    {
-                        'name': 'Função com Arrow Function',
-                        'code': '''const somar = (a, b) => a + b;
-console.log(somar(5, 3));''',
-                        'description': 'Sintaxe moderna ES6+'
+                        'name': 'Funções e Closures',
+                        'code': '''// Função de primeira classe
+const somar = (a, b) => a + b;
+
+// Closure
+function criarContador() {
+    let contador = 0;
+
+    return function() {
+        contador++;
+        return contador;
+    };
+}
+
+const contador = criarContador();
+console.log(contador()); // 1
+console.log(contador()); // 2''',
+                        'description': 'Funções como valores e closures'
                     },
                     {
                         'name': 'Programação Assíncrona',
-                        'code': '''async function buscarDados() {
+                        'code': '''// Usando async/await
+async function buscarDados() {
     try {
-        const response = await fetch('/api/dados');
-        const dados = await response.json();
+        const resposta = await fetch('https://api.exemplo.com/dados');
+        const dados = await resposta.json();
         return dados;
-    } catch (error) {
-        console.error('Erro:', error);
+    } catch (erro) {
+        console.error('Erro:', erro);
+        throw erro;
     }
-}''',
-                        'description': 'Async/await para operações assíncronas'
+}
+
+// Usando Promise
+buscarDados()
+    .then(dados => console.log(dados))
+    .catch(erro => console.error(erro));''',
+                        'description': 'Operações assíncronas com async/await e Promises'
+                    },
+                    {
+                        'name': 'Manipulação de Arrays',
+                        'code': '''const numeros = [1, 2, 3, 4, 5];
+
+// Programação funcional com arrays
+const pares = numeros.filter(n => n % 2 === 0);
+const quadrados = numeros.map(n => n * n);
+const soma = numeros.reduce((acc, n) => acc + n, 0);
+
+console.log(pares);    // [2, 4]
+console.log(quadrados); // [1, 4, 9, 16, 25]
+console.log(soma);      // 15''',
+                        'description': 'Métodos funcionais para manipulação de arrays'
                     }
                 ]
             }
         }
-    
+
     def _create_general_data(self) -> Dict[str, Any]:
         """Cria dados gerais da apresentação (método privado)"""
         return {
             'consideracoes_finais': {
                 'title': 'Considerações Finais',
-                'content': '''Este relatório apresentou uma análise detalhada de Python e JavaScript, 
-                           duas linguagens fundamentais no cenário tecnológico atual. Ambas demonstram 
-                           como diferentes filosofias de design podem resultar em ferramentas poderosas 
+                'content': '''Este relatório apresentou uma análise detalhada de Python e JavaScript,
+                           duas linguagens fundamentais no cenário tecnológico atual. Ambas demonstram
+                           como diferentes filosofias de design podem resultar em ferramentas poderosas
                            para diferentes domínios de aplicação.''',
                 'key_takeaways': [
                     'Python: Simplicidade, legibilidade e versatilidade',
@@ -412,7 +603,7 @@ console.log(somar(5, 3));''',
                 ]
             }
         }
-    
+
     def get_all_routes(self) -> List[str]:
         """Retorna todas as rotas disponíveis (método utilitário)"""
         routes = [
@@ -424,12 +615,11 @@ console.log(somar(5, 3));''',
             '/javascript/exemplos', '/consideracoes_finais', '/bibliografia'
         ]
         return routes
-    
+
     def __str__(self) -> str:
         """Representação string da classe"""
         return f"PresentationData(routes={len(self.get_all_routes())})"
-    
+
     def __repr__(self) -> str:
         """Representação técnica da classe"""
         return f"PresentationData(python_sections={len(self._python_data)}, js_sections={len(self._javascript_data)})"
-
