@@ -9,7 +9,7 @@ Arquitetura:
 from flask import render_template
 from typing import Dict, List, Any
 import requests
-
+from core.generate_code import get_qr_code
 class Presentation:
     """
     Classe base para todas as apresentações.
@@ -34,7 +34,10 @@ class Presentation:
     CURSOS: List[str] = []
     TITLE: str = None
     TEMPLATE_PATH: str = None
+    URL_REPOSITORY="https://github.com/kasshinokun/Q3_Q4_2025_Public/tree/main/7_Semestre/LP/TTP_TP"
     
+    QRCODE=get_qr_code(URL_REPOSITORY)
+
     URL_PUC="https://www.pucminas.br/Style%20Library/STATIC/img/2025/brasao-pucminas-2025-versao-positiva.png"
     PATH_PUC="brasao-pucminas-versao-2025.png" 
     
@@ -77,7 +80,9 @@ class Presentation:
             'cursos': self.CURSOS,
             'presentation_list': Orchestrator.get_presentation_list(),
             'navigation': self.get_navigation_structure(),
-            'logo_puc':self.get_image()
+            'logo_puc':self.get_image(),
+            'qrcode':self.QRCODE,
+            'url_repositorio':self.URL_REPOSITORY
         }
     
     def render(self) -> str:

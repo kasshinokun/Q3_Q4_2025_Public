@@ -39,6 +39,11 @@ class Maestro_TTP(Presentation):
     def get_navigation_structure(self) -> List[Dict[str, Any]]:
 
         return [
+        {
+                'id': 'repositorio',
+                'title': 'Projeto',
+                'has_submenu': False
+        },
         # 1. Introdução
         {
             'id': 'introducao',
@@ -220,7 +225,7 @@ class Maestro_Artigo(Presentation):
     INSTITUICAO = 'Pontifícia Universidade de Minas Gerais (PUC Minas)'
     AUTORES = ['Gabriel da Silva Cassino', 'Welbert Junio Afonso de Almeida']
     MATERIAS = ['Linguagens de Programação']
-    PROFESSORES = ['Marco Rodrigo da Costa']
+    PROFESSORES = ['Marco Rodrigo Costa']
     CURSOS = ['Graduação em Engenharia da Computação', 'Bacharelado em Ciência da Computação']
     TITLE = 'Trabalho de Pesquisa - Python e R na Análise de Precipitação'
     TEMPLATE_PATH = 'artigo/article_presentation.html'
@@ -243,6 +248,11 @@ class Maestro_Artigo(Presentation):
             Lista com seções do artigo científico
         """
         return [
+            {
+                'id': 'repositorio',
+                'title': 'Projeto',
+                'has_submenu': False
+            },
             {
                 'id': 'title',
                 'title': '1. Título',
