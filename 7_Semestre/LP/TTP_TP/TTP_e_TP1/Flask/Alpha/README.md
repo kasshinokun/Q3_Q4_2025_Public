@@ -5,7 +5,7 @@
 
 [**Prática de LP 2025-2 ReadME**](https://github.com/kasshinokun/praticagraduacao/blob/main/apresentacao_flask.md)
 
-[**Link Deploy da Apresentação da Prática de LP no PythonAnyWhere**](https://praticagraduacao.pythonanywhere.com/python)
+[**Link Deploy da Apresentação da Prática de LP no PythonAnyWhere**](https://praticagraduacao.pythonanywhere.com/python) <br>**Disponível até 25 de Dezembro de 2025(Servidor gratuito do PythonAnyWhere)**
 
 Muito obrigado!
 
