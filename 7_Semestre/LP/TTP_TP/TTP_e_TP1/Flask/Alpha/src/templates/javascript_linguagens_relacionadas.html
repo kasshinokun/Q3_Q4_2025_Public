@@ -10,14 +10,15 @@
         </div>
         
         <div class="slide-content">
-            <p>Python, ao longo de sua história, foi tanto um produto de influências de outras linguagens quanto uma fonte de inspiração para novas. Essa interconexão é fundamental para entender seu design e sua posição no ecossistema de programação.</p>
+            <p>JavaScript, como linguagem ubíqua da web, foi profundamente influenciado por outras linguagens e, por sua vez, influenciou uma geração de novas linguagens e tecnologias. Essa rede de influências é fundamental para entender sua evolução e ecossistema.</p>
         </div>
     </div>
 
     <div class="languages-section">
         <div class="slide">
             <div class="slide-header">
-                <h2 class="slide-title">Linguagens que Influenciaram o Python</h2>
+                <h2 class="slide-title">Linguagens que Influenciaram o JavaScript</h2>
+                <p class="slide-subtitle">JavaScript foi criado em apenas 10 dias, sintetizando características de várias linguagens</p>
             </div>
             
             <div class="languages-grid">
@@ -25,7 +26,16 @@
                 <div class="language-category">
                     <div class="language-item">
                         <div class="language-name">{{ influence.name }}</div>
+                        <div class="language-type">{{ influence.type }}</div>
                         <div class="language-description">{{ influence.description }}</div>
+                        <div class="language-contribution">
+                            <strong>Contribuição para JavaScript:</strong>
+                            <ul>
+                                {% for feature in influence.features %}
+                                <li>{{ feature }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -34,7 +44,8 @@
 
         <div class="slide">
             <div class="slide-header">
-                <h2 class="slide-title">Linguagens Influenciadas pelo Python</h2>
+                <h2 class="slide-title">Linguagens Influenciadas pelo JavaScript</h2>
+                <p class="slide-subtitle">JavaScript gerou um ecossistema inteiro de linguagens transpiláveis e alternativas</p>
             </div>
             
             <div class="languages-grid">
@@ -42,13 +53,117 @@
                 <div class="language-category">
                     <div class="language-item">
                         <div class="language-name">{{ influenced.name }}</div>
+                        <div class="language-year">{{ influenced.year }}</div>
                         <div class="language-description">{{ influenced.description }}</div>
+                        <div class="language-use-case">
+                            <strong>Uso principal:</strong> {{ influenced.use_case }}
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
+
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">Ecossistema de Linguagens Transpiláveis</h2>
+            </div>
+            
+            <div class="slide-content">
+                <p>Uma das características mais únicas do JavaScript é seu vasto ecossistema de linguagens que podem ser transpiladas para ele, permitindo que desenvolvedores usem diferentes sintaxes e paradigmas enquanto mantêm compatibilidade com a plataforma web.</p>
+                
+                <div class="paradigms-grid">
+                    <div class="paradigm-card">
+                        <div class="paradigm-name">TypeScript</div>
+                        <div class="paradigm-description">
+                            <strong>Microsoft (2012)</strong> - Superset tipado do JavaScript que adiciona tipos estáticos e recursos OOP avançados.
+                        </div>
+                        <div class="paradigm-features">
+                            <li>Sistema de tipos estático opcional</li>
+                            <li>Interfaces e tipos genéricos</li>
+                            <li>Decorators e metadados</li>
+                            <li>Usado por Angular, React, Vue</li>
+                        </div>
+                    </div>
+                    
+                    <div class="paradigm-card">
+                        <div class="paradigm-name">CoffeeScript</div>
+                        <div class="paradigm-description">
+                            <strong>Jeremy Ashkenas (2009)</strong> - Linguagem que transpila para JavaScript com sintaxe inspirada no Ruby e Python.
+                        </div>
+                        <div class="paradigm-features">
+                            <li>Sintaxe significativa (indentação)</li>
+                            <li>Compreensões de lista estilo Python</li>
+                            <li>Operador existencial (?)</li>
+                            <li>Popular no início do Node.js</li>
+                        </div>
+                    </div>
+                    
+                    <div class="paradigm-card">
+                        <div class="paradigm-name">Elm</div>
+                        <div class="paradigm-description">
+                            <strong>Evan Czaplicki (2012)</strong> - Linguagem funcional pura para construir aplicações web confiáveis.
+                        </div>
+                        <div class="paradigm-features">
+                            <li>Arquitetura de aplicações unidirecional</li>
+                            <li>Sem exceções em tempo de execução</li>
+                            <li>Sistema de tipos avançado</li>
+                            <li>Inspirou Redux no React</li>
+                        </div>
+                    </div>
+                    
+                    <div class="paradigm-card">
+                        <div class="paradigm-name">PureScript</div>
+                        <div class="paradigm-description">
+                            <strong>Phil Freeman (2013)</strong> - Linguagem funcional fortemente tipada inspirada em Haskell.
+                        </div>
+                        <div class="paradigm-features">
+                            <li>Sistema de tipos avançado</li>
+                            <li>Transpila para JavaScript legível</li>
+                            <li>Interoperabilidade com JavaScript</li>
+                            <li>Foco em corretude</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-header">
+                <h2 class="slide-title">JavaScript como Plataforma</h2>
+            </div>
+            
+            <div class="slide-content">
+                <p>JavaScript evoluiu além de uma simples linguagem para se tornar uma plataforma completa, com várias implementações e ambientes de execução:</p>
+                
+                <div class="key-points">
+                    <div class="key-point">
+                        <h4>🌐 V8 (Google Chrome/Node.js)</h4>
+                        <p>Motor JavaScript de alto desempenho escrito em C++ que compila código JavaScript para código de máquina nativo, também usado no Node.js.</p>
+                    </div>
+                    
+                    <div class="key-point">
+                        <h4>🦊 SpiderMonkey (Firefox)</h4>
+                        <p>O primeiro motor JavaScript, originalmente desenvolvido por Brendan Eich na Netscape e mantido pela Mozilla.</p>
+                    </div>
+                    
+                    <div class="key-point">
+                        <h4>🦁 JavaScriptCore (Safari)</h4>
+                        <p>Motor JavaScript da Apple, também conhecido como Nitro, otimizado para macOS e iOS.</p>
+                    </div>
+                    
+                    <div class="key-point">
+                        <h4>🟦 Chakra (Microsoft Edge - legado)</h4>
+                        <p>Motor JavaScript desenvolvido pela Microsoft para o Internet Explorer e Edge original, posteriormente substituído pelo V8.</p>
+                    </div>
+                    
+                    <div class="key-point">
+                        <h4>⚡ Deno & Bun</h4>
+                        <p>Novos ambientes de execução JavaScript/TypeScript construídos sobre o V8, oferecendo alternativas modernas ao Node.js.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
-
