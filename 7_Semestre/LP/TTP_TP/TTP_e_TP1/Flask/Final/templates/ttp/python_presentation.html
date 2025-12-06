@@ -1,0 +1,4212 @@
+<!-- Define o layout base para a apresentação (Template Jinja/Django) -->{% extends "base/layout.html" %}
+
+{% block slides %}<!-- =================================================================== --><!-- INÍCIO DOS SLIDES --><!-- =================================================================== -->
+
+<!-- Slide 1: Capa -->
+<section id="title" data-auto-animate style="line-height: 1.4;">
+    <!-- Variável de template: URL do logo da PUC Minas -->    <img src={{logo_puc}} alt="PUC Minas Logo">
+    <div style="font-size: 0.9em; line-height: 1;"><i class="fa-brands fa-python"></i> Trabalho Teórico Prático Python</div>
+    
+    <span style="font-size: 0.7em; margin-top: 0.3em;">Uma análise detalhada de uma das linguagens fundamentais da atualidade</span>
+    <br>
+    
+    <p style="font-size: 0.6em; font-weight: bold;">
+        <!-- Início do loop para listar os autores -->        {% for autor in autores %}
+            {{ autor }}<br>
+        {% endfor %}        <!-- Fim do loop de autores -->
+        <!-- Variável de template: Lista de matérias -->        {{ materias | join(' e ') }}<br>
+        Professor: {{ professores | join(', ') }}<br>
+        Cursos: 
+        <br>
+        <!-- Variável de template: Lista de cursos -->        {{ cursos | join(', ') }}
+        <div class="github-link">
+            <img src="https://wallpapers.com/images/featured/github-logo-png-s8wb6yxlatsyp8s1.jpg" alt="Github Logo" width="100em" height="40em"><br>
+            <a href="https://github.com/kasshinokun/praticagraduacao" target="_blank" style="font-size: 0.7em; font-weight: bold;">Repositório no GitHub</a>
+        </div>
+    </p>
+</section>
+<!-- Fim Slide 1: Capa -->
+</section>
+<!-- Slide 2: Introdução -->
+<section id="introducao" data-auto-animate>
+    <h4>1. Introdução ao Python</h4>
+    <p>Python é uma linguagem de programação de alto nível, interpretada, de propósito geral, e que suporta múltiplos paradigmas de programação.</p>
+    <div class="fragment">
+        <p>Criada por Guido van Rossum no final dos anos 80 e lançada em 1991, seu design enfatiza a legibilidade do código e a sintaxe concisa.</p>
+    </div>
+    <div class="fragment">
+        <p>É amplamente utilizada em desenvolvimento web, análise de dados, inteligência artificial, automação e computação científica.</p>
+    </div>
+<!-- Fim Slide 2: Introdução -->
+</section>
+
+<!-- Slide 3: Contexto -->
+<section id="history/context" data-auto-animate>
+    <div class="context_history">
+        <div class="body_history">
+            <div class="header_history">
+                <h2 class="h4_history" style="color:aliceblue;">História das Linguagens de Programação</h2>
+                <p class="subtitle_history">Uma linha do tempo visual das principais linguagens de programação</p>
+            </div>
+            <div class="timeline_container_history">
+                <div class="timeline_history">
+                    <!-- Assembly -->
+                    <div class="timeline-item_history asm">
+                        <div class="year_history">1949</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-microchip"></i>
+                        </div>
+                        <div class="language-name_history">Assembly</div>
+                        <div class="language-abbr_history">ASM</div>
+                    </div>
+                    
+                    <!-- FORTRAN -->
+                    <div class="timeline-item_history fortran">
+                        <div class="year_history">1957</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-calculator"></i>
+                        </div>
+                        <div class="language-name_history">FORTRAN</div>
+                        <div class="language-abbr_history">F</div>
+                    </div>
+                    
+                    <!-- COBOL -->
+                    <div class="timeline-item_history cobol">
+                        <div class="year_history">1959</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-building"></i>
+                        </div>
+                        <div class="language-name_history">COBOL</div>
+                        <div class="language-abbr_history">COBOL</div>
+                    </div>
+                    
+                    <!-- BASIC -->
+                    <div class="timeline-item_history basic">
+                        <div class="year_history">1964</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-laptop-code"></i>
+                        </div>
+                        <div class="language-name_history">BASIC</div>
+                        <div class="language-abbr_history">Basic</div>
+                    </div>
+                    
+                    <!-- PASCAL -->
+                    <div class="timeline-item_history pascal">
+                        <div class="year_history">1970</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-book"></i>
+                        </div>
+                        <div class="language-name_history">PASCAL</div>
+                        <div class="language-abbr_history">Pascal</div>
+                    </div>
+                    
+                    <!-- C -->
+                    <div class="timeline-item_history c">
+                        <div class="year_history">1972</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fab fa-c"></i>
+                        </div>
+                        <div class="language-name_history">C</div>
+                        <div class="language-abbr_history">C</div>
+                    </div>
+                    
+                    <!-- SQL -->
+                    <div class="timeline-item_history sql">
+                        <div class="year_history">1972</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-database"></i>
+                        </div>
+                        <div class="language-name_history">SQL</div>
+                        <div class="language-abbr_history">SQL</div>
+                    </div>
+                    
+                    <!-- C++ -->
+                    <div class="timeline-item_history cpp">
+                        <div class="year_history">1983</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history">C++</i>
+                        </div>
+                        <div class="language-name_history">C++</div>
+                        <div class="language-abbr_history">C++</div>
+                    </div>
+                    
+                    <!-- Objective-C -->
+                    <div class="timeline-item_history objc">
+                        <div class="year_history">1983</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fab fa-apple"></i>
+                        </div>
+                        <div class="language-name_history">Objective-C</div>
+                        <div class="language-abbr_history">Obj-C</div>
+                    </div>
+                    
+                    <!-- Python -->
+                    <div class="timeline-item_history python">
+                        <div class="year_history">1991</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fab fa-python"></i>
+                        </div>
+                        <div class="language-name_history">Python</div>
+                        <div class="language-abbr_history">Python</div>
+                    </div>
+                    
+                    <!-- Ruby -->
+                    <div class="timeline-item_history ruby">
+                        <div class="year_history">1993</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-gem"></i>
+                        </div>
+                        <div class="language-name_history">Ruby</div>
+                        <div class="language-abbr_history">Ruby</div>
+                    </div>
+                    
+                    <!-- Java -->
+                    <div class="timeline-item_history java">
+                        <div class="year_history">1995</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fab fa-java"></i>
+                        </div>
+                        <div class="language-name_history">Java</div>
+                        <div class="language-abbr_history">Java</div>
+                    </div>
+                    
+                    <!-- PHP -->
+                    <div class="timeline-item_history php">
+                        <div class="year_history">1995</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fab fa-php"></i>
+                        </div>
+                        <div class="language-name_history">PHP</div>
+                        <div class="language-abbr_history">PHP</div>
+                    </div>
+                    
+                    <!-- JavaScript -->
+                    <div class="timeline-item_history javascript">
+                        <div class="year_history">1995</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fab fa-js-square"></i>
+                        </div>
+                        <div class="language-name_history">JavaScript</div>
+                        <div class="language-abbr_history">JS</div>
+                    </div>
+                    
+                    <!-- C# -->
+                    <div class="timeline-item_history csharp">
+                        <div class="year_history">2000</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fas fa-code"></i>
+                        </div>
+                        <div class="language-name_history">C#</div>
+                        <div class="language-abbr_history">C#</div>
+                    </div>
+                    
+                    <!-- Swift -->
+                    <div class="timeline-item_history swift">
+                        <div class="year_history">2014</div>
+                        <div class="icon-container_history">
+                            <i class="icon_history fab fa-swift"></i>
+                        </div>
+                        <div class="language-name_history">Swift</div>
+                        <div class="language-abbr_history">Swift</div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="footer_history">
+                <div>python.learning</div>
+                <div class="credit_history">Fonte: Python.learning · Seguir</div>
+            </footer>
+        </div>
+    </div>
+<!-- ###########################################################-->
+<!-- Fim Slide 3: Contexto -->
+</section>
+
+<!-- Slide 4: Genealogia - Diagrama-->
+<section id="history/genealogia" data-auto-animate>
+    <div class="context_history">
+        <div class="body_history">
+            <div class="header_genealogy">
+                <h5 class="h4_genealogy" style="color:aliceblue;">2. História do Python</h5>
+                <p class="subtitle_history">Genealogia do Python</p>
+                <p class="subtitle_genealogy">Três linhas temporais paralelas que influenciaram o desenvolvimento do Python</p>
+            </div>
+            
+            <div class="timelines_container">
+                <!-- SVG para as conexões -->
+                <svg class="connections-svg">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="black" />
+                        </marker>
+                    </defs>
+                    
+                    <!-- Conexões atualizadas com +50px no total no eixo Y -->
+                    <!-- ASSEMBLY -> FORTRAN -->
+                    <polyline points="100,280 220,280 220,110 240,110" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- ASSEMBLY -> CPL -->
+                    <polyline points="100,280 220,280 220,450 240,450" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- FORTRAN -> ALGOL 60 -->
+                    <line x1="300" y1="110" x2="300" y2="240" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- ALGOL 60 -> ALGOL 68 -->
+                    <polyline points="360,280 460,280 460,110 480,110" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- ALGOL 60 -> SETL -->
+                    <line x1="360" y1="280" x2="480" y2="280" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- CPL -> BCPL -->
+                    <line x1="360" y1="450" x2="480" y2="450" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- ALGOL 68 -> PASCAL -->
+                    <line x1="600" y1="110" x2="720" y2="110" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- SETL -> ABC -->
+                    <line x1="600" y1="280" x2="720" y2="280" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- BCPL -> B -->
+                    <line x1="600" y1="450" x2="720" y2="450" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- PASCAL -> MODULA-2 -->
+                    <line x1="840" y1="110" x2="960" y2="110" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- B -> ABC -->
+                    <line x1="780" y1="430" x2="780" y2="300" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <text x="790" y="360" font-size="12" fill="black" class="connection-label">Contribuição</text>
+                    <!-- B -> C -->
+                    <line x1="840" y1="450" x2="960" y2="450" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- MODULA-2 -> MODULA-3 -->
+                    <line x1="1080" y1="110" x2="1200" y2="110" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- ABC -> PYTHON -->
+                    <line x1="840" y1="280" x2="1320" y2="280" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <text x="1000" y="270" font-size="10" fill="black" class="connection-label">Inspiração principal</text>
+                    <!-- C -> ISO-C -->
+                    <line x1="1080" y1="450" x2="1200" y2="450" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- MODULA-3 -> PYTHON -->
+                    <polyline points="1320,110 1380,110 1380,280 1320,280" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <!-- ISO-C -> PYTHON -->
+                    <polyline points="1320,450 1380,450 1380,280 1320,280" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrowhead)"/>
+                </svg>
+
+                <!-- Itens do Diagrama - Posições X e Y mantidas inalteradas -->
+                <!-- Linha 1: Linguagens de alto nível/estruturadas (Y: 60px) -->
+                <!-- FORTRAN (X: 240, Y: 60) -->
+                <div class="timeline-item_genealogy fortran" style="left: 240px; top: 60px;">
+                    <div class="year_genealogy">1957</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-calculator"></i></div>
+                    <div class="language-name_genealogy">FORTRAN</div>
+                </div>
+                
+                <!-- ALGOL 68 (X: 480, Y: 60) -->
+                <div class="timeline-item_genealogy algol68" style="left: 480px; top: 60px;">
+                    <div class="year_genealogy">1968</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-code"></i></div>
+                    <div class="language-name_genealogy">ALGOL 68</div>
+                </div>
+                
+                <!-- PASCAL (X: 720, Y: 60) -->
+                <div class="timeline-item_genealogy pascal" style="left: 720px; top: 60px;">
+                    <div class="year_genealogy">1970</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-book"></i></div>
+                    <div class="language-name_genealogy">PASCAL</div>
+                </div>
+                
+                <!-- MODULA-2 (X: 960, Y: 60) -->
+                <div class="timeline-item_genealogy modula2" style="left: 960px; top: 60px;">
+                    <div class="year_genealogy">1978</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-cubes"></i></div>
+                    <div class="language-name_genealogy">MODULA-2</div>
+                </div>
+                
+                <!-- MODULA-3 (X: 1200, Y: 60) -->
+                <div class="timeline-item_genealogy modula3" style="left: 1200px; top: 60px;">
+                    <div class="year_genealogy">1989</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-cubes"></i></div>
+                    <div class="language-name_genealogy">MODULA-3</div>
+                </div>
+                
+                <!-- Linha 2: Linguagens principais da genealogia (Y: 230px) -->
+                <!-- ASSEMBLY (X: 100, Y: 230) -->
+                <div class="timeline-item_genealogy asm" style="left: 100px; top: 230px;">
+                    <div class="year_genealogy">1949</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-microchip"></i></div>
+                    <div class="language-name_genealogy">ASSEMBLY</div>
+                </div>
+                
+                <!-- ALGOL 60 (X: 240, Y: 230) -->
+                <div class="timeline-item_genealogy algol60" style="left: 240px; top: 230px;">
+                    <div class="year_genealogy">1960</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-code"></i></div>
+                    <div class="language-name_genealogy">ALGOL 60</div>
+                </div>
+                
+                <!-- SETL (X: 480, Y: 230) -->
+                <div class="timeline-item_genealogy setl" style="left: 480px; top: 230px;">
+                    <div class="year_genealogy">1969</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-list"></i></div>
+                    <div class="language-name_genealogy">SETL</div>
+                </div>
+                
+                <!-- ABC (X: 720, Y: 230) -->
+                <div class="timeline-item_genealogy abc" style="left: 720px; top: 230px;">
+                    <div class="year_genealogy">1980</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-font"></i></div>
+                    <div class="language-name_genealogy">ABC</div>
+                </div>
+                
+                <!-- PYTHON (X: 1320, Y: 230) -->
+                <div class="timeline-item_genealogy python" style="left: 1320px; top: 230px;">
+                    <div class="year_genealogy">1991</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fab fa-python"></i></div>
+                    <div class="language-name_genealogy">PYTHON</div>
+                </div>
+                
+                <!-- Linha 3: Linguagens da família C (Y: 400px) -->
+                <!-- CPL (X: 240, Y: 400) -->
+                <div class="timeline-item_genealogy cpl" style="left: 240px; top: 400px;">
+                    <div class="year_genealogy">1963</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-code"></i></div>
+                    <div class="language-name_genealogy">CPL</div>
+                </div>
+                
+                <!-- BCPL (X: 480, Y: 400) -->
+                <div class="timeline-item_genealogy bcpl" style="left: 480px; top: 400px;">
+                    <div class="year_genealogy">1966</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-code"></i></div>
+                    <div class="language-name_genealogy">BCPL</div>
+                </div>
+                
+                <!-- B (X: 720, Y: 400) -->
+                <div class="timeline-item_genealogy b" style="left: 720px; top: 400px;">
+                    <div class="year_genealogy">1969</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-terminal"></i></div>
+                    <div class="language-name_genealogy">B</div>
+                </div>
+                
+                <!-- C (X: 960, Y: 400) -->
+                <div class="timeline-item_genealogy c" style="left: 960px; top: 400px;">
+                    <div class="year_genealogy">1972</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fab fa-c"></i></div>
+                    <div class="language-name_genealogy">C</div>
+                </div>
+                
+                <!-- ISO-C (X: 1200, Y: 400) -->
+                <div class="timeline-item_genealogy isoc" style="left: 1200px; top: 400px;">
+                    <div class="year_genealogy">1990</div>
+                    <div class="icon-container_genealogy"><i class="icon_genealogy fas fa-certificate"></i></div>
+                    <div class="language-name_genealogy">ISO-C</div>
+                </div>
+            </div>
+            
+            <footer class="footer_genealogy">
+                <div>PUC</div>
+                <div class="credit_genealogy">Fonte: Alunos</div>
+            </footer>
+        </div>
+    </div>
+<!-- Fim Slide 4: Genealogia - Diagrama -->
+</section>
+
+<!-- Slide 5 : Sobre as Genealogias A-->
+<section id="history/about_genealogy" data-auto-animate>
+    <h4>Sobre as Genealogias</h4>
+    <!-- Slide 6: Sobre as Genealogias B-->
+    <section>
+        <p>
+            <b>🕰️ Era das Primeiras Linguagens (1949-1960)</b>
+        </p>
+        <p>
+            <ul>
+                <li class="fragment">Assembly: Programação de baixo nível direto no hardware</li>
+                <li class="fragment">Fortran: Primeira linguagem de alto nível para computação científica</li>
+                <li class="fragment">Bases para estruturas de controle e sintaxe</li>
+            </ul>
+        </p>
+    <!-- Fim Slide 6: Sobre as Genealogias B-->
+    </section>
+    <!-- Slide 7: Sobre as Genealogias C-->
+    <section>
+        <p>
+            <br>
+            <b>🔧 Era das Linguagens Clássicas (1960-1970)</b>
+        </p>
+        <p>    
+            <ul>
+                <li class="fragment">Algol: Padrão para algoritmos e estruturas de controle</li>
+                <li class="fragment">Pascal: Foco em legibilidade e programação estruturada</li>
+                <li class="fragment">SETL: Manipulação de conjuntos e expressões de alto nível</li>
+            </ul>
+        </p>
+    <!-- Fim Slide 7: Sobre as Genealogias C-->
+    </section>
+    <!-- Slide 8: Sobre as Genealogias D-->
+    <section>          
+        <p>    
+            <b>🏗️ Era das Linguagens Modernas (1970-1990)</b>
+        </p>
+        <p>
+            <ul>
+                <li class="fragment">C: Linguagem de sistema poderosa e eficiente</li>
+                <li class="fragment">Modula-2/3: Programação modular e encapsulamento</li>
+                <li class="fragment">ABC: Sintaxe limpa que inspirou diretamente o Python</li>
+            </ul>
+        </p>
+    <!-- Fim Slide 8: Sobre as Genealogias D-->
+    </section>
+    <!-- Slide 9: Sobre as Genealogias E-->
+    <section>
+        <p>
+            <br>
+            <br>
+            <b><i class="fa-brands fa-python"></i> Nascimento do Python (1991)</b></p>
+        <p>
+            <ul>
+                <li class="fragment">Guido van Rossum combina o melhor de várias linguagens</li>
+                <li class="fragment">Sintaxe legível do ABC + Poder do C + Modularidade do Modula</li>
+                <li class="fragment">Filosofia: "Deve haver uma - e preferencialmente apenas uma - maneira óbvia de fazer"</li>
+                <li class="fragment">Zen do Python orienta o desenvolvimento da linguagem</li>
+            </ul>
+        </p>
+    <!-- Fim Slide 9: Sobre as Genealogias E-->
+    </section>
+<!-- Fim Slides : Sobre as Genealogias A a E-->
+</section>
+
+
+<!-- Slide 10: Visão Geral - Histórico-->
+<section id="history/overview" data-auto-animate>
+    <div class="context_history">
+        <div class="body_history">
+            <div class="header_history">
+                <h2 class="h4_history" style="color:aliceblue;">2. Histórico do Python</h2>
+                <p class="subtitle_history" style="font-size: 0.5em;font-weight: bold;">Marcos históricos da linguagem, desde sua concepção até os dias atuais.</p>
+            </div>
+            <div class="timeline_container_history">
+        <div class="timeline_history">
+            <!-- Ano de 1989 -->
+            <div class="timeline-item_history p1989">
+                <div class="year_history">1989</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-seedling"></i>
+                </div>
+                <div class="language-name_history">Início</div>
+                <div class="language-abbr_history">Início</div>
+            </div>
+            <!-- Ano de 1991 -->
+            <div class="timeline-item_history p1991">
+                <div class="year_history">1991</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-code-branch"></i>
+                </div>
+                <div class="language-name_history">0.9.0 e 0.9.1</div>
+                <div class="language-abbr_history">Lançamento</div>
+            </div>
+            <!-- Ano de 1994 -->
+            <div class="timeline-item_history p1994">
+                <div class="year_history">1994</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-rocket"></i>
+                </div>
+                <div class="language-name_history">Python 1.0</div>
+                <div class="language-abbr_history">Início</div>
+            </div>
+            <!-- Ano de 2000 -->
+            <div class="timeline-item_history p2000">
+                <div class="year_history">2000</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-cogs"></i>
+                </div>
+                <div class="language-name_history">Python 2.0</div>
+                <div class="language-abbr_history">Lançamento</div>
+            </div>
+            <!-- Ano de 2008 -->
+            <div class="timeline-item_history p2008">
+                <div class="year_history">2008</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-sync-alt"></i>
+                </div>
+                <div class="language-name_history">Python 3.0</div>
+                <div class="language-abbr_history">Início</div>
+            </div>
+            <!-- Ano de 2015-2019 -->
+            <div class="timeline-item_history p2015">
+                <div class="year_history">2015-2019</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-chart-line"></i>
+                </div>
+                <div class="language-name_history">Python 3.0+</div>
+                <div class="language-abbr_history">Evolução</div>
+            </div>
+            <!-- Ano de  2020-->
+            <div class="timeline-item_history p2020">
+                <div class="year_history">2020</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-skull-crossbones"></i>
+                </div>
+                <div class="language-name_history">Python 2.7</div>
+                <div class="language-abbr_history">Fim do 2.x</div>
+            </div>
+            
+            <!-- Ano de 2025 -->
+            <div class="timeline-item_history p2025">
+                <div class="year_history">2025</div>
+                <div class="icon-container_history">
+                    <i class="icon_history fas fa-laptop-code"></i>
+                </div>
+                <div class="language-name_history">Python 3.13+</div>
+                <div class="language-abbr_history">Versão Atual</div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer_history">
+        <div>PUC</div>
+        <div class="credit_history">Fonte: Alunos</div>
+    </footer>
+    </div>
+<!-- Fim Slide 10: Visão Geral - Histórico-->
+</section>
+    
+
+<!-- Slide 11: História - Criador A-->
+<section id="history/creator" data-auto-animate>
+    <h4>2. História do Python</h4>
+    <!-- Slide 12: História - Criador B-->
+    <section>
+        <br>
+        <br>
+        <h5>Criador: Guido van Rossum</h5>
+        <figure class="fragment">
+            <img src="https://solocodigoweb.com/wp-content/uploads/2025/04/guido_van_rossum_python_inteligencia_artificial.png" alt="guido" >
+            <figcaption>
+                Fonte:Solo Codigo Web, 2025
+            </figcaption>
+        </figure>
+        
+    </section>
+    <!-- Slide 13: História - Criador C-->
+    <section>
+        
+        <div class="content-grid">
+            <div>
+                <br>
+                <br>
+                <h5>Sobre Guido van Rossum</h5>
+                <p class="fragment">Entitulado como <strong>Benevolent Dictator For Life (BDFL)</strong></p>
+                <ul>
+                    <li class="fragment">Criador e líder do projeto Python até 2018</li>
+                    <li class="fragment">Autor da filososia do Zen of Python</li>
+                    <li class="fragment">Trabalhou na Google (2005-2012)</li>
+                    <li class="fragment">Trabalhou na Dropbox (2013-2019)</li>
+                    <li class="fragment">Atualmente na Microsoft</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+<!-- Fim Slides: História - Criador A a C-->
+</section>
+<!-- Slide 14: História - 1989 A-->
+<section id="history/h1989" data-auto-animate>
+    <h3>2. História do Python<br>1989 - O Nascimento do Python</h3>
+    <!-- Slide 15: História - 1989 B-->
+    <section>
+        <br>
+        <br>
+        <div class="text-content">
+            <ul>
+                <li class="fragment">Durante o Natal de 1989, <strong>Guido van Rossum</strong> iniciou o desenvolvimento</li>
+                <li class="fragment">Objetivo: criar uma linguagem simples e poderosa para automação</li>
+            </ul>
+        </div>
+    </section>
+    <!-- Slide 16: História - 1989 B-->
+    <section>
+        <br><br>
+        <div class="text-content">
+            <ul>
+                <li class="fragment">Inspirada em ABC, Modula-3, e outras linguagens</li>
+                <li class="fragment">Nome em homenagem ao grupo de comédia "Monty Python"</li>
+            </ul>
+        </div>
+    </section>
+    <!-- Slide 17: História - 1989 C-->
+    <section>
+        <br><br>
+        <div class="image-content fragment">
+            <div class="code-example">
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+# Espírito inicial do Python
+def simple_powerful():
+    return "Simplicidade + Poder"
+                </code></pre>
+            </div>
+        </div>
+    </section>
+<!--Fim Slides : História - 1989 A a C-->
+</section>
+<!-- Slide 18: História - 1991 A-->
+<section id="history/h1991" data-auto-animate>
+    
+    <h3>2. História do Python</h3>
+    <h4>1991 - Python 0.9.0</h4>
+    <!-- Slide 19: História - 1991 B-->
+    <section>
+        <br><br>
+        <ul>
+            <li class="fragment">Lançada em fevereiro de 1991</li>
+            <li class="fragment">Já incluía características fundamentais como classes, herança e tratamento de exceções </li>
+            <li class="fragment">Módulos funcionalidades básicas</li>
+            <li class="fragment">list , dict, str</li>
+            <li class="fragment">Distribuída via alt.sources</li>
+        </ul>
+    </section>
+    <!-- Slide 20: História - 1991 C-->
+    <section>
+        <br><br><br>
+        <div class="image-content fragment">
+        <div class="code-example">
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+# list
+def get_list():
+    return ("Caneca","Café")
+# dict
+def get_dict():
+    return {"Objeto":"Copo"}
+                </code></pre>
+        </div>
+    </div>
+    <!-- Slide 21: História - 1991 D-->
+    </section>
+    <section>
+        <br><br>
+        <div class="image-content fragment">
+        <div class="code-example">
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+# str
+def get_str():
+    return str(1)# casting string
+            </code></pre>
+        </div>
+    </div>
+    </section>
+    <!-- Slide 22: História - 1991 E-->
+    <section>
+        <br><br>
+        <div class="fragment milestone">
+            <strong>Marco Importante:</strong> Primeiro código aberto disponível publicamente
+        </div>
+    </section>
+<!-- Fim Slides: História - 1991 A a E-->
+</section>
+<!-- Slide 23: História - 1994 A-->
+<section id="history/h1994" data-auto-animate>
+    <h3>2. História do Python</h3>
+    <h4>1994 - Python 1.0+</h4>
+    <!-- Slide 24: História - 1994 B-->
+    <section>
+        <br><br>
+        <div class="features-grid">
+            <div class="feature-item fragment">
+                <h4>🔧 Ferramentas Funcionais</h4>
+                <p>lambda, map, filter, reduce</p>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 25: História - 1994 C-->
+    <section>
+        <br><br>
+        <div>
+            <div class="feature-item fragment">
+                <h4>📦 Sistema de Módulos</h4>
+                <p>Inspirado no Modula-3</p>
+            </div>
+            <div class="feature-item fragment">
+                <h4>🔄 Coletor de Lixo</h4>
+                <p>Gerenciamento automático de memória</p>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 26: História - 1994 D-->
+    <section>
+    <br><br>
+    <div class="fragment code-showcase">
+        <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+# Novas funcionalidades do Python 1.0
+squares = list(
+    map(lambda x: x**2, range(10)))
+even_squares = list(
+    filter(lambda x: x % 2 == 0, squares))
+        </code></pre>
+    </div>
+    </section>
+<!-- Fim Slides: História - 1994 A a D-->
+</section>
+<!-- Slide 27: História - 2000 A-->
+<section id="history/h2000" data-auto-animate>
+    <h3>2. História do Python</h3>
+    <h4>2000 - Python 2.0+</h4>
+    <!-- Slide 27: História - 2000 B-->
+    <section>
+        <br><br><br>
+        <h4>2000 - Python 2.0</h4>
+        <div class="major-features">
+            <div class="feature-highlight fragment">
+                <h4>🔄 Coletor de Lixo</h4>
+                <p>Melhor gerenciamento de memória cíclica</p>
+            </div>
+            <div class="feature-highlight fragment">
+                <h4>📝 List Comprehensions</h4>
+                <p>Sintaxe concisa para criação de listas</p>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 28: História - 2000 C-->
+    <section>
+        <br><br>
+        <h4>2000 - Python 2.0</h4>
+        <div class="major-features">
+            <div class="feature-highlight fragment">
+                <h4>🌍 Suporte a Unicode</h4>
+                <p>Internacionalização da linguagem</p>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 29: História - 2000 D-->
+    <section>
+        <br><br><br><br>
+        <div class="fragment code-comparison">
+            <div class="code-block">
+                <h5>Antes (Python 1.x)</h5>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+    result = []
+    for x in range(10):
+        if x % 2 == 0:
+            result.append(x**2)
+                </code></pre>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 30: História - 2000 E-->
+    <section>
+        <br><br><br><br><br>
+        <div class="fragment code-comparison">
+            <div class="code-block">
+                <h5>Python 2.0</h5>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+result = [
+x**2 for x in range(10) if x % 2 == 0]
+                </code></pre>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 31: História - 2000 F:2001 A-->
+    <section id="history/h2001">
+        <br><br><br>
+        <b>2001 – Python 2.2</b>
+        <div class="evolution-grid">
+            <div class="evolution-item fragment">
+                <h4>🎯 Unificação Tipos/Classes</h4>
+                <p>Tipos built-in agora são classes</p>
+            </div>
+            <div class="evolution-item fragment">
+                <h4>⚡ Generators</h4>
+                <p>Introdução do yield para iteração lazy</p>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 32: História - 2000 G:2001 B-->
+    <section>
+        <br><br><br><br>
+        <div class="fragment generator-demo">
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+    # Primeiros generators em Python
+    def fibonacci():
+        a, b = 0, 1
+        while True:
+            yield a
+            a, b = b, a + b
+                </code></pre>
+        </div>
+    </section>
+    <!-- Slide 31: História - 2000 H:2001 C-->
+    <section>
+        <br><br><br><br>
+    <div class="fragment generator-demo">
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+    # Uso
+    fib = fibonacci()
+    print([next(fib) for _ in range(10)])
+            </code></pre>
+        </div>
+    </section>
+<!-- Fim Slides: História - 2000 A a H e 2001 A a C-->
+</section>
+
+<section id="history/h2008" data-auto-animate>
+    <h3>2. História do Python</h3>
+    <h4>2008 - Python 3.0+</h4>
+    <section>
+        <br><br><br><br>
+        <div class="breaking-changes">
+            <div class="change-item fragment">
+                <h4>🖨️ print() como função</h4>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+# Python 2
+print "Hello"
+
+# Python 3
+print("Hello")
+                </code></pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <br><br><br><br>
+        <div class="breaking-changes">
+            <div class="change-item fragment">
+                <h4>🌍 Unicode por padrão</h4>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+    
+    # Python 2
+    texto = u"Olá Mundo"
+
+    # Python 3 - tudo é Unicode
+    texto = "Olá Mundo"
+                </code></pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <br><br><br><br>
+        <div class="breaking-changes">  
+            <div class="change-item fragment">
+                <h4>➗ Divisão de inteiros</h4>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+    # Python 3
+    5 / 2   # 2.5
+    5 // 2  # 2
+                </code></pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <br><br>
+        <div class="fragment migration-note">
+            <p><strong>Nota:</strong> Versão não compatível com Python 2.x - marco importante na evolução</p>
+        </div>
+    </section>
+
+</section>
+<section id="history/h2015a2019" data-auto-animate>
+    <h3>2. História do Python</h3>
+    <h4>2015 a 2019 - Python 3.1+ Melhorias</h4>
+
+    <section>
+        <br><br><br><br>
+        <div class="modern-features">
+            <div class="feature-timeline">
+                <div class="timeline-point fragment" data-year="2015">
+                    <h4>Python 3.5</h4>
+                    <p>async/await para programação assíncrona</p>
+                </div>
+                <div class="timeline-point fragment" data-year="2016">
+                    <h4>Python 3.6</h4>
+                    <p>F-strings para formatação moderna</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <br><br><br><br>
+        <div class="modern-features">
+            <div class="feature-timeline">
+                <div class="timeline-point fragment" data-year="2019">
+                    <h4>Python 3.8</h4>
+                    <p>Operador walrus (:=)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section> 
+        <br><br><br><br><br>   
+        <div class="fragment modern-code">
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+    # F-strings (3.6+)
+    name = "Python"
+    version = 3.8
+    print(f"{name} {version} é incrível!")
+            </code></pre>
+        </div>
+    </section>
+    <section> 
+        <br><br><br><br>   
+        <div class="fragment modern-code">
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+    
+    # Walrus operator (3.8+)
+    if (n := len([1,2,3])) > 2:
+        print(f"Lista tem {n} elementos")
+            </code></pre>
+        </div>
+    </section>
+</section>
+<section id="history/h2020a2025" data-auto-animate>
+    <h3>2. História do Python</h3>
+    <h4>2020-Hoje: Python</h4>
+    <section>
+        <h6 style="margin-top: 3.5em;" >Introdução</h6>
+        <p class="fragment">
+            O período de 2020 a 2025 foi marcado por melhorias<br> 
+            significativas no Python, com foco em desempenho, 
+        </p>
+        <p class="fragment">    
+            aprimoramentos na tipagem estática, e consolidação<br> 
+            do ecossistema assíncrono (async/await). 
+        </p>
+    </section>
+</section>
+<section> 
+    <h3>2. História do Python</h3>
+    <h4>2020-Hoje: Python</h4>   
+    <h6>2020 - Python 3.9</h6>
+    <section style="margin-top: 1em;">
+        <p class="fragment">Introdução de um novo analisador sintático (parser) 
+        baseado em PEG (Parsing Expression Grammar), 
+        mais flexível para o desenvolvimento futuro da linguagem.
+        </p>
+    </section>
+    <section style="margin-top: 2em;">
+        <ul>
+            <li class="fragment">   
+                Adição de operadores de união de dicionários (| e |=) 
+                para facilitar a mesclagem de dicionários.
+            </li>
+            <li class="fragment">
+                Suporte para type hinting em coleções 
+                embutidas (como list e dict) sem a 
+                necessidade do módulo typing.
+            </li>
+        </ul>
+    </section>
+</section>
+<section>
+    <h3>2. História do Python</h3>
+    <h4>2020-Hoje: Python</h4>   
+    <h6>2021 - Python 3.10</h6>
+    <section style="margin-top: 1em;">
+        <ul>
+            <li>
+                Introdução do match/case 
+                (pattern matching estrutural), 
+                uma poderosa funcionalidade para 
+                controle de fluxo e extração de dados.
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <ul>
+            <li>
+                Melhorias nas mensagens de erro, 
+                tornando-as mais precisas 
+                e úteis para depuração.
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <ul>
+            <li>
+                Inclusão de type union simplificado (X | Y) 
+                como uma alternativa mais legível a Union[X, Y].
+            </li>
+        </ul>
+    </section>
+</section>
+<section>
+    <h3>2. História do Python</h3>
+    <h4>2020-Hoje: Python</h4>   
+    <h6>2022 - Python 3.11</h6>
+    <section style="margin-top: 1.2em;">
+        <ul>
+            <li>Grandes ganhos de desempenho através 
+                do projeto "Fast CPython", que resultou 
+                em melhorias de velocidade de até 30% 
+                sem alterações no código existente.
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <ul>
+            <li>Melhorias adicionais nas mensagens 
+                de erro, agora com apontadores precisos 
+                para a expressão exata que causou a exceção.
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <ul>
+            <li>Introdução de Exception Groups e except* 
+                para lidar com múltiplas exceções 
+                simultaneamente.
+            </li>
+        </ul>
+    </section>
+</section>
+<section>
+    <h3>2. História do Python</h3>
+    <h4>2020-Hoje: Python</h4>   
+    <h6>2023 - Python 3.12</h6>        
+    <section style="margin-top: 1.2em;">
+        <ul>
+            <li>Mais otimizações de desempenho, especialmente 
+                em list comprehensions e dict comprehensions, 
+                que agora são executadas no escopo local, evitando 
+                a sobrecarga de chamadas de função.
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;"> 
+        <ul>
+            <li>
+                Melhorias na API de buffer, na depuração de 
+                CPython e no suporte a perfis de código.
+            </li> 
+        </ul>      
+    </section>
+</section>
+<section>
+    <h3>2. História do Python</h3>
+    <h4>2020-Hoje: Python</h4>   
+    <h6>2024-Hoje: Python 3.13.1+</h6>
+    <section style="margin-top: 1.2em;">
+        <ul>
+            <li>
+                A versão 3.13 estável foi lançada em 2024 
+                (e atualizações como 3.13.6 em 2025), 
+                continuando o foco em otimizações 
+                e novas funcionalidades.
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <ul>
+            <li>
+                Tendências para 2025 incluem a consolidação 
+                do ecossistema assíncrono, com mais bibliotecas 
+                e ferramentas oferecendo suporte nativo a async/await
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <ul>
+            <li>
+                e o crescimento contínuo da linguagem, especialmente 
+                em áreas como Inteligência Artificial e Machine Learning. 
+            </li> 
+        </ul>      
+    </section>
+</section>
+<section id="history/heventos" data-auto-animate>
+    <h3>2. História do Python</h3>
+    <h4>Python Fatos e Eventos Institucionais</h4>
+    <section>
+        <br><br><br><br><br>
+        <div class="institutional-events">
+            <div class="event-card fragment">
+                <h4>🏛️ 2001</h4>
+                <p><strong>Python Software Foundation (PSF)</strong><br>
+                Criação para promover e proteger o Python</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <br><br><br><br><br>
+        <div class="institutional-events">
+            <div class="event-card fragment">
+                <h4>📊 Década de 2010</h4>
+                <p><strong>Dominância em Ciência de Dados e ML</strong><br>
+                Pandas, NumPy, Scikit-learn, TensorFlow</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <br><br><br><br><br>
+        <div class="institutional-events">
+            <div class="event-card fragment">
+                <h4>⏰ 2020</h4>
+                <p><strong>Fim do suporte ao Python 2.7</strong><br>
+                Migração completa para Python 3</p>
+            </div>
+        </div>
+        
+        <div class="fragment current-status">
+            <p><strong>Status Atual:</strong> Python continua entre as linguagens mais populares mundialmente</p>
+        </div>
+    </section>
+</section> 
+<section >
+    <style>
+        /* A regra @import deve estar no topo do bloco <style> */
+        /* Template: Importa CSS estático usando url_for */        @import url("{{url_for('static', filename='css/caracteristicas.css')}}");
+    </style>
+<!-- SLIDE PRINCIPAL - CARACTERÍSTICAS GERAIS -->
+    
+    <h3 class="slide-title">3. Características</h3>
+    <p class="slide-subtitle">Visão Geral das Características do Python</p>
+    <section id="characteristics/overview" data-auto-animate class="slide-container">
+        
+            <div class="feature-card card-blue">
+                <h5 class="card-title">🧠 Fácil de aprender e ler</h5>
+                <p class="card-content">Python é uma linguagem de alto nível com sintaxe limpa e intuitiva.</p>
+            </div>
+        
+    </section>
+    <section style="margin-top: 2em;"> 
+        
+            <div class="feature-card card-purple">
+                <h5 class="card-title">🧩 Multi-paradigma</h5>
+                <p class="card-content">Suporta programação imperativa, orientada a objetos e funcional.</p>
+            </div>
+       
+    </section>
+    <section style="margin-top: 2em;">   
+        
+            <div class="feature-card card-light-blue">
+                <h5 class="card-title">🌍 Portável e interpretada</h5>
+                <p class="card-content">Funciona em diferentes sistemas operacionais sem recompilar.</p>
+            </div>
+        
+    </section>
+    <section style="margin-top: 2em;"> 
+        
+            <div class="feature-card card-green">
+                <h5 class="card-title">📚 Ecossistema Rico</h5>
+                <p class="card-content">Possui milhares de bibliotecas prontas para uso em qualquer área.</p>
+            </div>
+        
+    </section>
+    <section style="margin-top: 2em;">    
+        
+            <div class="feature-card card-orange" >
+                <h5 class="card-title" >🤖 Excelente para IA e Ciência de Dados</h5>
+                <p class="card-content">É a linguagem mais utilizada em inteligência artificial e machine learning.</p>
+            </div>
+        
+        <div class="spacer"></div>
+    </section>
+</section>
+
+<!-- SLIDE SINTAXE -->
+<section id="characteristics/syntax" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Visão Geral da Sintaxe do Python</h4>
+        <div class="content-wrapper">
+            <div class="card-small card-light-blue">
+                <h5 class="card-title">👇 Indentação obrigatória</h5>
+                <p class="card-content">Python usa indentação (padrão 4 espaços) para definir blocos de código.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/exemploidentacao.png') }}" 
+                            alt="Código exemplo de identação" class="slide-image">
+                </div>
+            </div>
+            <div class="card-small card-purple">
+                <h5 class="card-title">✍️ Sintaxe limpa e sem ponto e vírgula</h5>
+                <p class="card-content">O fim da linha já encerra o comando.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/sintaxelimpa.png') }}" 
+                            alt="Código sintaxe limpa" class="slide-image">
+                </div>
+            </div>
+            <div class="card-small card-orange">
+                <h5 class="card-title">🔤 Tipagem dinâmica</h5>
+                <p class="card-content">Variáveis mudam de tipo automaticamente.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/sintaxetipagem.png') }}" 
+                            alt="Código da tipagem dinamica" class="slide-image">
+                </div>
+            </div>
+            <div class="card-small card-green">
+                <h5 class="card-title">💬 Comentários e docstrings</h5>
+                <p class="card-content">Comentários usam <code>#</code>. Docstrings descrevem funções.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/somadoisnumeros.png') }}" 
+                            alt="Código da função soma dois numeros" class="slide-image">
+                </div>
+            </div>
+            <div class="card-small card-blue">
+                <h5 class="card-title">📦 Estrutura simples de funções</h5>
+                <p class="card-content">Funções não exigem tipos explícitos.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/mensagemcodigo.png') }}" 
+                            alt="Código da função mensagem" class="slide-image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</section>
+
+<!-- SLIDE TIPAGEM -->
+<section id="characteristics/tipagem" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Tipagem Dinâmica e Tipagem Forte no Python</h4>
+        <div class="content-wrapper">
+            <div class="fragment feature-card card-orange">
+                <h5 class="card-title">🔤 Tipagem Dinâmica</h5>
+                <p class="card-content">Python define o tipo das variáveis em tempo de execução. Isso significa que uma variável pode mudar completamente de tipo durante o programa.</p>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+x = 42                 # inteiro
+x = "Python"           # agora é string
+x = [1, 2, 3]          # agora é lista
+x = {"nome": "Ana"}    # agora é dicionário
+
+# Até funções podem ser atribuídas a variáveis
+def saudar():
+return "Olá!"
+
+x = saudar  
+print(x())             # "Olá!"
+                </code></pre>
+            </div>
+            <div class="fragment feature-card card-green">
+                <h5 class="card-title">🔒 Tipagem Forte</h5>
+                <p class="card-content">Python não converte automaticamente valores de tipos incompatíveis. Qualquer conversão deve ser explícita.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/tipagemfortecodigo.png') }}" 
+                            alt="Código da tipagem forte" class="slide-image">
+                </div>
+                <p class="card-content">Essa combinação — dinâmica + forte — torna Python flexível sem perder segurança.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE LINGUAGEM INTERPRETADA -->
+<section id="characteristics/interpretada" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <p class="slide-subtitle"><b>Linguagem Interpretada</b></p>
+        <div class="content-wrapper">
+            <div class="feature-card card-yellow">
+                <p class="card-title">⚙️ <b>Como o Python executa seu código?</b></p>
+                <p class="card-content">Python é uma <b>linguagem interpretada</b>, ou seja, seu código é executado linha 
+                    por linha pelo interpretador (<code>CPython</code>, <code>PyPy</code>, etc.). 
+                    Isso elimina a etapa tradicional de compilação presente em linguagens como <b>C++</b> ou <b>Java</b>.</p>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</section>
+<section data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Linguagem Interpretada</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-yellow">              
+                    <p class="card-content">Esse modelo permite:</p>
+                <ul class="feature-list">
+                    <li>🚀 Desenvolvimento mais rápido</li>
+                    <li>🛠️ Depuração facilitada</li>
+                    <li>🔁 Execução interativa via terminal ou Jupyter Notebook</li>
+                    <li>📦 Execução multiplataforma sem recompilar</li>
+                </ul>
+               </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</section> 
+<section data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Linguagem Interpretada</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-yellow">               
+                <p class="card-content">Mesmo sendo interpretado, Python também gera bytecode interno (<code>.pyc</code>) para otimizar a execução, mas isso é transparente para o desenvolvedor.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/linguageminterpretada.png') }}" 
+                            alt="processo em um linguagem interpretada generica" class="slide-image">
+                </div>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/python_interpretado.png') }}" 
+                            alt="Fluxo de execução interpretado do Python" class="slide-image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</section>
+
+<!-- SLIDE MULTI-PARADIGMA -->
+<section id="characteristics/multiparadigma" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Multi-paradigma</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-purple">
+                <h5 class="card-title">🧩 Python suporta vários paradigmas de programação</h5>
+                <p class="card-content">Python é considerado uma <b>linguagem multi-paradigma</b> — ele permite que o programador escolha diferentes estilos de programação de acordo com o problema. Isso torna a linguagem flexível, acessível e aplicável em diversas áreas.</p>
+                
+                <h5 class="card-title">🔸 Paradigma Imperativo (passo a passo)</h5>
+                <p class="card-content">O programador descreve exatamente <b>como</b> o programa deve realizar tarefas.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/codigopadigmanimperativo.png') }}"
+                            alt="Exemplo imperativo" class="slide-image">
+                </div>
+
+                <h5 class="card-title">🔸 Paradigma Orientado a Objetos (POO)</h5>
+                <p class="card-content">Python implementa POO com suporte a <b>classes, objetos, encapsulamento, herança e polimorfismo</b>.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/codigoparadigmapoo.png') }}"
+                            alt="Exemplo POO" class="slide-image">
+                </div>
+
+                <h5 class="card-title">🔸 Paradigma Funcional</h5>
+                <p class="card-content">Python permite um estilo funcional com uso de:</p>
+                <ul class="feature-list">
+                    <li>Funções como cidadãos de primeira classe</li>
+                    <li><code>map</code>, <code>filter</code>, <code>reduce</code></li>
+                    <li>List Comprehensions</li>
+                    <li>Funções lambda</li>
+                </ul>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/codigoparadigmafuncional.png') }}"
+                            alt="Exemplo funcional" class="slide-image">
+                </div>
+
+                <h5 class="card-title">🔸 Uso como Linguagem de Scripting</h5>
+                <p class="card-content">Python também é muito usado para <b>automatizar tarefas</b>, manipular arquivos, processar dados, gerenciar servidores e criar ferramentas rápidas.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/multi_scripting.png') }}"
+                            alt="Exemplo scripting" class="slide-image">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</section>
+
+<!-- SLIDE BATERIAS INCLUÍDAS -->
+<section id="characteristics/baterias" data-auto-animate>
+    <h3 class="slide-title">3. Características — Baterias Incluídas</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Filosofia "Batteries Included"</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-light-purple">
+                <h5 class="card-title">🔋 Python vem com "Baterias Incluídas"</h5>
+                <p class="card-content">A biblioteca padrão do Python fornece ferramentas poderosas para quase todas as tarefas comuns — sem instalar nada adicional.</p>
+                <p class="card-content">Isso permite desenvolver aplicações completas rapidamente, com menos código e mais confiabilidade.</p>
+                <ul class="feature-list">
+                    <li>📁 Manipulação de arquivos (<code>os</code>, <code>pathlib</code>)</li>
+                    <li>🌐 Acesso web (<code>urllib</code>)</li>
+                    <li>🧪 Testes (<code>unittest</code>)</li>
+                    <li>🔒 Criptografia (<code>hashlib</code>)</li>
+                    <li>📦 Compactação (<code>zipfile</code>, <code>tarfile</code>)</li>
+                    <li>🧮 Matemática (<code>math</code>, <code>statistics</code>)</li>
+                    <li>🛠️ Estruturas de dados especiais (<code>collections</code>)</li>
+                </ul>
+                <p class="card-content">Com isso, Python reduz a complexidade interna (parsing, bytecode, VM) e entrega ao programador uma plataforma poderosa, simples e produtiva.</p>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/bibliotecapvc.png') }}" 
+                            alt="biblioteca padrão pvc" class="slide-image">
+                </div>
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/principaisbiblioteca.png') }}" 
+                            alt="Principais bibliotecas de Python" class="slide-image">
+                    <p style="text-align: center; font-size: 0.8em; color: #555; margin-top: 8px;">
+                        Principais bibliotecas de Python
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</section>
+
+<!-- SLIDES COMPLETADOS -->
+
+<!-- GERENCIAMENTO DE MEMÓRIA -->
+<section id="characteristics/memoria" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Gerenciamento Automático de Memória</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-light-blue">
+                <h5 class="card-title">🧠 Gerenciamento Automático de Memória</h5>
+                <p class="card-content">Python utiliza um sistema automático de gerenciamento de memória através de <b>coleta de lixo (garbage collection)</b> e <b>contagem de referências</b>.</p>
+                
+                <h5 class="card-title">🔸 Como funciona:</h5>
+                <ul class="feature-list">
+                    <li><b>Contagem de referências:</b> Cada objeto tem um contador que monitora quantas referências apontam para ele</li>
+                    <li><b>Garbage Collector:</b> Remove objetos cíclicos que não são mais acessíveis</li>
+                    <li><b>Alocação dinâmica:</b> Memória é alocada automaticamente quando novos objetos são criados</li>
+                </ul>
+
+                <div class="code-block">
+                    <code class="language-python">
+# Exemplo de gerenciamento automático
+lista = [1, 2, 3]  # Memória alocada automaticamente
+lista = "novo"     # Lista anterior é automaticamente liberada
+                    </code>
+                </div>
+
+                <h5 class="card-title">🎯 Vantagens:</h5>
+                <ul class="feature-list">
+                    <li>✅ Elimina vazamentos de memória comuns</li>
+                    <li>✅ Simplifica o desenvolvimento</li>
+                    <li>✅ Aumenta a produtividade</li>
+                    <li>✅ Reduz erros de programação</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PORTABILIDADE -->
+<section id="characteristics/portabilidade" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Portabilidade Multiplataforma</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-green">
+                <h5 class="card-title">🌍 Escreva uma vez, execute em qualquer lugar</h5>
+                <p class="card-content">Python é altamente portável e funciona em praticamente todos os sistemas operacionais sem modificações no código.</p>
+                
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/portabilidade.png') }}" 
+                            alt="Python em diferentes plataformas" class="slide-image">
+                </div>
+
+                <h5 class="card-title">🔸 Plataformas suportadas:</h5>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #0d47a1;">🪟 Windows</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Versões 7, 8, 10, 11 e Server</p>
+                    </div>
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #1b5e20;">🍎 macOS</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Todas as versões modernas</p>
+                    </div>
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #e65100;">🐧 Linux/Unix</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Todas as distribuições principais</p>
+                    </div>
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #6a1b9a;">📱 Outras</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Android, Raspberry Pi, Embedded</p>
+                    </div>
+                </div>
+
+                <h5 class="card-title">🚀 Como funciona:</h5>
+                <ul class="feature-list">
+                    <li><b>Bytecode portável:</b> O código é compilado para bytecode independente de plataforma</li>
+                    <li><b>Interpretador nativo:</b> Cada sistema tem seu próprio interpretador Python</li>
+                    <li><b>Bibliotecas cross-platform:</b> Módulos funcionam igual em todos os SOs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXTENSÍVEL -->
+<section id="characteristics/extensivel" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Linguagem Extensível</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-orange">
+                <h5 class="card-title">🔌 Python é altamente extensível</h5>
+                <p class="card-content">Python pode ser estendido com módulos escritos em C, C++ ou outras linguagens, permitindo integração com código existente e otimização de performance.</p>
+                
+                <h5 class="card-title">🔸 Formas de extensão:</h5>
+                
+                <div style="background: #fff3e0; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h6 style="margin: 0 0 10px 0; color: #e65100;">📚 Módulos em C</h6>
+                    <p style="margin: 0 0 10px 0; font-size: 0.9em;">Escreva funções em C e use-as como módulos Python</p>
+                    <div class="code-block">
+                        <code class="language-c">
+// Exemplo de módulo C para Python
+#include &lt;Python.h&gt;
+
+static PyObject* exemplo_funcao(PyObject* self, PyObject* args) {
+    // Implementação da função
+    return Py_BuildValue("s", "Hello from C!");
+}
+                        </code>
+                    </div>
+                </div>
+
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h6 style="margin: 0 0 10px 0; color: #1b5e20;">🔄 Ctypes</h6>
+                    <p style="margin: 0 0 10px 0; font-size: 0.9em;">Chame funções de bibliotecas compartilhadas diretamente</p>
+                    <div class="code-block">
+                        <code class="language-python">
+from ctypes import cdll
+libc = cdll.LoadLibrary("libc.so.6")
+result = libc.printf(b"Hello from C library!")
+                        </code>
+                    </div>
+                </div>
+
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h6 style="margin: 0 0 10px 0; color: #0d47a1;">⚡ Cython</h6>
+                    <p style="margin: 0 0 10px 0; font-size: 0.9em;">Combine Python com C para performance</p>
+                    <div class="code-block">
+                        <code class="language-python">
+# Cython example
+def calculo_intenso(int n):
+    cdef int i, resultado = 0
+    for i in range(n):
+        resultado += i * i
+    return resultado
+                        </code>
+                    </div>
+                </div>
+
+                <h5 class="card-title">🎯 Vantagens da extensibilidade:</h5>
+                <ul class="feature-list">
+                    <li>✅ Integração com bibliotecas C/C++ existentes</li>
+                    <li>✅ Otimização de código crítico</li>
+                    <li>✅ Acesso a hardware de baixo nível</li>
+                    <li>✅ Reutilização de código legado</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMUNIDADE ATIVA -->
+<section id="characteristics/comunidade" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Comunidade Ativa e Vibrante</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-purple">
+                <h5 class="card-title">👥 Uma das maiores comunidades do mundo</h5>
+                <p class="card-content">Python possui uma comunidade global ativa, acolhedora e diversificada que contribui constantemente para o ecossistema.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🌎</div>
+                        <h6 style="margin: 0 0 8px 0; color: #6a1b9a;">Comunidade Global</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Milhões de desenvolvedores worldwide</p>
+                    </div>
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 10px;">📊</div>
+                        <h6 style="margin: 0 0 8px 0; color: #1b5e20;">Ranking Popularidade</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Top 3 linguagens mais populares</p>
+                    </div>
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 10px;">📚</div>
+                        <h6 style="margin: 0 0 8px 0; color: #0d47a1;">Documentação Rica</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Tutoriais, guias e exemplos abundantes</p>
+                    </div>
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2em; margin-bottom: 10px;">🆘</div>
+                        <h6 style="margin: 0 0 8px 0; color: #e65100;">Suporte Ativo</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Fóruns, Stack Overflow, grupos</p>
+                    </div>
+                </div>
+
+                <h5 class="card-title">🔸 Principais eventos e recursos:</h5>
+                <ul class="feature-list">
+                    <li><b>PyCon:</b> Conferências anuais em todo o mundo</li>
+                    <li><b>Python Software Foundation:</b> Organização sem fins lucrativos</li>
+                    <li><b>PEPs (Python Enhancement Proposals):</b> Processo de evolução da linguagem</li>
+                    <li><b>Stack Overflow:</b> Mais de 2 milhões de perguntas sobre Python</li>
+                    <li><b>GitHub:</b> Milhares de projetos open source</li>
+                </ul>
+
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/comunidade_python_brasil.jpeg') }}" 
+                            alt="Comunidade Python global" class="slide-image">
+                    <a href="https://inspiradanacomputacao.wordpress.com/wp-content/uploads/2014/08/foto_oficial_python9.jpeg">Fonte: Inspirada na Computação(Brasil)</a>
+                </div>
+                <div>
+                    <a href="https://us.pycon.org" style="background-color:white;">Site Oficial Pycon US</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OPEN SOURCE -->
+<section id="characteristics/opensource" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">Open Source e Licença Livre</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-green">
+                <h5 class="card-title">🔓 Python é 100% Open Source</h5>
+                <p class="card-content">Python é desenvolvido sob a licença PSF (Python Software Foundation), permitindo uso livre para qualquer propósito.</p>
+                
+                <div style="background: #e8f5e9; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h6 style="margin: 0 0 15px 0; color: #1b5e20; text-align: center;">📜 Licença Python</h6>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li>✅ Uso gratuito para projetos comerciais e pessoais</li>
+                        <li>✅ Modificação e distribuição permitidas</li>
+                        <li>✅ Sem custos de licenciamento</li>
+                        <li>✅ Compatível com GPL</li>
+                    </ul>
+                </div>
+
+                <h5 class="card-title">🔸 Vantagens do modelo Open Source:</h5>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #6a1b9a;">👁️ Transparência</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Código fonte aberto para inspeção</p>
+                    </div>
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #0d47a1;">🤝 Colaboração</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Contribuições da comunidade worldwide</p>
+                    </div>
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #e65100;">🚀 Inovação</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Desenvolvimento rápido e contínuo</p>
+                    </div>
+                    <div style="background: #eef2ff; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #283593;">🔧 Customização</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Adapte às suas necessidades específicas</p>
+                    </div>
+                </div>
+
+                <h5 class="card-title">🌐 O ecossistema Open Source:</h5>
+                <ul class="feature-list">
+                    <li><b>PyPI (Python Package Index):</b> Mais de 400,000 pacotes livres</li>
+                    <li><b>Django, Flask, FastAPI:</b> Frameworks web open source</li>
+                    <li><b>NumPy, Pandas, Scikit-learn:</b> Bibliotecas científicas gratuitas</li>
+                    <li><b>Jupyter, VS Code:</b> Ferramentas de desenvolvimento livres</li>
+                </ul>
+
+                <div class="image-container">
+                    <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/open_source_ecossystem.png') }}" 
+                            alt="Ecossistema Open Source do Python" class="slide-image">
+                    <a href="https://atrebas.github.io/post/2019-01-15-2018-learning/">Fonte: Atrebas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ZEN DO PYTHON -->
+<section id="characteristics/zen" data-auto-animate>
+    <h3 class="slide-title">3. Características</h3>
+    <div class="scroll-area">
+        <h4 class="slide-subtitle">O Zen do Python</h4>
+        <div class="content-wrapper">
+            <div class="feature-card card-light-blue">
+                <h5 class="card-title"><i class="fa-brands fa-python"></i> A Filosofia por Trás do Python</h5>
+                <p class="card-content">O Zen do Python são 19 princípios que orientam o design da linguagem. Execute <code>import this</code> no interpretador Python para ver.</p>
+                
+                <div style="background: #e3f2fd; padding: 25px; border-radius: 12px; margin: 20px 0; font-style: italic;">
+                    <p style="margin: 10px 0; text-align: center;">✨ Bonito é melhor que feio.</p>
+                    <p style="margin: 10px 0; text-align: center;">✨ Explícito é melhor que implícito.</p>
+                    <p style="margin: 10px 0; text-align: center;">✨ Simples é melhor que complexo.</p>
+                    <p style="margin: 10px 0; text-align: center;">✨ Complexo é melhor que complicado.</p>
+                    <p style="margin: 10px 0; text-align: center;">✨ Legibilidade conta.</p>
+                    <p style="margin: 10px 0; text-align: center;">✨ Deve haver uma - e preferencialmente só uma - maneira óbvia de fazer.</p>
+                    <p style="margin: 10px 0; text-align: center;">✨ Agora é melhor que nunca.</p>
+                </div>
+
+                <div class="code-block">
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+# Experimente no seu interpretador Python:
+>>> import this
+                    </code>
+                </div>
+
+                <h5 class="card-title">🎯 Princípios na prática:</h5>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #e65100;">📖 Legibilidade</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Código claro e expressivo</p>
+                    </div>
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #1b5e20;">🎯 Simplicidade</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Uma maneira óbvia de fazer</p>
+                    </div>
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #6a1b9a;">🔧 Praticidade</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Agir agora é melhor que perfeição</p>
+                    </div>
+                    <div style="background: #eef2ff; padding: 15px; border-radius: 8px;">
+                        <h6 style="margin: 0 0 8px 0; color: #283593;">👥 Comunidade</h6>
+                        <p style="margin: 0; font-size: 0.9em;">Design para humanos primeiro</p>
+                    </div>
+                </div>
+
+                <p class="card-content" style="text-align: center; font-weight: bold; margin-top: 20px;">
+                    "Python é uma linguagem que privilegia a legibilidade e a produtividade do desenvolvedor acima de tudo."
+                </p>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<!--  ######################################################################################################### -->
+<section id="paradigms/overview"data-auto-animate>
+    <h4>4. Paradigmas de Programação</h4>
+        
+    <section class="paradigms-overview" data-auto-animate>
+        <p>
+            
+                Python é uma linguagem multi-paradigma 
+                <br>que suporta vários estilos de programação,
+                <br>dentre eles temos:
+            
+        </p>
+        <div class="paradigm-card" data-paradigm="imperativo">
+            <h6>🎯 Imperativo</h6>
+            <p>Foco em COMO fazer</p>
+        </div>
+    </section>
+    <section class="paradigms-overview"  data-auto-animate>
+        <div class="paradigm-card" data-paradigm="oo">
+            <h6>🏛️ Orientado a Objetos</h6>
+            <p>Foco em OBJETOS</p>
+        </div>
+    </section>
+    <section class="paradigms-overview"  data-auto-animate>
+        <div class="paradigm-card" data-paradigm="funcional">
+            <h6>⚡ Funcional</h6>
+            <p>Foco em FUNÇÕES</p>
+        </div>
+    </section>
+    <section class="paradigms-overview"  data-auto-animate>
+        <div class="paradigm-card" data-paradigm="procedural">
+            <h6>📋 Procedural</h6>
+            <p>Foco em PROCEDIMENTOS</p>
+        </div>
+    </section>
+    <section class="paradigms-overview"  data-auto-animate>
+        <div class="paradigm-card" data-paradigm="estruturado">
+            <h6>📐 Estruturado</h6>
+            <p>Foco em ESTRUTURAS</p>
+        </div>
+    </section>
+    <section class="paradigms-overview"  data-auto-animate>
+        <div class="paradigm-card" data-paradigm="assincrono">
+            <h6>🔄 Assíncrono</h6>
+            <p>Foco em CONCORRÊNCIA</p>
+        </div>
+    </section>
+    <section class="paradigms-overview"  data-auto-animate>
+        <div class="paradigm-card" data-paradigm="generico">
+            <h6>🎭 Genérico</h6>
+            <p>Foco em TIPOS</p>
+        </div>
+    </section>
+    <section>
+        <p>Agora vamos detalhar um pouco melhor
+        <br>como cada um atua dentro do Python</p>
+    </section>
+    <section id="paradigms/imperativo" style="margin-top: 1.5em;"  data-auto-animate>
+        <p>🎯 Paradigma Imperativo
+        <br>Características Principais</p>
+        <div class="paradigm-explanation">
+            <div class="theory">
+               
+                <ul>
+                    <li class="fragment">Foco em <strong>COMO</strong> fazer</li>
+                    <li class="fragment">Sequência de comandos que alteram o estado</li>
+                    <li class="fragment">Uso de variáveis e atribuições</li>
+                    <li class="fragment">Estruturas de controle (if, for, while)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section style="margin: 1.5em;"  data-auto-animate>
+        <p>🎯 Paradigma Imperativo</p> 
+        <div class="paradigm-explanation">
+            <div class="theory">    
+            <div class="code-example ">
+                <p>Exemplo Prático</p>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+# Abordagem imperativa
+def calcular_media_notas(notas):
+    total = 0
+    contador = 0
+
+    for nota in notas:
+        total += nota
+        contador += 1
+
+    media = total / contador
+    return media
+
+    # Uso
+    notas = [7.5, 8.0, 6.5, 9.0]
+    resultado = calcular_media_notas(notas)
+    print(f"Média: {resultado}")
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section   data-auto-animate>
+        <p>🎯 Paradigma Imperativo</p> 
+        <div class="paradigm-features ">
+            <strong>✅ Vantagens</strong>
+            <div class="feature">
+                <ul>
+                    <li class="fragment">Fácil de entender e depurar</li>
+                    <li class="fragment">Controle preciso sobre a execução</li>
+                    <li class="fragment">Ideal para algoritmos sequenciais</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section   data-auto-animate>
+        <p>🎯 Paradigma Imperativo</p>    
+        <div class="paradigm-features ">
+             <strong>⚠️ Limitações</strong>
+            <div class="feature">
+                <ul>
+                    <li class="fragment">Pode levar a código repetitivo</li>
+                    <li class="fragment">Dificuldade com operações complexas</li>
+                    <li class="fragment">Estado mutável pode causar bugs</li>
+                </ul>
+            </div>
+        </div>
+    </section >
+    <section id="paradigms/oop" style="margin-top: 1.5em;"  data-auto-animate>
+        
+        <p>🏛️ Paradigma Orientado a Objetos</p>
+        
+        <p>Pincipais características</p> 
+
+        <ul class="principle">
+            <li class="fragment">🔷 Encapsulamento
+                <br>Agrupar dados e comportamentos
+            </li>
+            <li class="fragment">🔄 Herança
+                <br>Reutilizar e especializar classes
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;"  data-auto-animate>
+        
+        <p>🏛️ Paradigma Orientado a Objetos</p>
+
+        <p>Pincipais características</p> 
+
+        <ul class="principle">
+            <li class="fragment">📐 Polimorfismo
+                <br>Múltiplas formas para mesma interface
+            </li>
+            <li class="fragment">🎯 Abstração
+                <br>Esconder detalhes complexos
+            </li>
+        </ul>
+    </section>
+    <section class="code-showcase"  data-auto-animate>
+        <div class="code-column fragment">
+            <p>🏛️ Programação Orientada a Objetos
+                <br>Exemplo: Sistema Bancário
+            </p>
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self._saldo = saldo  # Encapsulamento
+
+    def depositar(self, valor):
+        self._saldo += valor
+        return self._saldo
+
+    def sacar(self, valor):
+        if valor <= self._saldo:
+            self._saldo -= valor
+            return True
+        return False
+
+    @property
+    def saldo(self):
+        return self._saldo
+
+class ContaPoupanca(ContaBancaria):  # Herança
+    def __init__(self, titular, saldo=0, taxa=0.01):
+        super().__init__(titular, saldo)
+        self.taxa = taxa
+
+    def aplicar_rendimento(self):
+        self._saldo += self._saldo * self.taxa
+            </code></pre>
+        </div>
+    </section>
+    <section class="code-showcase"  data-auto-animate>
+        <div class="code-column fragment">
+            <p>🏛️ Programação Orientada a Objetos
+                <br>Uso do Sistema</p>
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+# Polimorfismo em ação
+contas = [
+    ContaBancaria("João", 1000),
+    ContaPoupanca("Maria", 500, 0.02)
+]
+
+for conta in contas:
+    conta.depositar(100)  # Mesma interface, comportamentos diferentes
+    print(f"{conta.titular}: R$ {conta.saldo}")
+
+# Abstração - usuário não precisa saber dos detalhes internos
+poupanca = ContaPoupanca("Carlos", 1000)
+poupanca.aplicar_rendimento()
+            </code></pre>
+        </div>
+    </section>
+
+    <section id="paradigms/functional" style="margin-top: 1.5em;" data-auto-animate>
+        
+        
+        <ul class="concept">
+            <p>⚡ Paradigma Funcional</p>
+            <li class="fragment">🎯 Funções Puras
+                <br>Sem efeitos colaterais, mesma entrada → mesma saída
+            </li>
+            <li class="fragment">🔄 Imutabilidade<br>
+                Dados não são alterados, novos são criados
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;"  data-auto-animate>
+        
+        
+        <ul class="concept">
+            <p>⚡ Paradigma Funcional</p>
+            <li class="fragment">📊 Funções de Alta Ordem
+            <br>Funções que recebem ou retornam outras funções</li>
+            <li class="fragment">🔗 Composição
+            <br>Combinação de funções simples em complexas</li>
+        </ul>
+    </section>
+    <section class="example-group" style="margin-top: 0.5em;" data-auto-animate>
+        <p>⚡ Paradigma Funcional
+        <br>Funções de Alta Ordem A</p>
+        <pre>
+            <code class="python" style="height: 10em; font-size: 0.8em;">
+from functools import reduce
+
+dados = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Map: transformação
+quadrados = list(map(lambda x: x ** 2, dados))
+            </code>
+        </pre>
+    </section>
+    <section class="example-group" style="margin-top: 0.5em;" data-auto-animate>
+        <p>⚡ Paradigma Funcional
+        <br>Funções de Alta Ordem B</p>
+        <pre>
+            <code class="python" style="height: 10em; font-size: 0.8em;">
+# Filter: filtragem
+pares = list(filter(lambda x: x % 2 == 0, dados))
+
+# Reduce: agregação
+soma = reduce(lambda acc, x: acc + x, dados, 0)
+            </code>
+        </pre>
+    </section>
+    <section class="example-group" style="margin-top: 0.5em;" data-auto-animate>
+        <p>⚡ Programação Funcional
+        <br>Funções de Alta Ordem C</p>
+        <pre>
+            <code class="python" style="height: 10em; font-size: 0.8em;">
+print(f"Quadrados: {quadrados}")
+print(f"Pares: {pares}")
+print(f"Soma: {soma}")
+        </code></pre>
+    </section>
+    <section class="example-group" style="margin-top: 0.5em;" data-auto-animate>
+        <p>⚡ Paradigma Funcional
+        <br>Funções Puras e Composição A</p>
+        <pre>
+            <code class="python" style="height: 10em; font-size: 0.8em;">
+# Funções puras
+def dobrar(x):
+    return x * 2
+
+def adicionar_um(x):
+    return x + 1
+            </code>
+        </pre>
+    </section>
+    <section class="example-group" style="margin-top: 0.5em;" data-auto-animate>
+        <p>⚡ Paradigma Funcional
+        <br>Funções Puras e Composição B</p>
+        <pre>
+            <code class="python" style="height: 10em; font-size: 0.8em;">
+def eh_par(x):
+    return x % 2 == 0
+
+# Composição manual
+def processar_dados(dados):
+    return [adicionar_um(dobrar(x)) for x in dados if eh_par(x)]
+            </code>
+        </pre>
+    </section>
+    <section class="example-group" style="margin-top: 0.5em;" data-auto-animate>
+        <p>⚡ Paradigma Funcional
+        <br>Funções Puras e Composição C</p>
+        <pre>
+            <code class="python" style="height: 10em; font-size: 0.8em;">
+# Usando functools para composição
+from functools import partial
+
+processador = partial(map, lambda x: adicionar_um(dobrar(x)))
+resultado = list(processador(filter(eh_par, dados)))
+            </code>
+        </pre>
+    </section>
+    <section id="paradigms/procedural">
+        <p>📋 Paradigma Procedural
+        <br>Características Principais</p>
+        <div class="procedural-explanation">
+            <div class="theory">
+                <ul>
+                    <li class="fragment">Organização em procedimentos/funções</li>
+                    <li class="fragment">Ênfase na sequência de execução</li>
+                    <li class="fragment">Reutilização de código através de funções</li>
+                    <li class="fragment">Dados e funções são separados</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca A
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+# Dados globais (simulando um banco de dados simples)
+livros = []
+usuarios = []
+emprestimos = []
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca B
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+# Procedimentos/funções para manipular os dados
+def cadastrar_livro(titulo, autor, isbn):
+livro = {
+    'titulo': titulo,
+    'autor': autor,
+    'isbn': isbn,
+    'disponivel': True
+}
+</code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca C
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+
+livros.append(livro)
+return livro
+</code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca D
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+
+
+def cadastrar_usuario(nome, id_usuario):
+usuario = {
+    'nome': nome,
+    'id': id_usuario,
+    'livros_emprestados': []
+}
+usuarios.append(usuario)
+return usuario
+
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca E
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+
+def emprestar_livro(isbn, id_usuario):
+    # Encontrar livro
+    livro = next((l for l in livros if l['isbn'] == isbn and l['disponivel']), None)
+    # Encontrar usuário
+    usuario = next((u for u in usuarios if u['id'] == id_usuario), None)
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca F
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+    if livro and usuario:
+        livro['disponivel'] = False
+        usuario['livros_emprestados'].append(isbn)
+        emprestimos.append({
+            'isbn': isbn,
+            'id_usuario': id_usuario,
+            'data_emprestimo': '2024-01-01'
+        })
+        return True
+    return False
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca G
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+
+
+def devolver_livro(isbn, id_usuario):
+    # Implementação similar...
+    pass
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="procedural-explanation">
+            <div class="code-example">
+                <p>📋 Paradigma Procedural
+                    <br>Exemplo: Sistema de Biblioteca H
+                </p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+# Uso do sistema
+cadastrar_livro("Python Fundamentals", "João Silva", "123456")
+cadastrar_usuario("Maria Santos", "U001")
+emprestar_livro("123456", "U001")
+
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        
+        <div class="paradigm-features">
+            <div class="feature">
+                <p>
+                <strong>📋 Paradigma Procedural
+                <br>✅ Vantagens</strong>
+                </p><br>
+                <ul>
+                    <li class="fragment">Código organizado e modular</li>
+                    <li class="fragment">Fácil de entender para problemas simples</li>
+                    <li class="fragment">Reutilização de funções</li>
+                    <li class="fragment">Bom para scripts e automações</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="paradigm-features">
+            <div class="feature">
+                <p>
+                <strong>📋 Paradigma Procedural
+                <br>⚠️ Limitações</strong>
+                </p>
+                <ul>
+                    <li class="fragment">Dificuldade em gerenciar estado global</li>
+                    <li class="fragment">Pode levar a código espaguete em sistemas complexos</li>
+                    <li class="fragment">Dados e comportamentos separados</li>
+                    <li class="fragment">Menos reutilização que OOP</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="paradigms/estruturado" style="margin-top: 1.5em;">
+        <p>📐 Paradigma Estruturado</p>
+        <div class="structured-elements">
+            <div class="element-grid">
+                <div class="element fragment">
+                    <p>➡️ Sequência
+                    <br><small>Comandos executados em ordem</small></p>
+                    <pre>
+                        <code class="python" style="height: 10em; font-size: 0.8em;">
+# Sequência linear
+a = 5
+b = 10
+resultado = a + b
+print(resultado)
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <p>📐 Paradigma Estruturado</p>
+        <div class="structured-elements">
+            <div class="element-grid">
+                <div class="element fragment">
+                    <p>🎛️ Seleção
+                    <br><small>Decisões com if/elif/else</small></p>
+                    <pre>
+                        <code class="python" style="height: 10em; font-size: 0.8em;">
+# Estrutura de seleção
+idade = 18
+if idade >= 18:
+    status = "adulto"
+elif idade >= 13:
+    status = "adolescente"
+else:
+    status = "criança"
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <p>📐 Paradigma Estruturado</p>
+        <div class="structured-elements">
+            <div class="element-grid">
+                <div class="element fragment">
+                    <p>🔄 Iteração
+                    <br><small>Repetição com for/while</small></p>
+                    <pre>
+                        <code class="python" style="height: 10em; font-size: 0.8em;">
+# Estruturas de repetição
+# For loop
+for i in range(5):
+    print(f"Item {i}")
+
+# While loop
+contador = 0
+while contador < 5:
+    print(contador)
+    contador += 1
+                        </code>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="structured-example fragment">
+            <p>📐 Paradigma Estruturado
+            <br>Exemplo Completo: Processamento de Dados</p>
+            <pre>
+                <code class="python" style="height: 10em; font-size: 0.8em;">
+def analisar_pontuacoes(pontuacoes, limite_aprovacao=70):
+    # SEQUÊNCIA: Inicialização
+    resultados = []
+    total = 0
+
+    # ITERAÇÃO: Processar cada pontuação
+    for pontuacao in pontuacoes:
+        total += pontuacao
+        
+        # SELEÇÃO: Classificar resultado
+        if pontuacao >= limite_aprovacao:
+            status = "Aprovado"
+        else:
+            status = "Reprovado"
+        
+        resultados.append({
+            'pontuacao': pontuacao,
+            'status': status
+        })
+
+    # SEQUÊNCIA: Cálculos finais
+    media = total / len(pontuacoes)
+
+    return {
+        'resultados': resultados,
+        'media': media,
+        'total_alunos': len(pontuacoes)
+    }
+
+# Uso
+pontuacoes = [85, 62, 78, 91, 45, 88]
+analise = analisar_pontuacoes(pontuacoes)
+                </code>
+            </pre>
+        </div>
+    </section>
+    <section id="paradigms/assincrono" style="margin-top: 1.5em;">
+        <p>🔄 Paradigma Assíncrono</p>
+        
+        <div class="async-concepts">
+            <div class="concept-explanation">
+                
+                <p>🎯 Conceito Principal</p>
+                <p class="fragment">Execução não-bloqueante para operações I/O intensivas</p>
+            
+            </div>
+    </section>       
+    <section>
+        <p>🔄 Paradigma Assíncrono</p>
+        <div class="async-concepts">
+            <p>⚡ Quando Usar</p>
+            <div class="concept-explanation">
+                
+                
+                <ul>
+                    <li class="fragment">Requisições de rede</li>
+                    <li class="fragment">Operações de arquivo</li>
+                    <li class="fragment">APIs e Web scraping</li>
+                    <li class="fragment">Banco de dados</li>
+                </ul>
+            
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <p>🔄 Paradigma Assíncrono</p>
+        <div class="async-examples">
+            <div class="example-comparison">
+                <div class="code-block">
+                    <p>🔴 Síncrono (Bloqueante)</p>
+                    <pre>
+                        <code class="python" style="height: 10em; font-size: 0.8em;">
+import requests
+import time
+
+def buscar_dados_sincrono(urls):
+    resultados = []
+    for url in urls:
+        # Cada requisição bloqueia a execução
+        resposta = requests.get(url)
+        resultados.append(resposta.text)
+    return resultados
+
+# Tempo total = soma de todos os tempos
+inicio = time.time()
+dados = buscar_dados_sincrono(urls)
+print(f"Tempo: {time.time() - inicio:.2f}s")
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <p>🔄 Paradigma Assíncrono</p>
+        <div class="async-examples">
+            <div class="example-comparison">
+                <div class="code-block">
+                    <p>🟢 Assíncrono (Não-bloqueante)</p>
+                    <pre>
+                        <code class="python" style="height: 10em; font-size: 0.8em;">
+import aiohttp
+import asyncio
+import time
+
+async def buscar_dados_assincrono(urls):
+    async with aiohttp.ClientSession() as session:
+        tarefas = []
+        for url in urls:
+            # Cria tarefas não-bloqueantes
+            tarefa = session.get(url)
+            tarefas.append(tarefa)
+    
+    # Executa todas simultaneamente
+    resultados = await asyncio.gather(*tarefas)
+    return [await r.text() for r in resultados]
+
+# Tempo total ≈ tempo da requisição mais lenta
+inicio = time.time()
+dados = asyncio.run(buscar_dados_assincrono(urls))
+print(f"Tempo: {time.time() - inicio:.2f}s")
+                    </code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <p>🔄 Paradigma Assíncrono</p>
+        <div class="async-examples">
+            <div class="advanced-async">
+                <p>Funcionalidades Avançadas</p>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+import asyncio
+
+async def tarefa_prioritaria(nome, duracao):
+    print(f"🚀 Iniciando tarefa prioritária: {nome}")
+    await asyncio.sleep(duracao)
+    print(f"✅ Concluída tarefa prioritária: {nome}")
+
+async def tarefa_background(nome, duracao):
+    print(f"🔄 Iniciando background: {nome}")
+    await asyncio.sleep(duracao)
+    print(f"✔️ Concluída background: {nome}")
+
+async def main():
+    # Execução concorrente com controle
+    tarefa_bg = asyncio.create_task(tarefa_background("Backup", 3))
+
+    # Tarefa prioritária
+    await tarefa_prioritaria("Processamento crítico", 2)
+
+    # Aguarda conclusão da background
+    await tarefa_bg
+
+# asyncio.run(main())
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="paradigms/generico" style="margin-top: 1.5em;">
+       
+        <div class="generic-intro" class="fragment">
+            <p>🎭 Paradigma Genérico
+            <br>🎯 Tipagem com Flexibilidade<br>
+            <span class="fragment">Código que funciona com múltiplos tipos mantendo segurança</span><br>
+            <span class="fragment">ou seja, permite escrever códigos funcionem 
+            <br>com diferentes tipos de dados sem precisar ser reescrito para cada tipo.</span>
+            <br><span  class="fragment"><b>Como pode ser implementado:</b></span><br>
+            <ul>
+                <li class="fragment">Polimorfismo Estrutural (Duck Typing)</li>
+                <li class="fragment">Tipagem Estática Opcional (Type Hinting)</li>
+                <li class="fragment">Tipagem Dinâmica via biblioteca</li>
+            </ul>
+            </br>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="generic-evolution">
+            <div class="evolution-step">
+                <p>🎭 Paradigma Genérico
+                    <br>1. Duck Typing (Pythonico) A</p>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+class animal:
+    def __init__(self,nome):
+        self.nome=nome
+    def comer ():
+        return "Comer, tô com fome!"
+    def andar ():
+        return "Andar, cansei!?"
+    def nascer():
+        return "Nasci, logo vivo."
+    def morrer():
+        return "Ih! Morri, volto ao pó"
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="generic-evolution">
+            <div class="evolution-step">
+                <p>🎭 Paradigma Genérico
+                    <br>1. Duck Typing (Pythonico) B</p>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+class Pato:
+    def __init__(self):
+        self.ave=animal("ave")
+    def grasnar(self):
+        return "Quack!"
+
+class Pessoa:
+    def __init__(self):
+        self.homem=animal("humano")
+    def grasnar(self):
+        return "Imitando pato!"
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="generic-evolution">
+            <div class="evolution-step">
+                <p>🎭 Paradigma Genérico
+                    <br>1. Duck Typing (Pythonico) C</p>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+def fazer_barulho(entidade):
+    # Não importa o tipo, apenas o comportamento
+    return entidade.grasnar()
+
+# Ambos funcionam!
+print(fazer_barulho(Pato()))   # Quack!
+print(fazer_barulho(Pessoa())) # Imitando pato!
+                </code></pre>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="generic-evolution">
+            <div class="evolution-step">
+                <p>🎭 Paradigma Genérico
+                    <br>2. Type Hints (Python 3.5+)</p>
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+from typing import List, Dict, Optional
+
+def processar_dados(
+    nomes: List[str],
+    idades: Dict[str, int],
+    limite: Optional[int] = None
+    ) -> List[tuple]:
+    """Processa dados com tipos específicos"""
+    resultados = []
+    for nome, idade in idades.items():
+        if limite is None or idade <= limite:
+            resultados.append((nome, idade))
+    return resultados
+
+# Ferramentas como mypy verificam os tipos
+dados = processar_dados(
+    ["João", "Maria"],
+    {"João": 25, "Maria": 30},
+    limite=28
+)
+                </code></pre>
+            </div>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="generic-evolution">
+            <div class="evolution-step">
+                <p>🎭 Paradigma Genérico
+                    <br>3. Generics (Python 3.9+)</p>
+                <pre>
+                    <code class="python" style="height: 10em; font-size: 0.8em;">
+from typing import TypeVar, Generic, List
+from dataclasses import dataclass
+
+T = TypeVar('T')
+U = TypeVar('U')
+
+class Pilha(Generic[T]):
+def __init__(self) -> None:
+    self.itens: List[T] = []
+
+def push(self, item: T) -> None:
+    self.itens.append(item)
+
+def pop(self) -> T:
+    return self.itens.pop()
+
+# Uso com tipos específicos
+pilha_numeros = Pilha[int]()
+pilha_strings = Pilha[str]()
+
+pilha_numeros.push(42)    # ✅ Válido
+pilha_numeros.push("erro") # ❌ Erro de tipo (em mypy)
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="paradigms/multi" style="margin-top: 1.5em;">
+        <p><i class="fa-solid fa-users"></i> Python Multi-Paradigma</p>
+        
+        <div class="multi-paradigm-showcase">
+            <p>🎯 Combinação de Paradigmas
+            <br><span class="fragment">Python brilha ao misturar diferentes abordagens</span></p>
+        </div>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <div class="integration-example">
+            <p><i class="fa-solid fa-users"></i> Python Multi-Paradigma
+                <br>Exemplo: Sistema Híbrido</p>
+            <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+from typing import List, Callable
+from dataclasses import dataclass
+import asyncio
+
+# Paradigma OO + Estruturado
+@dataclass
+class Produto:
+nome: str
+preco: float
+categoria: str
+
+class ProcessadorProdutos:
+    def __init__(self):
+        self.produtos: List[Produto] = []
+
+    # Paradigma Funcional
+    def filtrar_produtos(self, 
+                        criterio: Callable[[Produto], 
+                        bool]) -> List[Produto]:
+        return list(filter(criterio, self.produtos))
+
+    # Paradigma Imperativo
+    def calcular_total(self) -> float:
+        total = 0.0
+        for produto in self.produtos:
+            total += produto.preco
+        return total
+
+    # Paradigma Assíncrono
+    async def processar_lote_assincrono(self, lote: List[Produto]):
+        async def processar_item(produto: Produto):
+            # Simula processamento assíncrono
+            await asyncio.sleep(0.1)
+            return f"Processado: {produto.nome}"
+        
+        tarefas = [processar_item(p) for p in lote]
+        return await asyncio.gather(*tarefas)
+
+# Uso integrado
+async def main():
+    processador = ProcessadorProdutos()
+    processador.produtos = [
+        Produto("Laptop", 1500.0, "eletrônicos"),
+        Produto("Mouse", 50.0, "eletrônicos"),
+        Produto("Livro", 30.0, "educação")
+    ]
+
+    # Funcional: Filtro com lambda
+    eletronicos = processador.filtrar_produtos(
+        lambda p: p.categoria == "eletrônicos"
+    )
+
+    # Imperativo: Cálculo
+    total = processador.calcular_total()
+
+    # Assíncrono: Processamento
+    resultados = await processador.processar_lote_assincrono(eletronicos)
+
+    return resultados, total
+            </code></pre>
+        </div>
+    </section>
+    <section>
+        <div class="paradigm-benefits">
+            <div class="benefit-grid">
+                <div class="benefit">
+                    <p><i class="fa-solid fa-users"></i> Python Multi-Paradigma
+                    <br>🎯 Flexibilidade<br>
+                    <span class="fragment">Escolha a melhor abordagem para cada problema</span></p>
+                </div>
+                <div class="benefit">
+                    <p>⚡ Produtividade<br>
+                    <span class="fragment">Combina simplicidade com poder expressivo</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="paradigm-benefits">
+            <div class="benefit-grid">
+                <div class="benefit">
+                    <p><i class="fa-solid fa-users"></i></i> Python Multi-Paradigma
+                    <br>📚 Legibilidade<br>
+                    <span class="fragment">Código claro e fácil de entender</span></p>
+                </div>
+                <div class="benefit">
+                    <p>🔄 Evolução<br>
+                    <span class="fragment">Adapta-se a novas necessidades e paradigmas</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+<!--  ######################################################################################################### -->
+<!-- SLIDE — Linguagens Relacionadas COMPLETO -->
+<section id="languages" data-auto-animate>
+    <style>
+        /* Scroll aplicável às seções de Linguagens Relacionadas */
+        #languages .scroll-area {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 1.2em;
+        }
+
+        /* Título da seção interna (fora do scroll) */
+        #languages .section-title {
+            font-size: 1.2em !important;   /* ← TAMANHO REDUZIDO */
+            font-weight: 700;
+            margin-top: 2em !important; /* AUMENTADO */
+            margin-bottom: 0.6em;
+        }
+
+        /* Espaço no final do slide */
+        #languages .spacer {
+            height: 3em;
+        }
+
+        /* Cards padronizados */
+        #languages .feature-card {
+            padding: 1.5em;
+            border-radius: 14px;
+            margin-bottom: 2em;
+        }
+
+        /* margin-top entre título e subtítulo */
+        #languages .slide-subtitle {
+            margin-top: 0.8em !important;
+            margin-bottom: 1em;
+            display: block;
+        }
+
+        /* Cores opcionais */
+        .card-red { background: #ffe0e0; }
+        .card-blue { background: #e0ecff; }
+        .card-purple { background: #ede0ff; }
+        .card-green { background: #e1ffe8; }
+        .card-orange { background: #ffeed9; }
+        
+        /* A regra @import deve estar no topo do bloco <style> */
+        /* Template: Importa CSS estático usando url_for */        @import url("{{url_for('static', filename='css/caracteristicas.css')}}");
+        
+    </style>
+    <h4 class="slide-title">5. Linguagens Relacionadas</h4>
+    <section id="languages/overview" >
+        <div class="feature-card card-blue">
+            <h5 class="card-title" style="margin-top:1em;">Visão Geral</h5>
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/visaolinguagemrelacionada.png') }}" 
+            alt="Imagem visão geral linguagens relacionadas"
+            style="max-width: 50%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+            <p class="card-content">
+                Python faz parte de uma família de linguagens que compartilham princípios
+                de simplicidade, legibilidade e produtividade.
+            </p>
+        </div>
+    </section>
+    <section>
+        <div class="feature-card card-blue">
+            <h5 class="card-title" style="margin-top:1em;">Visão Geral</h5>
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/visaolinguagemrelacionada.png') }}" 
+            alt="Imagem visão geral linguagens relacionadas"
+            style="max-width: 50%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+            <p class="card-content">
+                Por isso, Python se posiciona como uma ponte entre paradigmas distintos.
+            </p>
+        </div>
+    </section>
+    <!-- LINGUAGENS INFLUENCIADORAS A-->
+    <section id="languages/influenciadores">
+        <div class="content-wrapper">
+            <div class="feature-card card-purple">
+                <p class="card-title" style="margin-top:1em;"><b>Linguagens Influenciadoras</b>
+                <br><span>Python foi inspirado principalmente por:</span>
+                </p>
+                
+                <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/ABC.png') }}" 
+                alt="imagem do ABC e outras"
+                style="max-width: 50%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS INFLUENCIADORAS B-->
+    <section>
+        <div class="feature-card card-purple">
+            <p><b>Linguagens Influenciadoras</b></p>
+            <ul class="feature-list">
+                <li  class="fragment"><b>ABC</b> — Base para sintaxe limpa e filosofia de legibilidade.</li>
+                <li  class="fragment"><b>C</b> — Eficiência, ponte com extensões e interação com memória.</li>
+                <li  class="fragment"><b>Modula-3</b> — Estrutura modular e sistema de exceções.</li>
+                <li  class="fragment"><b>Unix Shell</b> — Simplicidade e automação de scripts.</li>
+                <li  class="fragment"><b>Smalltalk</b> — Princípios da orientação a objetos.</li>
+            </ul>
+        </div>
+    </section>
+    <!-- LINGUAGENS INFLUENCIADORAS C-->
+    <section>
+        <div class="feature-card card-purple">
+            <b>Linguagens Influenciadoras</b>
+            <p class="card-content">
+                Cada uma dessas linguagens moldou a identidade do Python como uma
+                linguagem poderosa, coerente e acessível.
+            </p>
+        </div>
+    </section>
+
+    <!-- LINGUAGENS INFLUENCIADAS A-->
+    <section id="languages/influenciadas">
+        <div class="content-wrapper">
+            <div class="feature-card card-green">
+                <p class="card-title" style="margin-top:1em;"><b>Linguagens Influenciadas por Python</b></p>
+                <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/Pythoninfluences.png') }}" 
+                    alt="influenciadas por python"
+                    style="max-width: 50%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS INFLUENCIADAS B-->
+    <section>
+        <div class="content-wrapper">
+            <div class="feature-card card-green">
+                <p class="card-title" style="margin-top:1em;"><b>Linguagens Influenciadas por Python</b></p>
+                <br><span class="fragment">Python influenciou linguagens modernas como:</span>
+                </p>
+                <ul class="feature-list">
+                    <li  class="fragment"><b>Ruby</b> — Adotou ideias de simplicidade e expressividade.</li>
+                    <li  class="fragment"><b>Julia</b> — Clareza sintática voltada para computação científica.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS INFLUENCIADAS C-->
+    <section>
+        <div class="content-wrapper">
+            <div class="feature-card card-green">
+                <p class="card-title" style="margin-top:1em;"><b>Linguagens Influenciadas por Python</b></p>
+                <ul class="feature-list">
+                    <li  class="fragment"><b>Rust</b> — Parte da sintaxe inspirada em blocos e indentação.</li>
+                    <li  class="fragment"><b>Swift</b> — Filosofia de legibilidade e modernização de sintaxe.</li>
+                    <li  class="fragment"><b>Cobra</b> — Inspirado no modelo de classes e decorators.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINGUAGENS SIMILARES A-->
+    <section id="languages/similares">
+        <div class="content-wrapper">
+            <div class="feature-card card-orange">
+                <p class="card-title" style="margin-top:1em;"><b>Linguagens Similares</b></p>
+                <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/LinguagensSimilares.png') }}" 
+                    alt="Código da função mensagem"
+                    style="max-width: 70%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                
+                <br><span class="card-content fragment">
+                        Algumas linguagens compartilham propósito, filosofia ou áreas de uso
+                </span>
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS SIMILARES C-->
+    <section>
+        <div class="content-wrapper">
+            <div class="feature-card card-orange">
+                <span class="card-title" style="margin-top:1em;"><b>Linguagens Similares</b></span>
+                <ul class="feature-list">
+                    <li class="fragment"><b>Ruby</b> — Sintaxe elegante e foco em produtividade.</li>
+                    <li class="fragment"><b>JavaScript</b> — Multiplataforma e amplamente usado em aplicações web.</li>
+                    <li class="fragment"><b>R</b> — Forte domínio em estatística e ciência de dados.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS SIMILARES D-->
+    <section>
+        <div class="content-wrapper">
+            <div class="feature-card card-orange">
+                <span class="card-title" style="margin-top:1em;"><b>Linguagens Similares</b></span>
+                <ul class="feature-list">
+                    <li class="fragment"><b>MATLAB</b> — Uso comum em computação numérica.</li>
+                    <li class="fragment"><b>Lua</b> — Interpretada, flexível e leve.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS OPOSTAS A-->
+    <section id="languages/opostas">
+        <div class="content-wrapper">
+            <div class="feature-card card-red">
+                <p class="card-title" style="margin-top:1em;"><b>Linguagens Opostas</b></p>
+                <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/LinguagensOpostas.png') }}" 
+                    alt="imagem com Linguagens Opostas"
+                    style="max-width: 70%; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                <br><span class="card-content fragment">
+                    Essas linguagens adotam filosofias bem diferentes da proposta do Python
+                </span>
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS OPOSTAS B-->
+    <section>
+        <div class="content-wrapper">
+            <div class="feature-card card-red">
+                <span class="card-title" style="margin-top:1em;"><b>Linguagens Opostas</b></p>
+                <ul class="feature-list">
+                    <li class="fragment"><b>C++</b> — Alta complexidade sintática e foco extremo em performance.</li>
+                    <li class="fragment"><b>Java</b> — Verbosidade e tipagem estática rígida.</li>
+                    <li class="fragment"><b>Go</b> — Minimalismo extremo e ausência de herança.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS OPOSTAS C-->
+    <section>
+        <div class="content-wrapper">
+            <div class="feature-card card-red">
+                <span class="card-title" style="margin-top:1em;"><b>Linguagens Opostas</b></p>
+                <ul class="feature-list">
+                    <li class="fragment"><b>Haskell</b> — Paradigma puramente funcional.</li>
+                    <li class="fragment"><b>Rust</b> — Sistema de empréstimos e segurança de memória.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- LINGUAGENS OPOSTAS D-->
+    <section>
+        <div class="content-wrapper">
+            <div class="feature-card card-red">
+                <span class="card-title" style="margin-top:1em;"><b>Linguagens Opostas</b></p>
+                <p class="card-content fragment">
+                    Apesar de opostas, muitas delas complementam Python em cenários de
+                    alta performance, concorrência ou segurança rígida.
+                </p>
+            </div>
+        </div>
+    </section>
+</section>
+<!-- Fim Linguagens relacionadas-->
+
+    
+<section id="applications" data-auto-animate>       
+    <section id="applications/overview" data-auto-animate style="margin-top: 1.5em;">
+        
+        <p style="font-size:1.6em;">
+            <b>6. Aplicações<br>    
+            Visão Geral</b>
+            <br><span style="font-size:0.8em;">Python é amplamente utilizado em diversas áreas:</span>
+        <ul>
+            <li class="fragment"><strong>Desenvolvimento Web:</strong> Frameworks como Django
+            e Flask são populares para a criação de aplicações web.</li>
+        </ul>
+        </p>
+    </section>
+    <section  data-auto-animate style="margin-top: 1.5em;">
+        <div>
+        <p style="font-size:1.6em;">
+            <b>6. Aplicações<br>    
+            Visão Geral</b>
+        </p>
+        </div>
+        <ul> 
+            <li class="fragment"><strong>Ciência de Dados e Machine Learning:</strong> Bibliotecas como NumPy, Pandas,
+            Scikit-learn e TensorFlow tornam o Python a linguagem preferida para análise de dados e inteligência artificial.</li>
+        </ul>
+        
+    </section>
+    <section  data-auto-animate style="margin-top: 1.5em;">
+        <div>
+        <p style="font-size:1.6em;">
+            <b>6. Aplicações<br>    
+            Visão Geral</b>
+        </p>
+        </div>
+        <ul>
+            <li class="fragment"><strong>Automação de Tarefas:</strong> Scripts em Python são frequentemente 
+            utilizados para automatizar tarefas repetitivas.</li>
+            <li class="fragment"><strong>Desenvolvimento de Jogos:</strong> Bibliotecas como Pygame são 
+            utilizadas para o desenvolvimento de jogos 2D, e para jogos 3D, Panda3D.</li>
+        </ul>
+        
+    </section>
+    <section id='applications/cases' data-auto-animate style="margin-top: 1.5em;">
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Casos de Uso e Bibliotecas Chave</b>
+        </p>
+        </div>
+        <ul>
+            <li class="fragment"><strong>Desenvolvimento Web (Backend):</strong> Django, Flask, FastAPI.</li>
+            <li class="fragment"><strong>Data Science:</strong> Pandas, NumPy, Matplotlib, Scikit-learn.</li>
+            <li class="fragment"><strong>Machine Learning/IA:</strong> TensorFlow, PyTorch, Keras.</li>
+        </ul>
+    </section>
+    <section id='applications/cases' data-auto-animate style="margin-top: 0.5em;">
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Casos de Uso e Bibliotecas Chave</b>
+        </p>
+        </div>
+        <ul>
+            <li class="fragment"><strong>Automação/Scripting:</strong> Módulos da biblioteca padrão (<code>os</code>, <code>sys</code>), Selenium, Requests.</li>
+            <li class="fragment"><strong>Computação Científica:</strong> SciPy, SymPy.</li>
+        </ul>
+    </section>
+    <section id='applications/web'data-auto-animate style="margin-top: 1.5em;">
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Desenvolvimento Web</b><br>    
+            Frameworks Populares
+        </p>
+        </div>
+        <div class="content-grid">
+ 
+            <ul>
+                <li><strong>Django:</strong> Framework full-stack</li>
+                <li><strong>Flask:</strong> Microframework flexível</li>
+                <li><strong>FastAPI:</strong> APIs modernas e rápidas</li>
+            </ul>
+        </div>
+    </section>
+    <section data-auto-animate style="margin-top: 0.5em;">
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Desenvolvimento Web</b><br>    
+            Frameworks Populares
+            <br>Exemplo Flask</p>
+        </div>
+        <div class="content-grid">
+ 
+            
+                
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run()
+                </code></pre>
+            </div>
+        
+    </section>
+    <section id='applications/data'data-auto-animate >
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Ciência de Dados</b>
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>📊 NumPy</p>
+                <p>Computação numérica e arrays</p>
+            </div>
+        </div>
+    </section>
+    <section data-auto-animate >
+         <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Ciência de Dados</b>
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>🐼 Pandas</p>
+                <p>Manipulação e análise de dados</p>
+            </div>
+        </div>
+    </section>
+    <section data-auto-animate>
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Ciência de Dados</b>
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>📈 Matplotlib</p>
+                <p>Visualização de dados</p>
+            </div>
+        </div>
+    </section>
+    <section data-auto-animate >
+         <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>    
+            Ciência de Dados</b>
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>📉 Seaborn</p>
+                <p>Visualizações estatísticas</p>
+            </div>
+        </div>
+    </section>
+    <section id='applications/ai'data-auto-animate >
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>Inteligência Artificial e Machine Learning</b>
+            <br>Bibliotecas Principais
+            </p>
+        </div>
+        <div class="content-grid">
+            
+            <ul>
+                <li><strong>TensorFlow:</strong> Deep learning do Google</li>
+                <li><strong>PyTorch:</strong> Deep learning do Facebook</li>
+                <li><strong>Scikit-learn:</strong> Machine learning clássico</li>
+                <li><strong>Keras:</strong> API de alto nível para redes neurais</li>
+            </ul>
+            
+        </div>
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>Inteligência Artificial e Machine Learning</b>
+            <br>Exemplo Simples</p>
+        </div>
+        <div class="content-grid"><div class="content-grid">
+            
+                
+                <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+from sklearn.linear_model import LinearRegression
+
+# Dados
+X = [[1], [2], [3], [4]]
+y = [2, 4, 6, 8]
+
+# Modelo
+model = LinearRegression()
+model.fit(X, y)
+
+# Predição
+print(model.predict([[5]]))  # [10]
+                </code></pre>
+            
+        </div>
+    </section>
+    <section id='applications/automation'data-auto-animate style="margin-top: 1.5em;">
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>Automação e Scripting</b>
+            <br>Exemplo Simples</p>
+        </div>
+        
+        <pre><code class="python" style="height: 10em; font-size: 0.8em;">
+import os
+import shutil
+from datetime import datetime
+
+def organizar_arquivos(diretorio):
+    """Organiza arquivos por extensão"""
+    for arquivo in os.listdir(diretorio):
+        if os.path.isfile(arquivo):
+            extensao = arquivo.split('.')[-1]
+            pasta_destino = f"{diretorio}/{extensao}"
+            
+            # Criar pasta se não existir
+            os.makedirs(pasta_destino, exist_ok=True)
+            
+            # Mover arquivo
+            shutil.move(arquivo, f"{pasta_destino}/{arquivo}")
+            print(f"Movido: {arquivo} -> {pasta_destino}")
+
+organizar_arquivos("./downloads")
+        </code></pre>
+    </section>
+    <section id='applications/gaming'data-auto-animate>
+        <div>
+        <p style="font-size:1.3em;">
+            <b>6. Aplicações<br>Desenvolvimento de Jogos</b>
+            <br>
+            <span>A abordagem do Python é popular, pois permite para prototipagem rápida<br> 
+            e a criação de jogos 2D simples, além de jogos 3D. 
+            </span></p>
+        </div>
+        
+    </section>
+    <section data-auto-animate >
+        <p><b>6. Aplicações<br>
+                Desenvolvimento de Jogos<br>
+                Jogos que usam <i class="fa-brands fa-python"></i>Python
+            </b>
+            <!-- Primeiro Frame de Imagem -->
+            <div class="frame-imagem">
+                <img src="https://app.famitsu.com/wp-content/uploads/2021/11/2-5.png" alt="Knives Out Mobile">
+                
+            </div>
+            <span class="legenda">Knives Out Mobile</span>
+        </p>
+    </section>
+    <section data-auto-animate >
+         <p><b>6. Aplicações<br>
+                Desenvolvimento de Jogos<br>
+                Jogos que usam <i class="fa-brands fa-python"></i>Python
+            </b>
+            <!-- Segundo Frame de Imagem -->
+            <div class="frame-imagem">
+                <img src=https://pcmedia.ign.com/pc/image/article/627/627218/battlefield-2-20050619033817779-000.jpg?width=1280&height=720&fit=bounds&format=jpg&auto=webp&quality=80" alt="BattleField 2">
+                
+            </div>
+            <span class="legenda">BattleField 2</span>
+        </p>
+    </section>
+    <section data-auto-animate >
+        <p style="font-size:1.3em; margin-bottom: 0.5em;"> 
+            <b>6. Aplicações
+            <br>
+                Desenvolvimento de Jogos</b> <br>
+                Frameworks principais<br>
+                <b>Pygame</b>
+            
+            <br><span class="fragment">para uma experiência 2D robusta, flexível e popular, além de possuir boa documentação e suporte da comunidade</span>
+            <br>
+            <b>PygameZero</b> 
+            <br><span class="fragment">é uma versão simplificada do Pygame especifíca especificalmente para iniciantes</span>
+            <br>
+        </p>
+    </section>
+    <section data-auto-animate >
+        <p style="font-size:1.3em; margin-bottom: 0.5em;"> 
+            <b>6. Aplicações
+            <br>
+                Desenvolvimento de Jogos</b> <br>
+                Frameworks principais<br>
+                <b>Arcade
+            </b> 
+            <br><span class="fragment">para uma abordagem mais moderna e com boa performance para jogos 2D</span> 
+            <br>
+            <b>Panda3D</b> 
+            <br><span class="fragment">para projetos de jogos em 3D</span>
+        </p>
+    </section>
+    <section data-auto-animate >
+        <div>
+            <p>
+                <b>6. Aplicações
+                <br>Desenvolvimento de Jogos</b>
+                <br>Os conceitos básicos 
+                <br>de programação envolvidos são:
+            </p>  
+        </div>
+        <ul>
+            <li class="fragment">Uso de variáveis</li>
+            <li class="fragment">Uso de loops</li>
+            <li class="fragment">Uso de estruturas de dados</li>
+            <li class="fragment">Controle de estruturas</li>
+        </ul>
+        
+    </section>
+    <section data-auto-animate>
+        <div>
+            <p>
+                <b>6. Aplicações
+                <br>Desenvolvimento de Jogos</b>
+                <br>Os conceitos básicos 
+                <br>de programação envolvidos são:
+            </p>  
+        </div>
+        <ul>
+            <li class="fragment">Programação orientada a objetos</li>
+            <li class="fragment">Uso de classes </li>
+            <li class="fragment">Aplicação de tratamento de eventos</li>
+            <li class="fragment">dentre outros.</li>
+        </ul>
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">
+        <p style="font-size:1.3em; margin-bottom: 0.5em;"> 
+            <b>6. Aplicações
+            <br>
+                Desenvolvimento de Jogos <br>✅Vantagens
+                <br>Facilidade de aprendizado
+            </b>
+            <br><span class="fragment">A sintaxe clara de Python torna-o acessível para iniciantes.</span>
+            <br><b>Prototipagem rápida</b>
+            <br><span class="fragment">Permite transformar ideias rapidamente em jogos funcionais.</span>
+        </p>
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">
+        <p style="font-size:1.3em; margin-bottom: 0.5em;"> 
+            <b>6. Aplicações
+            <br>
+                Desenvolvimento de Jogos <br>✅Vantagens
+                <br>Versatilidade
+            </b>
+            <br><span class="fragment">Python pode ser usado para desenvolver vários tipos de jogos, incluindo os 2D com Pygame ou jogos retro com Pyxel.</span>
+        </p>
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">
+        <p style="font-size:1.3em; margin-bottom: 0.5em;"> 
+            <b>6. Aplicações
+            <br>
+                Desenvolvimento de Jogos <br>✅Vantagens
+                <br>Código aberto e gratuito</b>
+            <br><span class="fragment">A linguagem e muitas de suas bibliotecas são gratuitas e de código aberto.</span>
+        </p> 
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">   
+        <p style="font-size:1.3em; margin-bottom: 0.5em;"> 
+            <b>6. Aplicações
+            <br>
+                Desenvolvimento de Jogos 
+                <br>⚠️Limitações e considerações
+                <br>Performance
+            </b>
+            <br><span class="fragment">Para jogos complexos e de alta performance, como jogos 3D com gráficos avançados, Python pode ser mais lento que outras linguagens.</span>
+        </p>
+    </section>    
+    <section data-auto-animate style="margin-top: 1.5em;">   
+        <p style="font-size:1.3em; margin-bottom: 0.5em;"> 
+            <b>6. Aplicações
+            <br>
+                Desenvolvimento de Jogos 
+                <br>⚠️Limitações e considerações
+                <br>Motores de jogo
+            </b>
+            <br><span class="fragment">Embora existam motores de jogo em Python, muitos jogos de grande 
+                porte usam motores como Unreal ou Unity, que não são nativamente baseados em Python. 
+                No entanto, linguagens como o GDScript do motor Godot têm sintaxe similar ao Python, facilitando a transição. </span>
+        </p>
+    </section>
+<!--Fim Aplicações-->
+</section>
+
+<!--Inicio Ecossistema-->
+<section id="ecosystem" data-auto-animate >
+    <h3 >7. Ecossistema</h3>
+    <section id="ecosystem/overview" data-auto-animate style="margin-top: 1em;">
+        <div>
+            
+            <p><b>Visão Geral</b>
+            <br>
+                Atualmente, Python é uma das linguagens de programação mais populares e é amplamente 
+                utilizada no desenvolvimento de software.
+            <br>
+            <!-- Template: Carrega imagem estática usando url_for -->                    
+                <img src="{{ url_for('static', filename='images/ecossytem_1_python.png') }}" 
+                        alt="Ecossistema overview" style="height:10em;">
+            </p>
+        </div>
+    </section>
+    <section data-auto-animate style="margin-top: 1em;">
+        <div>
+            
+            <p><b>Visão Geral</b>
+            <br>
+                Se destaca em diversas áreas, como o desenvolvimento de sites e aplicativos web, 
+                especialmente por meio do framework Django. Outra área em que tem grande aplicação 
+                é o aprendizado de máquina e o desenvolvimento de soluções relacionadas à IA's.
+            <br>
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/ecossytem_2_python.png') }}" 
+                        alt="Ecossistema overview2" style="height:8.5em;">
+            </p>
+        </div>
+    </section>
+    <section data-auto-animate style="margin-top: 1em;">
+        <div>
+            
+            <p><b>Visão Geral</b>
+            <br>
+                Além disso, permite criar uma variedade de outras aplicações, incluindo programas 
+                de desktop com interfaces gráficas e até aplicativos móveis. Também é amplamente 
+                utilizado para escrever scripts personalizados dentro de outras plataformas e sistemas.
+            <br>
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/ecossytem_3_python.png') }}" 
+                        alt="Ecossistema overview 3" style="height:7.5em;">
+            </p>
+        </div>
+    </section>
+    <section data-auto-animate style="margin-top: 1em;">
+        <div>
+            
+            <p><b>Visão Geral</b>
+            <br>
+                Por ser uma linguagem interpretada, pode ser executada em qualquer 
+                ambiente que possua um interpretador instalado. O que caracteriza como uma linguagem multiplataforma 
+                e permite que suas aplicações funcionam na maioria dos sistemas operacionais conhecidos, como Windows, 
+                Linux e macOS, e até Android.
+            <br>
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/ecossytem_3_python.png') }}" 
+                        alt="Ecossistema overview 4" style="height:7em;">
+            </p>
+        </div>
+    </section>
+    <section id="ecosystem/libraries" data-auto-animate style="margin-top: 1.5em;">
+        
+        <p>Bibliotecas Populares</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>🌐 Requests &amp; HTTP<br>Solicitações Web</p>
+            </div>
+        </div>
+    </section>
+    <section  data-auto-animate style="margin-top: 1.5em;">
+        
+        <p>Bibliotecas Populares</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>🍲 BeautifulSoup<br>
+                Web scraping<br>
+                (uso de bots para coletar dados ou conteúdo de um site)</p>
+            </div>
+            <div class="feature-item">
+                <p>🎮 Pygame &amp; Pandas3D<br>Desenvolvimento de jogos</p>
+            </div>
+        </div>
+    </section>
+    <section  data-auto-animate style="margin-top: 1.5em;">
+        
+        <p>Bibliotecas Populares</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>🖼️ Pillow<br>Processamento de imagens</p>
+            </div>
+            <div class="feature-item">
+                <p>📅 DateTime<br>Manipulação de datas</p>
+            </div>
+        </div>
+    </section>
+    <section  data-auto-animate style="margin-top: 1.5em;">
+        
+        <p>Bibliotecas Populares</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <p><i class="fa-solid fa-database"></i> Pandas<br>Processamento de dados</p>
+            </div>
+            <div class="feature-item">
+                <p><i class="fa-solid fa-calculator"></i> Numpy<br>Processamento de cálculos</p>
+            </div>
+        </div>
+    </section>
+    <section  data-auto-animate style="margin-top: 1.5em;">
+        
+        <p>Bibliotecas Populares</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <p>🔐 Cryptography<br>Criptografia e segurança</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 18: Ecossistema - Frameworks -->
+    <section id="ecosystem/frameworks" data-auto-animate style="margin-top: 1.5em;">
+        
+        <p>Frameworks por Categoria</p>
+        <table style="font-size: 0.8em;">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Framework</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Web</td>
+                    <td>Django, Flask, FastAPI</td>
+                    <td>Desenvolvimento web</td>
+                </tr>
+                <tr>
+                    <td>Testes</td>
+                    <td>Pytest, Unittest</td>
+                    <td>Testes automatizados</td>
+                </tr>
+                <tr>
+                    <td>Async</td>
+                    <td>AsyncIO, Tornado</td>
+                    <td>Programação assíncrona</td>
+                </tr>
+                <tr>
+                    <td>GUI</td>
+                    <td>Tkinter, PyQt, Kivy</td>
+                    <td>Interfaces gráficas</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Slide 19: Ecossistema - Tools -->
+    <section id="ecosystem/tools" data-auto-animate style="margin-top: 1.5em;">
+       
+        <p>Ferramentas de Desenvolvimento</p>
+        <div class="content-grid">
+            <div>
+                <p>Gerenciamento de Pacotes</p><br>
+                <ul>
+                    <li><strong>pip:</strong> Instalador de pacotes padrão</li>
+                    <li><strong>conda:</strong> Gerenciador de ambientes</li>
+                    <li><strong>poetry:</strong> Gerenciamento moderno</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">
+        
+        <p>Ferramentas de Desenvolvimento</p>
+        <div class="content-grid">
+            <div>
+                <h6>Ambientes Virtuais</h6><br>
+                <ul>
+                    <li><strong>venv:</strong> Módulo padrão</li>
+                    <li><strong>virtualenv:</strong> Ferramenta clássica</li>
+                    <li><strong>pipenv:</strong> Pip + virtualenv</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+<!--Fim Ecossistemas-->
+</section>
+
+<!--Inicio Prática e Exemplos-->
+<section id="Prática e Exemplos">
+    <h3>8. Prática e Exemplos</h3>
+    <section id='example/pratica' style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Windows)</span>
+        <ul>
+            <li class="fragment">Baixar o VS Code(Preparativos)
+                <ul>
+                    <li class="fragment">É preciso baixar o C/C++
+                        <ul>
+                            <li class="fragment">Windows: Instalar compilador GCC/G++(<a href="https://learn.microsoft.com/pt-br/cpp/windows/latest-supported-vc-redist?view=msvc-170">Microsoft</a>) ou MinGW(<a href="https://www.codeblocks.org/downloads/binaries/">CodeBlocks</a>/<a href="https://www.mingw-w64.org/">Oficial</a>) via .msi ou .exe</li>
+                            </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Linux)</span>
+        <ul>
+            <li >Baixar o VS Code(Preparativos)
+                <ul>
+                    <li >É preciso baixar o C/C++
+                        <ul>
+                            <li class="fragment">Linux: Instalar compilador GCC/G++ via <a href="https://www.wikihow.com/images/thumb/0/0d/Compile-a-C-Program-Using-the-GNU-Compiler-%28GCC%29-Step-1-Version-4.jpg/v4-460px-Compile-a-C-Program-Using-the-GNU-Compiler-%28GCC%29-Step-1-Version-4.jpg">terminal</a> 
+                                ou interface que comunique com o repositório do SO(<a href="https://cdn.kde.org/screenshots/plasma-discover/plasma-discover.png">Discover do Kubuntu</a>)   
+                            <pre class="fragment">
+                                <code class="c" style="
+                                    height: 5em; width: 100%;
+                                    font-size: 0.9em;font-weight: bold; 
+                                    background-color: white; color: black;">
+//sudo [mnemonico do instalador do SO] install [pacote/lib]
+// SO's baseados em Debian(Debian, Ubuntu, Linux Mint, dentre outros)
+linux@user:~$ sudo apt-get install gcc g++ && gcc --version && g++ --version
+linux@user:~$ sudo apt-get install build-essential && gcc --version && g++ --version
+                                    </code>
+                                </pre>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Windows/Linux)</span>
+        <ul>
+            <li>Baixar o VS Code(Preparativos)
+                <ul>
+                    <li class="fragment">É preciso baixar o Java
+                        <ul>
+                            <li class="fragment">Windows: Instalar compilador Java JRE/JDK <a href="https://www.java.com/en/download/">Oracle</a>/<a href="https://adoptium.net/pt-BR/temurin/releases">Eclipse</a> via .msi ou .exe</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Linux)</span>
+        <ul>
+            <li >Baixar o VS Code(Preparativos)
+                <ul>
+                    <li >É preciso baixar o Java
+                        <ul>
+                            <li class="fragment">Linux: Instalar compilador Java(OpenJDK) via <a href="https://draculaservers.com/tutorials/wp-content/uploads/2024/06/1.png">terminal</a> ou interface que comunique com o repositório do SO(<a href="https://cdn.kde.org/screenshots/plasma-discover/plasma-discover.png">Discover do Kubuntu</a>)   
+                                <pre class="fragment">
+                                    <code class="c" style="
+                                        height: 5em; width: 100%;
+                                        font-size: 0.9em;font-weight: bold; 
+                                        background-color: white; color: black;">
+//sudo [mnemonico do instalador do SO] install [pacote/lib]
+// SO's baseados em Debian(Debian, Ubuntu, Linux Mint, dentre outros)
+linux@user:~$ sudo apt install default-jre default-jdk && java --version
+                                    </code>
+                                </pre>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Windows)</span>
+        <ul>
+            <li>Baixar o VS Code(Instalação)
+                <ul>
+                    <li class="fragment">Windows: pode ser através do site Oficial por meio de <a href="https://code.visualstudio.com/Download">pacote .msi ou .exe</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Linux)</span>
+        <ul>
+            <li>Baixar o VS Code(Instalação)
+                <ul>                
+                    <li class="fragment">Se Linux, a forma mais fácil 
+                        é usando <a href="https://snapcraft.io/code">pacotes Snap</a>, e que exigem a <a href="https://snapcraft.io/docs/installing-snap-on-linux-mint">instalação 
+                        e configuração do snapd</a>. 
+                        Outra opção é usar adaptações,
+                        como o <a href="https://vscodium.com/#install">Codium</a> para <a href="https://wiki.manjaro.org/index.php/Pamac">Manjaro Linux</a>.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Linux)</span>
+        <ul>
+            <li>Baixar o VS Code(Instalação)</li>
+        
+            <pre class="fragment">
+                <code class="c" style="
+                        height: 12em;
+                        font-size: 0.9em;font-weight: bold; 
+                        background-color: white; color: black;">
+//sudo [mnemonico do instalador em uso] install [pacote/lib]
+// SO's baseados em Debian(Debian, Ubuntu, Linux Mint, dentre outros)
+//VS Code
+linux@user:~$ sudo snap install code --classic
+//VS Codium
+linux@user:~$ sudo snap install codium --classic
+
+                </code>
+            </pre>
+        </ul>         
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Windows/Linux)</span>
+        <br>
+        <span>Pos-instalação do VS Code</span>
+        <br>
+        <ul>
+            <li class="fragment">Windows: Site Oficial do <a href="https://www.python.org/downloads/">Python</a></li>
+            <li class="fragment">Linux: via terminal</li>
+            <pre class="fragment">
+                <code class="c" style="
+                        height: 6em;
+                        font-size: 0.9em;font-weight: bold; 
+                        background-color: white; color: black;">
+//sudo [mnemonico do instalador em uso] install [pacote/lib]
+// SO's baseados em Debian(Debian, Ubuntu, Linux Mint, dentre outros)
+//Python 3+, Pip e IDLE do Python
+linux@user:~$ sudo apt install python3 
+linux@user:~$ sudo apt install python3-pip
+linux@user:~$ sudo apt install idle3
+                </code>
+            </pre>
+        </ul>
+    </section>
+    <section style="margin-top: 1.5em;">
+        <span>Passo-a-passo VS Code (Windows/Linux)</span>
+        <br>
+        <span>Pos-instalação do VS Code</span>
+        <br>
+        <ul>    
+            <li class="fragment"><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python Extensão VS Code</a></li>
+            <li class="fragment">No Windows ou Linux, o processo é igual</li>
+        </ul>
+    </section>
+    <section>
+        <p>
+            Pratica Python - Gabriel
+            <br>Hello World
+            <br>Objetivo:
+        </p> 
+        <br>
+        <ul>
+            <li class="fragment">Mostrar como é estruturado o código</li>
+            <li class="fragment">Mostrar como são os Procedimentos e Funções</li>
+            <li class="fragment">Mostrar um Exemplo de Amarração e Ambiente</li>
+        </ul>
+    </section>
+    <section>
+        <p>Pratica Python - Gabriel</p>
+        <p>Hello World</p>
+        <p>Código:</p> 
+        <pre>
+            <code class="python" style="height: 10em; font-size: 0.8em;">
+aluno=""
+def Hello_World(nome:str)->str:
+    aluno=nome
+    return f"Olá {nome}, Bem-vindo ao Python"
+def pratica():
+
+    def Hello_World(nome:str)->str:
+        return f"Olá {nome}, Bem-vindo ao Python"
+
+    def Hello_World2(nome):
+        return f"Olá {nome}, Bem-vindo ao Python"
+
+    def Hello_World3(nome:str):
+        print(f"Olá {nome}, Bem-vindo ao Python")
+    print("Função 1 pratica")
+    print(Hello_World(input("Por favor digite o seu nome:------:>")))
+    print("Função 2 pratica")
+    print(Hello_World2(input("Por favor digite o seu nome:------:>")))
+    print("Procedimento pratica")
+    nome_pessoa=input("Por favor digite o seu nome:------:>")
+    Hello_World3(nome_pessoa)
+if __name__ == '__main__':
+    print("Procedimento pratica")
+    pratica()
+    print("Fora do Procedimento pratica")
+    print("Função")
+    print(Hello_World(input("Por favor digite o seu nome:------:>")))
+    print(f"Muito, Obrigado, {aluno}")
+            </code>
+        </pre>
+    </section>
+    
+    <section id='example/gabriel' style="margin-top: 1em;">
+        <p>Exemplos Gabriel
+        <br>
+        Gestão de Confeitaria usando PyQt6 - Layout 1
+        
+        <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/gabriel_unload_logo.jpg') }}"
+                alt="Exemplo Gabriel 1" class="slide-image" >
+        </p>
+    </section>
+    <section  style="margin-top: 1em;">
+        <p>Exemplos Gabriel
+        <br>
+        Gestão de Confeitaria usando PyQt6 - Layout 2
+        
+        <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/gabriel_load_logo.jpg') }}"
+                    alt="Exemplo Gabriel 2" class="slide-image" >
+        </p>
+    </section>
+    <section  style="margin-top: 1em;">
+        <p>Exemplos Gabriel
+        <br>
+        Gestão de Confeitaria usando PyQt6 - Layout 3
+        
+        <img  src="{{ url_for('static', filename='images/gabriel_tabela_nutricional.jpg') }}"
+                    alt="Exemplo Gabriel 3" class="slide-image" >
+        </p>
+    </section>
+    <section  style="margin-top: 1em;">
+        <p>Exemplos Gabriel
+        <br>
+        Gestão de Confeitaria usando PyQt6 - Layout 4
+        
+        <img  src="{{ url_for('static', filename='images/gabriel_codigo_barras.jpg') }}"
+                    alt="Exemplo Gabriel 4" class="slide-image" >
+        </p>
+    </section>
+    <section  style="margin-top: 1em;">
+        <p>Exemplos Gabriel
+        <br>
+        Gestão de Confeitaria usando PyQt6 - Layout 5
+        
+        <img  src="{{ url_for('static', filename='images/gabriel_settings.jpg') }}"
+                    alt="Exemplo Gabriel 5" class="slide-image" >
+        </p>
+    </section>
+    <section id='example/welbert' style="margin-top: 1.25em;">
+        <p>Exemplos Welbert</p>
+        <p>Chess usando PyGame - Layout 1</p>
+        <div class="image-container" >
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/exemplo_welbert_1.jpg') }}"
+                    alt="Exemplo Welbert" class="slide-image" style="height: 350px;width: 350px; ">
+        </div>
+    </section>
+    <section style="margin-top: 1.25em;">
+        <p>Exemplos Welbert</p>
+        <p>Chess usando PyGame - Layout 2</p>
+        <div class="image-container">
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/exemplo_welbert_2.jpg') }}"
+                    alt="Exemplo Welbert" class="slide-image" style="height: 350px;width: 350px; ">
+        </div>
+    </section>
+    <section style="margin-top: 1.25em;">
+        <p>Exemplos Welbert</p>
+        <p>Chess usando PyGame - Layout 3</p>
+         <div class="image-container">
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/exemplo_welbert_3.jpg') }}"
+                    alt="Exemplo Welbert" class="slide-image" style="height: 350px;width: 350px; ">
+        </div>
+    </section>
+    <section style="margin-top: 1.25em;">
+        <p>Exemplo Gabriel e Welbert</p>
+        <p>Bin Packing(Streamlit)</p>
+         <div class="image-container">
+            <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/exemplo_gabriel_welbert.jpg') }}"
+                    alt="Exemplo Gabriel e Welbert" class="slide-image">
+        </div>
+    </section>
+    <section style="margin-top: 1.25em;">
+        
+        <p>Exemplo Gabriel e Welbert
+            <br>
+        Bin Packing(PyQt6 e OpenGL)</p>
+        <div class="scroll-area">
+            <div class="image-container">
+                <!-- Template: Carrega imagem estática usando url_for -->                    <img src="{{ url_for('static', filename='images/exemplo_gabriel_welbert_2.png') }}"
+                        alt="Exemplo Gabriel e Welbert 2" class="slide-image" style="height: 75%; width: 75%;">
+            </div>
+        </div>
+    </section>
+<!--Fim Prática-->
+</section>
+<!-- Desativado por Hora
+<section data-auto-animate>
+    <h3>9. Exemplo Interativo</h3>
+    <section id="exampleinteractive/etiquetagabriel" style="margin-top: 1.2em;">
+        <p><b>Etiqueta</b></p>
+        
+    </section>
+    <section id="exampleinteractive/pygamewelbert" style="margin-top: 1.2em;">
+        <p><b>Chess</b></p>
+        <div id="chess-container">
+            <img id="chess-board" src="/chess_board" alt="Tabuleiro de Xadrez">
+        </div>
+    </section>
+</section>
+-->
+
+<!--Inicio Conclusão-->
+<section id='conclusion' data-auto-animate>
+    <p>
+        <b style="font-size: 1.6em; color:blue;">9. Conclusão</b>
+    </p>
+    <section data-auto-animate style="margin-top:0.5em;">
+        <p>
+            <span class="fragment">O Python se tornou uma das Linguagens
+            <br>mais populares e versáteis do mundo,</span> 
+            <br><span class="fragment">dada a sua implementação simplificada</span>  
+            <br><span class="fragment">e compreensível(até para iniciantes)</span>  
+            <br><span class="fragment">fazendo uso de características herdadas
+            <br>de suas linguagens influenciadoras</span> 
+            <br><span class="fragment">e agregando funcionalidades de outras e, 
+            <br>de outros paradigmas também.</span> 
+            <br><span class="fragment">Buscou ajustar-se as necessidades da atualidade</span> 
+            <br><span class="fragment">corrigindo debilidades pautando-se em suas regras,</span> 
+            <br><span class="fragment">consolidando sua filosofia e influência.</span> 
+        </p>
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">
+        <p>
+            <div >
+                <strong>Pontos Fortes:</strong>
+                <br>
+                <ul>
+                    <li class="fragment">Sintaxe clara e legível</li>
+                    <li class="fragment">Documentação e cronograma de suporte claros</li>
+                    <li class="fragment">Ecossistema rico e maduro</li>
+                    <li class="fragment">Comunidade ativa</li>
+                    <li class="fragment">Aplicável em diversos paradigmas e demandas</li>
+                </ul>
+            </div>
+        </p>
+    </section>
+    <section data-auto-animate style="margin-top: 1.5em;">
+        <p>
+            <div>
+                <strong>Futuro:</strong>
+                <span class="fragment"> Python continua evoluindo</span>
+                <span class="fragment"><br> com foco em performance (Python 3.11+),</span>
+                <span class="fragment"><br> type hints e async programming,</span>
+                <span class="fragment"><br> assim como aprimoramentos em frameworks de IA,</span>
+                <span class="fragment"><br> além do uso no backend de algumas LLM's e IA's atuais</span>
+                <span class="fragment"><br> em servidores Linux.</span>
+            </div>
+        </p>
+    </section>
+<!--Fim Conclusão-->
+</section>
+<!--Inicio Apendices-->
+<section id="apendice" data-auto-animate>
+        <!--Inicio Apendice (Gabriel Cassino)-->
+    <section id="apendices/gabriel" data-auto-animate>
+        <h4>10. Apendice (Gabriel Cassino)</h4>
+        <div class="fragment">
+            <p><b>Primeiro Contato</b>
+            <br>Inicialmente dados as quantidades de parâmetros 
+            para solução GUI em desenvolvimento em 2018, tendeu-se
+            ter a aparência de uma linguagem complexa(antes era feito no Excel, 
+            tudo que se desenvolvia provinha de uma leitura extensa 
+            e sem acompanhamento ou auxílio externo)
+            </p>
+        </div>
+    </section>
+    <section data-auto-animate>
+    
+        <h4>10. Apendice (Gabriel Cassino)</h4>
+        <div class="fragment">
+            <p><b>Entendimento e maturidade</b>
+            <br>Após 2022, já com suporte externo,
+            agregou-se conhecimento de frameworks(e de outras LP's),
+            houve uma evolução considerável e uso massivo
+            em diversas soluções
+            </p>
+        </div> 
+    </section>
+    <section data-auto-animate>
+        <h4>10. Apendice (Gabriel Cassino)</h4>
+        <div class="fragment">
+            <p><b>Acerca do aprofundamento na História</b>
+                <br>Houveram descobertas interessantes,
+                aprendizado aprimorado, demistificação de conceitos errôneos
+                acerca da linguagem. O ponto que se destaca é como o Python
+                provêm de uma soma de linguagens e agregado progressivo
+                sendo versátil em diversas áreas.
+            </p>
+        </div> 
+    </section>
+    <section data-auto-animate>
+        <h4>10. Apendice (Gabriel Cassino)</h4>
+        <div class="fragment">
+            <p>
+            <b>Destaca-se nisto:</b>
+            <br>
+            <b>Vasta Biblioteca Padrão</b>
+            <br>Oferece uma grande quantidade de frameworks, 
+            módulos e funções para diversas tarefas, permitindo 
+            ser usado na Web, Console e via Interface(Desktop e Mobile), 
+            atuando em setores como IA's e servidores diversos.</br>
+        </div> 
+    </section>
+    <section data-auto-animate>
+        <h4>10. Apendice (Gabriel Cassino)</h4>
+        <div class="fragment">
+            <p>
+            <b>Destaca-se também:</b>
+            <br>
+            <b>Documentação clara e cronograma de suporte</b>
+            <br>Possui uma documentação vasta e detalhada, o que resulta em uma boa compreensão de sua cronologia, evolução, aplicabilidade e uso.
+            Útil para entender as mudanças, ciclo de vida das atualizações e melhorias possíveis as soluções desenvolvidas para determinada versão.
+            </p>
+        </div>
+       <!--Fim Apendice (Gabriel Cassino)-->
+    </section>
+    
+    <!--Inicio Apendice (Welbert Almeida)-->
+    <section id="apendices/welbert" data-auto-animate>
+        <h4>10. Apendice (Welbert Almeida)</h4>
+        <div class="fragment">
+            <p>
+            Durante o estudo aprofundado da linguagem Python, uma das características que mais se
+            destacou foi o modelo interno de execução baseado em bytecode e na Máquina Virtual
+            Python (PVM). Antes da pesquisa, havia a impressão de que Python era puramente
+            interpretado. No entanto, compreender que existe uma etapa de compilação intermediária
+            para bytecode mostrou-se extremamente revelador.
+            </p>
+        </div>
+    </section>
+    <section data-auto-animate>
+        <h4>10. Apendice (Welbert Almeida)</h4>
+        <div class="fragment">
+            <p>
+            A arquitetura baseada em AST ( Árvore Sintática Abstrata), geração de bytecode e
+execução na PVM demonstra que Python possui uma estrutura interna complexa e muito
+bem organizada, mesmo mantendo a interface simples ao usuário. Isso evidencia o esforço
+da comunidade e dos mantenedores da linguagem em equilibrar facilidade de uso com
+eficiência computacional.
+            </p>
+        </div>
+    </section>
+    <section data-auto-animate>
+        <h4>10. Apendice (Welbert Almeida)</h4>
+        <div class="fragment">
+            <p>
+            Outro aspecto marcante foi o estudo do GIL — Global Interpreter Lock. Apesar de
+            suas limitações para paralelismo real em threads, compreender sua função e razões para
+            existir auxilia na escolha das melhores estratégias para projetos de alto desempenho.<br>
+            <pre>
+                <code class="python" style="height: 10em; font-size: 0.8em;">
+# Visualizando bytecode
+import dis
+def exemplo (a , b ) :
+    return a + b
+dis.dis ( exemplo )
+                </code>
+            </pre>
+            </p>
+        </div>
+    </section>
+    <section data-auto-animate>
+        <h4>10. Apendice (Welbert Almeida)</h4>
+        <div class="fragment">
+            <p>Compreender essa arquitetura modificou profundamente a forma como vejo a
+            linguagem e abriu portas para estudos mais avançados.
+            </p>
+        </div>
+    </section>
+    <!--Fim Apendice (Welbert Almeida)-->
+</section>
+<!--Referencias-->
+<section id='referencias'>
+    <p><b>11. Referências</b></p><br>
+    <ul style="font-size: 0.8em; text-align: left;">
+      <li>
+        <span class="autor">Python Software Foundation.</span>
+        <span class="titulo">Python Documentation.</span>
+        Disponível em: 
+        <a href="https://docs.python.org" target="_blank" rel="noopener noreferrer">
+          https://docs.python.org
+        </a>. 
+      </li>
+      
+      <li>
+        <span class="autor">LUTZ, Mark.</span>
+        <span class="titulo">Programming Python.</span>
+        4. ed. Sebastopol: O'Reilly Media, 2010.
+      </li>
+      
+      <li>
+        <span class="autor">VAN ROSSUM, Guido; DRAKE JR., Fred.</span>
+        <span class="titulo">Python Reference Manual.</span>
+        PythonLabs, 2001.
+      </li>
+      
+      <li>
+        <span class="autor">FLANAGAN, David.</span>
+        <span class="titulo">JavaScript: The Definitive Guide.</span>
+        6. ed. O'Reilly Media, 2011.
+      </li>
+      
+      <li>
+        <span class="autor">SWEIGART, Al.</span>
+        <span class="titulo">Automate the Boring Stuff with Python.</span>
+        2. ed. No Starch Press, 2019.
+      </li>
+      
+      <li>
+        <span class="autor">RAMALHO, Luciano.</span>
+        <span class="titulo">Fluent Python.</span>
+        2. ed. O'Reilly Media, 2022.
+      </li>
+    </ul>
+</section>
+<section >
+    <p><b>11. Referências</b></p><br>
+    <ul style="font-size: 0.8em; text-align: left;">
+      <li>
+        <span class="autor">MCKINNEY, Wes.</span>
+        <span class="titulo">Python for Data Analysis.</span>
+        3. ed. O'Reilly Media, 2022.
+      </li>
+      
+      <li>
+        <span class="autor">MARTELLI, Alex et al.</span>
+        <span class="titulo">Python in a Nutshell.</span>
+        3. ed. O'Reilly Media, 2017.
+      </li>
+      
+      <li>
+        <span class="autor">CARDELLI, Luca.</span>
+        <span class="titulo">Type Systems in Programming Languages.</span>
+        Cambridge University Press, 1996.
+      </li>
+      
+      <li>
+        <span class="autor">GEURTS, Leo; MEERTENS, Lambert; PEMBERTON, Steven.</span>
+        <span class="titulo">ABC Programmer's Handbook.</span>
+        CWI, 1990.
+      </li>
+      
+      <li>
+        <span class="autor">HUTTON, Graham.</span>
+        <span class="titulo">Programming in Haskell.</span>
+        Cambridge University Press, 2007.
+      </li>
+      
+      <li>
+        <span class="autor">GRAHAM, Paul.</span>
+        <span class="titulo">ANSI Common Lisp.</span>
+        Prentice Hall, 1996.
+      </li>
+    </ul>
+</section>
+<section >
+    <p><b>11. Referências</b></p><br>
+    <ul style="font-size: 0.8em; text-align: left;">
+      <li>
+        <span class="autor">GERON, Aurélien.</span>
+        <span class="titulo">Hands-On Machine Learning with Scikit-Learn, Keras and TensorFlow.</span>
+        3. ed. O'Reilly Media, 2023.
+      </li>
+      
+      <li>
+        <span class="autor">BEAZLEY, David; JONES, Brian K.</span>
+        <span class="titulo">Python Cookbook.</span>
+        3. ed. O'Reilly Media, 2013.
+      </li>
+      
+      <li>
+        <span class="autor">GRINBERG, Miguel.</span>
+        <span class="titulo">Flask Web Development.</span>
+        2. ed. O'Reilly Media, 2018.
+      </li>
+      
+      <li>
+        <span class="autor">HOLDAWAY, Nigel George; FORBES, Benjamin.</span>
+        <span class="titulo">Django 4 by Example.</span>
+        Packt Publishing, 2022.
+      </li>
+      
+      <li>
+        <span class="autor">HARRIS, Charles R. et al.</span>
+        <span class="titulo">"Array programming with NumPy".</span>
+        <span class="periodico">Nature</span>, v. 585, p. 357–362, 2020.
+      </li>
+    </ul>
+</section>
+<section >
+    <p><b>11. Referências</b></p><br>
+    <ul style="font-size: 0.8em; text-align: left;">
+        <li>
+            <span class="autor">PETERS, Tim.</span>
+            <span class="titulo">The Zen of Python.</span>
+            1999. Disponível em: 
+            <a href="https://www.python.org/dev/peps/pep-0020/" target="_blank" rel="noopener noreferrer">
+            https://www.python.org/dev/peps/pep-0020/
+            </a>.
+        </li>
+        <li>Paradigmas de programação em Python. Disponível em:<a href="https://medium.com/@amandashichinoe/paradigmas-de-programa%C3%A7%C3%A3o-em-python-a2b9c137dcd0"> Medium</a></li>
+        <li>Tipagem em Python - beecrowd. Disponível em:<a href="https://beecrowd.com/pt/blog-posts/tipagem-em-python/"> BeeCrowd</a>
+        <li>PEP's Diversas(484,526,544,604,636,647). Disponível em:<a href="https://peps.python.org/pep-0000/"> Repósitório Python PEP's</a></li>
+        <li>Documentação Oficial do Python. Disponível em: <a href="https://docs.python.org/3/" target="_blank">https://docs.python.org/3/</a></li>
+        <li>MIT OpenCourseWare. <em>Introduction to Computer Science and Programming in Python</em>. Disponível em: <a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/" target="_blank">MIT OCW</a></li>
+    </ul>
+</section>
+
+<!--Fim parte 2-->
+<section id="agradecimento" data-auto-animate>
+    <!-- Variável de template: URL do logo da PUC Minas -->    
+     <img src={{logo_puc}} alt="PUC Minas Logo">
+    
+    <h1>Obrigado!</h1>
+    <p>
+        <!-- Início do loop para listar os autores -->        
+         {% for autor in autores %}
+            {{ autor }}<br>
+        {% endfor %}        <!-- Fim do loop de autores -->
+    </p>
+    <hr>
+    <p><small><!-- Variável de template: Nome da instituição -->{{instituicao}} <br> 
+        <!-- Variável de template: Lista de matérias -->        {{ materias | join(' e ') }} | <!-- Variável de template: Lista de professores -->{{ professores | join(', ') }}</small></p>
+</section>
+<!-- =================================================================== --><!-- FIM DOS SLIDES --><!-- =================================================================== -->{% endblock %}

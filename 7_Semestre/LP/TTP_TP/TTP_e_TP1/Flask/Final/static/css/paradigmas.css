@@ -1,0 +1,738 @@
+/* Estilos gerais */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para seções */
+section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+h3, h4, h5, h6 {
+    color: #2c3e50;
+    margin-top: 0;
+    font-weight: 600;
+}
+
+h3 {
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+h4 {
+    font-size: 1.6em;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+h5 {
+    font-size: 1.3em;
+    color: #2c3e50;
+    margin-bottom: 12px;
+}
+
+h6 {
+    font-size: 1.1em;
+    color: #34495e;
+}
+
+/* Estilos para cards de paradigmas */
+.paradigms-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin: 40px 0;
+}
+
+.paradigm-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.paradigm-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.paradigm-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.paradigm-card:hover::before {
+    opacity: 1;
+}
+
+.paradigm-card h6 {
+    color: white;
+    font-size: 1.3em;
+    margin: 0 0 10px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.paradigm-card p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-size: 0.95em;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos para explicações de paradigmas */
+.paradigm-explanation, .procedural-explanation {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 35px;
+    align-items: flex-start;
+}
+
+.theory, .code-example {
+    flex: 1;
+}
+
+.theory {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+}
+
+.theory h4 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.theory ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.theory li {
+    margin-bottom: 12px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.theory li::before {
+    content: '▸';
+    color: #3498db;
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+}
+
+.theory strong {
+    color: #e74c3c;
+}
+
+/* Estilos para código */
+pre {
+    background: #282c34;
+    border-radius: 10px;
+    padding: 25px;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid #3a3f4b;
+    position: relative;
+}
+
+pre::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #e74c3c, #3498db, #2ecc71);
+    border-radius: 10px 10px 0 0;
+}
+
+code {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}
+
+.hljs {
+    background: transparent;
+    padding: 0;
+}
+
+/* Estilos para exemplos de código */
+.code-showcase {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.code-column {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.code-block, .example-group, .structured-example, .advanced-async {
+    margin-bottom: 35px;
+}
+
+.example-comparison {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.example-comparison .code-block {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.example-comparison h5 {
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.example-comparison .code-block:first-child h5 {
+    background: #e74c3c;
+    color: white;
+}
+
+.example-comparison .code-block:last-child h5 {
+    background: #2ecc71;
+    color: white;
+}
+
+/* Estilos para conceitos funcionais */
+.functional-concepts {
+    margin-bottom: 35px;
+}
+
+.concept-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.concept {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.concept:hover {
+    transform: translateY(-5px);
+}
+
+.concept h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.concept p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Estilos para elementos estruturados */
+.structured-elements {
+    margin-bottom: 35px;
+}
+
+.element-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.element {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    border-left: 4px solid #3498db;
+    transition: transform 0.3s ease;
+}
+
+.element:hover {
+    transform: translateY(-3px);
+}
+
+.element h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.element p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Estilos para programação assíncrona */
+.async-concepts {
+    margin-bottom: 35px;
+}
+
+.concept-explanation {
+    display: flex;
+    gap: 40px;
+}
+
+.concept-explanation > div {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+}
+
+.concept-explanation ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.concept-explanation li {
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+/* Estilos para programação genérica */
+.generic-intro {
+    margin-bottom: 35px;
+    text-align: center;
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.generic-evolution {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.evolution-step {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    border-left: 4px solid #e74c3c;
+    transition: transform 0.3s ease;
+}
+
+.evolution-step:hover {
+    transform: translateX(5px);
+}
+
+.evolution-step h5 {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+/* Estilos para multi-paradigma */
+.multi-paradigm-showcase {
+    margin-bottom: 35px;
+}
+
+.integration-example {
+    margin: 40px 0;
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px dashed #3498db;
+}
+
+.paradigm-benefits {
+    margin-top: 40px;
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.benefit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 30px 25px;
+    text-align: center;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.benefit:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.benefit:hover::before {
+    opacity: 1;
+}
+
+.benefit h6 {
+    color: white;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+}
+
+.benefit p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos para características de paradigmas */
+.paradigm-features {
+    display: flex;
+    gap: 35px;
+    margin-top: 35px;
+}
+
+.feature {
+    flex: 1;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 25px;
+    border-top: 4px solid #3498db;
+}
+
+.feature:last-child {
+    border-top-color: #e74c3c;
+}
+
+.feature strong {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.feature ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.feature li {
+    margin-bottom: 10px;
+    padding-left: 5px;
+    position: relative;
+}
+
+.feature li::before {
+    content: '•';
+    color: #3498db;
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+}
+
+.feature:last-child li::before {
+    color: #e74c3c;
+}
+
+/* Estilos para princípios OO */
+.oo-principles {
+    margin-bottom: 35px;
+}
+
+.principle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.principle {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 30px 25px;
+    text-align: center;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.principle:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.principle h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.principle p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Animações para fragmentos */
+.fragment {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fragment.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+    
+    section {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+    }
+    
+    h3 {
+        font-size: 1.8em;
+    }
+    
+    .paradigm-explanation,
+    .procedural-explanation,
+    .code-showcase,
+    .example-comparison,
+    .concept-explanation,
+    .paradigm-features {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .paradigms-overview {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+    }
+    
+    .concept-list,
+    .element-grid,
+    .benefit-grid,
+    .principle-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .code-column,
+    .example-comparison .code-block {
+        min-width: 100%;
+    }
+    
+    pre {
+        padding: 20px 15px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 20px 15px;
+    }
+    
+    h3 {
+        font-size: 1.6em;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .paradigm-card {
+        padding: 20px 15px;
+    }
+    
+    .theory, .code-example, .concept-explanation > div {
+        padding: 20px;
+    }
+    
+    .integration-example {
+        padding: 20px 15px;
+    }
+}
+
+/* Animações de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Destaques para código */
+.hljs-keyword {
+    color: #c678dd;
+}
+
+.hljs-built_in {
+    color: #e06c75;
+}
+
+.hljs-string {
+    color: #98c379;
+}
+
+.hljs-number {
+    color: #d19a66;
+}
+
+.hljs-comment {
+    color: #5c6370;
+    font-style: italic;
+}
+
+.hljs-function {
+    color: #61afef;
+}
+
+.hljs-params {
+    color: #d19a66;
+}
+
+/* Efeitos de foco para melhor acessibilidade */
+.paradigm-card:focus,
+.benefit:focus,
+.principle:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Tooltips (para uso futuro) */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}

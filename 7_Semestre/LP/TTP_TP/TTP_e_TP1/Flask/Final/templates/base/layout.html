@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- layout.html - Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>
+    {{title}}
+    </title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon/python.jpg') }}" type="image/x-icon">
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
+    
+    <!-- Highlight.js for code syntax -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/monokai.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Custom CSS 2
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    
+    <script>hljs.highlightAll();</script> 
+       
+    -->
+    
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Top Bar Fixa -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <button id="toggle-sidebar" class="sidebar-toggle-btn" aria-label="Toggle Sidebar">
+                <span class="hamburger-icon">☰</span>
+                <span class="toggle-text">Sumário</span>
+            </button>
+        </div>
+        
+        <div class="top-bar-center">
+            <h1 class="presentation-title">{{ title | safe }}</h1>
+        </div>
+        
+        <div class="top-bar-right">
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="dropdown-toggle">
+                    📊 Trocar Apresentação
+                </button>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    {% for pres in presentation_list %}
+                    <a href="{{ url_for('main.python_presentation') if pres.key == 'ttp' else url_for('main.python_r_comparative') }}" 
+                       class="dropdown-item {% if pres.key == presentation_key %}active{% endif %}">
+                        {{ pres.title | safe }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h3>📑 Sumário</h3>
+            <button id="close-sidebar" class="close-btn" aria-label="Fechar Sidebar">
+                <span class="close-icon">×</span>
+            </button>
+        </div>
+        
+        <ul class="nav-list">
+            {% for item in navigation %}
+            <li class="nav-item">
+                {% if item.has_submenu %}
+                <!-- Item com submenu -->
+                <div class="nav-item-with-submenu">
+                    <a href="#/{{ item.id }}" class="nav-link">
+                        <span class="nav-icon">📌</span>
+                        <span class="nav-text">{{ item.title }}</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <ul class="submenu">
+                        {% for subitem in item.submenu %}
+                        <li>
+                            <a href="#/{{ subitem.id }}" class="submenu-link">
+                                {{ subitem.title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% else %}
+                <!-- Item simples sem submenu -->
+                <a href="#/{{ item.id }}" class="nav-link">
+                    <span class="nav-icon">📌</span>
+                    <span class="nav-text">{{ item.title }}</span>
+                </a>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <!-- Reveal.js Presentation Container -->
+    <div class="reveal">
+        <div class="slides">
+            {% block slides %}
+
+            <!-- Slides serão inseridos aqui pelos templates filhos -->
+            
+            
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Reveal.js Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/plugin/notes/notes.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/pygame.js') }}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

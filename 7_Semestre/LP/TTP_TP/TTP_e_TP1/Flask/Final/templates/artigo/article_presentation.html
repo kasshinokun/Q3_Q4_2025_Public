@@ -1,0 +1,587 @@
+{% extends "base/layout.html" %} {% block slides %}
+<!-- Slide Título -->
+<section id="capa" data-auto-animate>
+  <h7>📈 {{ title }}</h7>
+  <p>
+    <small>
+      <b>
+        Python e R como ferramentas de análise da precipitação em Rondônia
+        <br />MONTEIRO, Luiz Augusto Ferreira. <br />XV ENANPEGE. 2023, Campina
+        Grande - Paraíba.
+      </b>
+
+      <hr style="margin-bottom: 0.5em" />
+
+      {{ instituicao }}<br /><br />
+
+      {% for autor in autores %} {{ autor }}{% if not loop.last %}, {% endif %}
+      {% endfor %}
+      <br />
+      {% for curso in cursos %} {{ curso }}{% if not loop.last %}, {% endif %}
+      {% endfor %}
+      <br /><br />
+      {% for materia in materias %} {{ materia }}{% if not loop.last %}, {%
+      endif %} {% endfor %}
+      <br /><br /><strong>Professor:</strong>
+      {% for professor in professores %} {{ professor }}{% if not loop.last %},
+      {% endif %} {% endfor %}
+    </small>
+  </p>
+</section>
+
+<section id="title" data-auto-animate>
+  <p>
+    📈
+    <b>Python e R como ferramentas de análise da precipitação em Rondônia</b>.
+  </p>
+  <p>
+    <small>
+      MONTEIRO, Luiz Augusto Ferreira.
+      <br /><b
+        >Python e R como ferramentas <br />de análise da precipitação em
+        Rondônia</b
+      >. <br />Anais do XV ENANPEGE: ENCONTRO NACIONAL DE PÓS-GRADUAÇÃO <br />E
+      PESQUISA EM GEOGRAFIA, 15., 2023, <br />Campina Grande. <br />Realize
+      Editora, 2023. <br />p. (Páginas não especificadas). <br />Disponível em:
+      <a href="https://editorarealize.com.br/artigo/visualizar/94351"
+        >https://editorarealize.com.br/artigo/visualizar/94351</a
+      >
+      <br />Acesso em: 05 out. 2025.
+      <hr />
+      <br />Publicado em 12 de dezembro de 2023 <br />ISSN 2175-8875
+    </small>
+  </p>
+</section>
+
+<!-- Slide Resumo -->
+<section id="resumo" data-auto-animate>
+  <h4>2. Resumo</h4>
+  <span>
+      Exploramos diversos fenômenos climáticos que impactam a região amazônica,
+      com foco em Rondônia, destacando a influência do El Niño Oscilação Sul
+      (ENOS), Oscilação Multidecadal do Atlântico (OMA) e Oscilação Decadal do
+      Pacífico (ODP) nas variações climáticas.
+  </span><br>
+  <span class="fragment">
+    
+      A análise de séries temporais de chuva, baseada em dados da plataforma HidroWeb da ANA
+        (1980-2020), em municípios como Porto Velho,
+        Mirante da Serra e Cerejeiras.
+      
+  </span><br>
+  <span class="fragment">
+    
+        Tal análise revelou comportamentos distintos em relação ao regime de chuvas, 
+        reforçando a importância de compreender a interação entre
+        fenômenos climáticos e sua influência específica em diversas
+        localidades, destacando a complexidade dos padrões de chuva na
+        Amazônia.
+    </span>
+  <br>
+  <span class="fragment">
+    <strong>Palavras-chave:</strong> Chuva, Fenômenos Oceano-Atmosféricos,
+        Rondônia, Eventos Extremos.
+    </span>
+</section>
+<section>
+  <p>Localização das cidades</p><br>
+  <img src="{{ url_for('static', filename='images/artigo_cidades.jpg') }}"> 
+</section>
+
+<!-- Slide Introdução -->
+<section id="introducao" data-auto-animate>
+  <h4>3. Introdução</h4>
+  <span>A sociedade demonstra crescente preocupação com extremos climáticos
+      (secas e enchentes), que acarretam sérias consequências como aumento de
+      incêndios e destruição de propriedades.</span>
+  </br>
+  <span class="fragment">Estes eventos estão associados a padrões e fenômenos
+        atmosférico-oceânicos como ENOS, OMA e ODP.</span>
+  <br>
+  <span class="fragment">O estudo da precipitação é crítico, mas desafiador na Amazônia Legal
+        devido à escassez de dados confiáveis.</span>
+  <br>
+  <span class="fragment">Foi conduzida uma análise detalhada dos registros diários de precipitação
+        em Rondônia (1980-2020) para identificar padrões, anomalias e
+        tendências, explorando a relação com fenômenos climáticos.
+    </span>
+</section>
+
+<!-- Slide Referencial Teórico - Eventos Extremos -->
+<section id="referencial-teorico/eventos" data-auto-animate>
+  <h4>4. Referencial Teórico</h4>
+  <h5>Eventos Extremos</h5>
+  <p>
+    Inundações e estiagens prolongadas têm grande impacto na sociedade,
+      causando danos a comunidades e infraestrutura (DE SOUZA et al., 2014;
+      SERRÃO, 2017).
+  </p>
+  <div class="fragment">
+    <p>
+      A variabilidade climática na Amazônia, e consequentemente em Rondônia,
+        é influenciada por diversos sistemas atmosféricos (Foley et al.,
+        2002).
+    </p>
+  </div>
+</section>
+
+<!-- Slide Referencial Teórico - ENOS -->
+<section id="referencial-teorico/enos" data-auto-animate>
+  <span style="font-size:1.6em;"><strong style="color:black;">4. Referencial Teórico</strong><br>El Niño Oscilação Sul (ENOS)</span><br>
+  <ul>
+    <li class="fragment" style="font-size:1em;">
+      El Niño: Temperaturas elevadas da superfície do mar no Pacífico
+        tropical, causando estiagem na Amazônia Legal (MCGREGOR e EBI,
+        2018).
+    </li>
+    <li class="fragment" style="font-size:1em;">
+      La Niña: Oposto do El Niño, com baixas temperaturas na superfície do
+        oceano e aumento de chuvas na AL (ALVES, CABRAL e NASCIMENTO,
+        2022).
+    </li>
+    <li class="fragment" style="font-size:1em;">
+      Duração aproximada de um ano, com variabilidade de 3 a 7 anos (KIST e
+        GEBERT, 2022).
+    </li>
+  </ul>
+</section>
+
+<!-- Slide Referencial Teórico - OMA e ODP -->
+<section id="referencial-teorico/oma-odp" data-auto-animate>
+  <span style="font-size:1.6em;"><b>4. Referencial Teórico</b></span><br>
+    <span style="font-size:1em;">Oscilação Multidecadal do Atlântico (OMA) e Oscilação Decadal do Pacífico
+    (ODP)
+  </span><br>
+  <ul>
+    <li class="fragment" style="font-size:0.95em;">
+      <strong>OMA:</strong> Variação de temperatura na superfície do
+        Atlântico Norte, com ciclos de 60-80 anos (KAYANO e CAPISTRANO,
+        2014).
+    </li>
+    <li class="fragment" style="font-size:0.95em;">
+      <strong>ODP:</strong> Padrão de variabilidade climática no Pacífico,
+        com fases quentes e frias que duram 20-30 anos (MANTUA e HARE,
+        2002).
+    </li>
+    <li class="fragment" style="font-size:0.95em;">
+      Ambos influenciam significativamente o regime de chuvas na
+        Amazônia.
+    </li>
+  </ul>
+</section>
+
+<!-- Slide Metodologia - Área de Estudo -->
+<section id="metodologia/area" data-auto-animate>
+  <h4>5. Metodologia</h4>
+  <h5>Área de Estudo</h5>
+  
+  <div >
+    <p class="fragment">
+        O estudo focou no estado de Rondônia, 
+        <br>localizado na região Norte do
+        <br>Brasil, parte da Amazônia Legal.
+      
+     </p> 
+  </div>
+  <div>
+    <p class="fragment">
+      <strong>Municípios analisados:</strong>      
+    </p>
+  </div>
+  <div>
+    <ul style="font-size: 0.8em">
+        <li class="fragment">Porto Velho (capital)</li>
+        <li class="fragment">Mirante da Serra (região central)</li>
+        <li class="fragment">Cerejeiras (região sul)</li>
+    </ul>
+    <br>
+  </div>
+</section>
+
+<!-- Slide Metodologia - Dados -->
+<section id="metodologia/dados" data-auto-animate>
+  <h4>5. Metodologia</h4>
+  <h5>Dados Utilizados</h5>
+  <div>
+    <ul>
+      <li class="fragment"><strong>Fonte:</strong> Plataforma HidroWeb da Agência Nacional de Águas(ANA)</li>
+        <li class="fragment"><strong>Período:</strong> 1980 a 2020 (40 anos)</li>
+        <li class="fragment"><strong>Variável:</strong> Precipitação diária (mm)</li>
+        <li class="fragment"><strong>Tratamento:</strong> Limpeza de dados, preenchimento de lacunas, agregação temporal</li>
+      </ul>
+    </div>
+</section>
+
+<!-- Slide Metodologia - Análise Python-->
+<section id="metodologia/analise" data-auto-animate>
+  <h4>5. Metodologia</h4>
+  <h5>Ferramentas de Análise</h5>
+  <div class="content-grid">
+    <div>
+      <h6><i class="fa-brands fa-python"></i> Python</h6>
+      <ul style="font-size: 0.8em">
+        <li>Pandas: manipulação de dados</li>
+        <li>NumPy: cálculos numéricos</li>
+        <li>Matplotlib/Seaborn: visualização</li>
+        <li>SciPy: análise estatística</li>
+      </ul>
+    </div>
+   </div> 
+</section>
+<!-- Slide Metodologia - Análise R-->
+<section id="metodologia/analise" data-auto-animate>
+  <h4>5. Metodologia</h4>
+  <h5>Ferramentas de Análise</h5>
+  <div class="content-grid">
+    <div>    
+      <h6><i class="fa-brands fa-r-project"></i> R</h6>
+      <ul style="font-size: 0.8em">
+        <li>dplyr: manipulação de dados</li>
+        <li>ggplot2: visualização</li>
+        <li>forecast: séries temporais</li>
+        <li>corrplot: correlações</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Slide Resultados - Análise Temporal -->
+<section id="resultados-discussao/temporal" data-auto-animate>
+  <span><strong style="font-size:1.6em; color:black;">6. Resultados e Discussão</strong>
+  <br>Análise Temporal</span><br>
+  <span>
+    As séries temporais revelaram padrões sazonais distintos:
+  </span><br>
+  
+  <ul style="font-size: 0.8em">
+    <li class="fragment"><strong>Período chuvoso:</strong> Novembro a Março</li>
+    <li class="fragment"><strong>Período seco:</strong> Junho a Agosto</li>
+    <li class="fragment"><strong>Variabilidade interanual:</strong> Influência de ENOS, OMA e ODP</li>
+  </ul>
+</section>
+
+<!-- Slide Resultados - Análise Espacial -->
+<section id="resultados-discussao/espacial" data-auto-animate>
+  <h4>6. Resultados e Discussão</h4>
+  <h5>Análise Espacial</h5>
+  <table style="font-size: 0.7em">
+    <thead>
+      <tr>
+        <th>Município</th>
+        <th>Precipitação Média Anual (mm)</th>
+        <th>Desvio Padrão</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Porto Velho</td>
+        <td>2.245</td>
+        <td>385</td>
+      </tr>
+      <tr>
+        <td>Mirante da Serra</td>
+        <td>2.180</td>
+        <td>420</td>
+      </tr>
+      <tr>
+        <td>Cerejeiras</td>
+        <td>1.950</td>
+        <td>340</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="fragment">
+    Porto Velho apresenta maior precipitação média, enquanto Cerejeiras
+      mostra menor variabilidade.
+  </p>
+</section>
+
+<!-- Slide Resultados - Correlações -->
+<section id="resultados-discussao/correlacao" data-auto-animate>
+  <span style="font-size:1.6em;"><strong>6. Resultados e Discussão</strong><br>Correlações com Fenômenos Climáticos</span><br>
+  <ul>
+    <li class="fragment"><strong>El Niño:</strong> Correlação negativa significativa (-0.65) com precipitação</li>
+    <li class="fragment"><strong>La Niña:</strong> Correlação positiva moderada (+0.48) com precipitação</li>
+    <li class="fragment"><strong>OMA/ODP:</strong> Influência de longo prazo na tendência de precipitação</li>
+  </ul>
+</section>
+<!-- Slide Gabriel -->
+<section id="consideracoes/gabriel" data-auto-animate>
+  <h5>7. Considerações<br>Apêndice - Gabriel Cassino</h5>
+  <div class="scroll-wrapper">
+    
+    <div style="margin-top: 1.5em">
+      <div >
+        <div style="font-size: 0.8em; text-align: left; margin-left: 1.5em">
+          <br><span class="fragment">O Aquecimento Global já se manifesta provocando mudanças em fenomenos climáticos
+          <br>de grande influência sobre o cotidiano do ser humano, tanto o La Niña quanto o El Niño
+          <br>assim como os fenomenos de longo prazo(OMA/ODP).</span>
+          <br><span class="fragment">Tal ação exigiu do grupo e do autor do artigo uma necessidade de provisionamento de algo
+          <br>de maior precisão estatística.</span><span class="fragment"> Tendo ciência da urgência da exatidão em uma resposta clara
+          <br>e tendo conhecimento do poder computacional do Python aliado ao R deu-se ínício
+          <br>ao estudo,</span><span class="fragment">que culminou na base para modelos futuros mais exatos podendo ser
+          <br>aprimorados por tecnologias como o uso</span><span class="fragment">de LLM' e/ou IA's </span><span class="fragment">associados ao modelo<br>estatístico em uso.</span>
+        </div>
+      </div>
+    </div>
+   </div>
+ </section> 
+<section data-auto-animate>
+  <h5>7. Considerações<br>Apêndice - Gabriel Cassino</h5>
+  <div class="scroll-wrapper">
+    <div style="margin-top: 1.5em">
+      <div>
+        <h6><strong>Minhas Contribuições</strong></h6>
+        <ul style="font-size: 0.8em; text-align: left; margin-left: 1.5em">
+          <li>Pesquisa de artigos e teses pertinentes a pesquisa</li>
+          <li>Sistematização dos resultados do artigo em slides</li>
+          <li>Construção narrativa visual inicial</li>
+          <li>Estruturação da metodologia e análises</li>
+          <li>Integração das informações do PDF com Reveal.js</li>
+          <li>Organização das informações coletadas</li>
+          <li>Preparação do resumo técnico baseado no artigo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+ </section>
+ <section data-auto-animate>
+  <h5>7. Considerações<br>Apêndice - Gabriel Cassino</h5>
+  <div class="scroll-wrapper">
+    <div style="margin-top: 1.5em">
+      <div class="fragment">
+        <h6><strong>Aspectos Destacados do Artigo</strong></h6>
+        <ul style="font-size: 0.8em; text-align: left; margin-left: 1.5em">
+          <li>A atualidade da influência do Aquecimento Global</li>
+          <li>O papel das chuvas e sua abrangência no cotidiano da população</li>
+          <li>A importância da coleta de dados e do estudo de caso</li>
+          <li>O uso combinado das linguagens para correlacionar os dados temporais</li>
+          <li>A importância do estudo para futuros modelos analíticos</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+</section>
+<!-- Slide Welbert -->
+<section id="consideracoes/welbert" data-auto-animate>
+  <h5>7. Considerações<br>Apêndice – Welbert Almeida</h5>
+
+  <!-- TUDO que passa da tela fica dentro do scroll-wrapper -->
+  <div class="scroll-wrapper">
+    <div style="margin-top: 1.5em">
+      <p style="font-size: 0.9em">
+        Este material foi estruturado com base no artigo original
+        <strong
+          >“Python e R como ferramentas de análise da precipitação em
+          Rondônia”</strong
+        >, garantindo fidelidade ao conteúdo científico e clareza didática na
+        apresentação.
+      </p>
+      <p>Denotá-se que apesar de terem própositos similares para o objetivo, ambas possuem abordagens diferentes. Pórem Python e o R foram complementares entre si para gestão de dados massivos e concessão de uma visão inicial da prototipação de modelos estáticos precisos para análises não lineares de dados temporais e históricos acerca de um tema provisionando um entendimento aprimorado da dinâmica em foco pelo estudo.</p>
+    </div>
+
+    
+    <div style="margin-top: 1.5em">
+      <div class="fragment">
+        <h6><strong>Minhas Contribuições</strong></h6>
+        <ul style="font-size: 0.8em; text-align: left; margin-left: 1.5em">
+          <li>Pesquisa de artigos e teses pertinentes a pesquisa</li>
+          <li>Revisão e adição de Sistematização dos resultados do artigo em slides</li>
+          <li>Construção e Finalização de narrativa visual</li>
+          <li>Estruturação e Otimização da metodologia e análises</li>
+          <li>Otimização da Integração das informações do PDF com Reveal.js</li>
+          <li>Otimização da organização das informações coletadas</li>
+          <li>Revisão final do resumo técnico baseado no artigo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 1.5em">
+      <div class="fragment">
+        <h6><strong>Aspectos Destacados do Artigo</strong></h6>
+        <ul style="font-size: 0.8em; text-align: left; margin-left: 1.5em">
+          <li>Influência de fenômenos climáticos nas chuvas de Rondônia</li>
+          <li>Análise temporal de 3 municípios</li>
+          <li>Métodos de imputação de dados</li>
+          <li>Divisão em mesorregiões do IBGE</li>
+          <li>Tendências observadas ao longo de 40 anos</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div style="margin-top: 1.5em">
+      <div class="fragment">
+        <h6><strong>Ferramentas e Tecnologias</strong></h6>
+        <ul style="font-size: 0.8em; text-align: left; margin-left: 1.5em">
+          <li>Python — Pandas, NumPy, Matplotlib</li>
+          <li>R — dplyr, ggplot2, forecast</li>
+          <li>Reveal.js — estrutura e animação</li>
+          <li>HTML/CSS — personalização visual</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Slide Conclusão -->
+<section id="conclusao" data-auto-animate >
+    
+    <!-- Inicio-->
+    <h4>8. Conclusão</h4>
+    <section>
+      <div>
+          <p>A análise demonstrou que Python e R são ferramentas complementares 
+            e eficazes para estudos climáticos.<br>
+          <strong>Principais achados:</strong><br>
+          <ul style="font-size: 0.8em;">
+              <li>Forte influência do ENOS no regime de chuvas de Rondônia</li>
+              <li>Variabilidade espacial significativa entre municípios</li>
+              <li>Tendências de longo prazo associadas a OMA e ODP</li>
+          </ul>
+          </p>
+      </div>
+    </section>
+    <section>
+      <div>
+        <p>
+          <strong>Implicações:</strong> 
+          <br>Melhor compreensão dos padrões climáticos pode auxiliar no 
+          planejamento agrícola e gestão de recursos hídricos.</p>
+      </div>
+      <!-- Fim-->
+    </section>
+<!--Fim Slide Conclusão -->
+</section>
+
+<section id="referencias" data-auto-animate>
+  <h4>9. Referências</h4>
+
+  <!-- TUDO que passa da tela fica dentro do scroll-wrapper -->
+  <div class="scroll-wrapper">
+    <div style="font-size: 0.6em; text-align: left">
+      <p>
+        ALVES, L. M.; CABRAL, J. B.; NASCIMENTO, M. G. Impactos do La Niña na
+        precipitação da Amazônia. <em>Revista Brasileira de Meteorologia</em>, v.
+        37, n. 2, p. 215-228, 2022.
+      </p>
+
+      <p>
+        DE SOUZA, E. B. et al. Eventos extremos de precipitação na Amazônia.
+        <em>Acta Amazonica</em>, v. 44, n. 3, p. 321-334, 2014.
+      </p>
+
+      <p>
+        FOLEY, J. A. et al. Amazonia revealed: forest degradation and loss of
+        ecosystem goods and services.
+        <em>Frontiers in Ecology and the Environment</em>, v. 5, n. 1, p. 25-32,
+        2002.
+      </p>
+
+      <p>
+        KAYANO, M. T.; CAPISTRANO, V. B. How the Atlantic multidecadal oscillation
+        (AMO) modifies the ENSO influence on the South American rainfall.
+        <em>International Journal of Climatology</em>, v. 34, n. 1, p. 162-178,
+        2014.
+      </p>
+
+      <p>
+        KIST, A.; GEBERT, L. Variabilidade do ENOS e seus impactos.
+        <em>Revista de Climatologia</em>, v. 22, p. 45-60, 2022.
+      </p>
+
+      <p>
+        MANTUA, N. J.; HARE, S. R. The Pacific Decadal Oscillation.
+        <em>Journal of Oceanography</em>, v. 58, n. 1, p. 35-44, 2002.
+      </p>
+
+      <p>
+        MCGREGOR, G. R.; EBI, K. L. El Niño Southern Oscillation (ENSO) and
+        health. <em>International Journal of Biometeorology</em>, v. 62, n. 5, p.
+        703-704, 2018.
+      </p>
+
+      <p>
+        SERRÃO, E. A. O. Análise de eventos extremos de precipitação em Rondônia.
+        <em>Revista Geográfica Acadêmica</em>, v. 11, n. 2, p. 89-105, 2017.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Slide Referências -->
+<section  data-auto-animate>
+  <h4>9. Referências</h4>
+  <!-- TUDO que passa da tela fica dentro do scroll-wrapper -->
+  <div class="scroll-wrapper">
+    <div style="font-size: 0.6em; text-align: left">
+      <p>
+        ALVES, L. M.; CABRAL, J. B.; NASCIMENTO, M. G. Impactos do La Niña na
+        precipitação da Amazônia. <em>Revista Brasileira de Meteorologia</em>, v.
+        37, n. 2, p. 215-228, 2022.
+      </p>
+
+      <p>
+        DE SOUZA, E. B. et al. Eventos extremos de precipitação na Amazônia.
+        <em>Acta Amazonica</em>, v. 44, n. 3, p. 321-334, 2014.
+      </p>
+
+      <p>
+        FOLEY, J. A. et al. Amazonia revealed: forest degradation and loss of
+        ecosystem goods and services.
+        <em>Frontiers in Ecology and the Environment</em>, v. 5, n. 1, p. 25-32,
+        2002.
+      </p>
+
+      <p>
+        KAYANO, M. T.; CAPISTRANO, V. B. How the Atlantic multidecadal oscillation
+        (AMO) modifies the ENSO influence on the South American rainfall.
+        <em>International Journal of Climatology</em>, v. 34, n. 1, p. 162-178,
+        2014.
+      </p>
+
+      <p>
+        KIST, A.; GEBERT, L. Variabilidade do ENOS e seus impactos.
+        <em>Revista de Climatologia</em>, v. 22, p. 45-60, 2022.
+      </p>
+
+      <p>
+        MANTUA, N. J.; HARE, S. R. The Pacific Decadal Oscillation.
+        <em>Journal of Oceanography</em>, v. 58, n. 1, p. 35-44, 2002.
+      </p>
+
+      <p>
+        MCGREGOR, G. R.; EBI, K. L. El Niño Southern Oscillation (ENSO) and
+        health. <em>International Journal of Biometeorology</em>, v. 62, n. 5, p.
+        703-704, 2018.
+      </p>
+
+      <p>
+        SERRÃO, E. A. O. Análise de eventos extremos de precipitação em Rondônia.
+        <em>Revista Geográfica Acadêmica</em>, v. 11, n. 2, p. 89-105, 2017.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- Slide Agradecimento -->
+<section id="agradecimento" data-auto-animate>
+  <img
+    src="https://www.pucminas.br/Style%20Library/STATIC/img/2025/brasao-pucminas-2025-versao-positiva.png"
+    alt="PUC Minas Logo"
+  />
+
+  <h1>Obrigado!</h1>
+  <p>
+    {% for autor in autores %} {{ autor }}<br />
+    {% endfor %}
+  </p>
+  <hr />
+  <p>
+    <small
+      >{{instituicao}} <br />
+      {{ materias | join(' e ') }} | {{ professores | join(', ') }}</small
+    >
+  </p>
+</section>
+{% endblock %}

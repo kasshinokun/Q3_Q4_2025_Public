@@ -10,6 +10,10 @@ Tecnologia em uso: Python usando o framework Streamlit
 
 [Link](em desenvolvimento)- Migrado em 25-09-2025
 
+## 📄 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/LICENSE.md) para detalhes.
+
 ## Migração para Flask
 
 em 25-09-2025, devido a riqueza de detalhes objetivada o projeto foi migrado para Flask

@@ -9,6 +9,10 @@ Os projetos foram desenvolvidos pelos alunos:
 *   **Gabriel da Silva Cassino**
 *   **Welbert Junio Afonso de Almeida**
 
+## 📄 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/LICENSE.md) para detalhes.
+
 ## 🎯 Objetivo Geral
 
 O objetivo principal desta coleção de projetos é aplicar e demonstrar o conhecimento adquirido em diferentes paradigmas de programação, estruturas de dados e tecnologias, utilizando linguagens como Python e R, para resolver problemas práticos e complexos em diversas áreas.
@@ -29,6 +33,4 @@ A tabela a seguir lista e descreve cada um dos projetos contidos neste repositó
 
 ---
 
-## 📄 Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/LICENSE.md) para detalhes.
