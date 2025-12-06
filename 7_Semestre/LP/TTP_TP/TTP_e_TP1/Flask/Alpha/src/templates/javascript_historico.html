@@ -1,74 +1,115 @@
 {% extends "base.html" %}
 
-{% block title %}{{ data.title }} - Introdução{% endblock %}
+{% block title %}{{ data.title }}{% endblock %}
 
 {% block content %}
-<div class="container js-theme">
+<div class="container">
     <div class="slide">
         <div class="slide-header">
             <h1 class="slide-title">{{ data.title }}</h1>
-            <p class="slide-subtitle">{{ data.subtitle }}</p>
         </div>
         
         <div class="slide-content">
-            <p>{{ data.description }}</p>
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>👨‍💻 Criador</h4>
+                    <p><strong>{{ data.creator }}</strong> - Desenvolveu o JavaScript em {{ data.origin }}</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>💡 Inspiração</h4>
+                    <p>{{ data.inspiration }}</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>⏱️ Desenvolvimento</h4>
+                    <p>{{ data.development }}</p>
+                </div>
+            </div>
         </div>
         
-        <div class="key-points">
-            {% for point in data.key_points %}
-            <div class="key-point">
-                <p>{{ point }}</p>
+        <h3 style="color: var(--primary-color); margin: 30px 0 20px 0; font-size: 1.5rem;">Cronologia do JavaScript</h3>
+        
+        <div class="timeline">
+            {% for item in data.timeline %}
+            <div class="timeline-item">
+                <div class="timeline-year">{{ item.year }}</div>
+                <div class="timeline-event">{{ item.event }}</div>
             </div>
             {% endfor %}
         </div>
     </div>
 
-    <div class="navigation-cards">
-        <a href="{{ url_for('javascript_historico') }}" class="nav-card">
-            <span class="nav-card-icon">📅</span>
-            <h3 class="nav-card-title">Histórico</h3>
-            <p class="nav-card-description">
-                Conheça a história do JavaScript desde sua criação em 10 dias 
-                por Brendan Eich até sua evolução moderna.
-            </p>
-        </a>
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Marcos Importantes do ECMAScript</h2>
+        </div>
+        
+        <div class="slide-content">
+            <div class="paradigms-grid">
+                <div class="paradigm-card">
+                    <div class="paradigm-name">ECMAScript 3 (1999)</div>
+                    <div class="paradigm-description">
+                        Adoção de expressões regulares, tratamento de exceções com try/catch, 
+                        novos métodos para strings e arrays, e formatação de saída numérica.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">ECMAScript 5 (2009)</div>
+                    <div class="paradigm-description">
+                        Modo estrito ("use strict"), métodos de array (map, filter, reduce), 
+                        suporte a JSON nativo e propriedades de objeto configuráveis.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">ECMAScript 6 (2015)</div>
+                    <div class="paradigm-description">
+                        Adição de classes, arrow functions, templates literais, let/const, 
+                        módulos, promises e desestruturação.
+                    </div>
+                </div>
+                
+                <div class="paradigm-card">
+                    <div class="paradigm-name">ECMAScript 2020+</div>
+                    <div class="paradigm-description">
+                        Atualizações anuais com BigInt, optional chaining, nullish coalescing, 
+                        top-level await, private class fields e pattern matching.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <a href="{{ url_for('javascript_paradigmas') }}" class="nav-card">
-            <span class="nav-card-icon">🔄</span>
-            <h3 class="nav-card-title">Paradigmas</h3>
-            <p class="nav-card-description">
-                Explore os paradigmas suportados: Funcional, POO baseada em 
-                protótipos e Imperativa.
-            </p>
-        </a>
-
-        <a href="{{ url_for('javascript_caracteristicas') }}" class="nav-card">
-            <span class="nav-card-icon">⭐</span>
-            <h3 class="nav-card-title">Características</h3>
-            <p class="nav-card-description">
-                Descubra as características que fazem do JavaScript a 
-                linguagem da web moderna.
-            </p>
-        </a>
-
-        <a href="{{ url_for('javascript_linguagens_relacionadas') }}" class="nav-card">
-            <span class="nav-card-icon">🔗</span>
-            <h3 class="nav-card-title">Linguagens Relacionadas</h3>
-            <p class="nav-card-description">
-                Entenda as influências e o impacto do JavaScript no 
-                ecossistema de programação.
-            </p>
-        </a>
-
-        <a href="{{ url_for('javascript_exemplos') }}" class="nav-card">
-            <span class="nav-card-icon">💻</span>
-            <h3 class="nav-card-title">Exemplos</h3>
-            <p class="nav-card-description">
-                Veja exemplos práticos demonstrando a versatilidade 
-                e poder do JavaScript moderno.
-            </p>
-        </a>
+    <div class="slide">
+        <div class="slide-header">
+            <h2 class="slide-title">Evolução e Ecossistema</h2>
+        </div>
+        
+        <div class="slide-content">
+            <div class="key-points">
+                <div class="key-point">
+                    <h4>🌐 Do Navegador para o Servidor</h4>
+                    <p>JavaScript começou como linguagem de front-end, mas com o Node.js (2009) 
+                    tornou-se uma das principais linguagens para back-end e desenvolvimento full-stack.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>🏢 Padronização pela ECMA</h4>
+                    <p>A linguagem é padronizada pela ECMA International como ECMAScript, 
+                    com evolução gerenciada pelo comitê TC39 que inclui representantes de 
+                    todas as grandes empresas de tecnologia.</p>
+                </div>
+                
+                <div class="key-point">
+                    <h4>📚 Ecossistema Moderno</h4>
+                    <p>Possui um dos maiores ecossistemas com frameworks como React, Angular, 
+                    Vue.js, bibliotecas utilitárias e o maior repositório de pacotes (npm) 
+                    do mundo.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
-
