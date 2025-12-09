@@ -31,16 +31,34 @@
 
 <!-- Seção para destacar o Repositório-->
 <section id="repositorio">
-    <h3>Nosso projeto e documentação</h3>    
-    <p>Onde encontrar nosso projeto</p>
-        <div class="github-link">
-            <img src="https://wallpapers.com/images/featured/github-logo-png-s8wb6yxlatsyp8s1.jpg" alt="Github Logo" width="100em" height="40em"><br>
-            <a href={{ url_repositorio }} target="_blank" style="font-size: 0.7em; font-weight: bold;">Repositório no GitHub</a>
-        </div>
-        <div>
-        <img  src="{{ url_for('static', filename='images/url_repositorio.png') }}"
+    <h4 style="color:blue;">Nosso projeto e documentação, e o artigo</h4>    
+        <span><b>Onde encontrar</b></span><br>
+        <div class="box">
+          <span>Nosso projeto:</span>
+          <div class="github-link">
+              <img src="https://wallpapers.com/images/featured/github-logo-png-s8wb6yxlatsyp8s1.jpg" alt="Github Logo" width="100em" height="40em"><br>
+              <a href={{ url_repositorio }} target="_blank" style="font-size: 0.7em; font-weight: bold;">Repositório no GitHub</a>
+          </div>
+            <img  src="{{ url_for('static', filename='images/url_repositorio.png') }}"
                     alt="Repositorio" class="slide-image" style="height: 7em; width: 7em;" >
+        
         </div>
+        <div class="box">
+            <span>Artigo esolhido:</span>
+            <div class="github-link">
+                <img src="https://cdn.bitrix24.com.br/b15590579/landing/bb5/bb509c487f0cb29fc08028f1f254c766/LOGO_REALIZE_1x.png" alt="Editora Logo" width="100em" height="40em"><br>
+                <a href="https://editorarealize.com.br/artigo/visualizar/94351" target="_blank" style="font-size: 0.7em; font-weight: bold;">Editora Realize</a>
+            </div>
+            <img  src="{{ url_for('static', filename='images/artigo/qrcode_editora.png') }}"
+                    alt="Editora" class="slide-image" style="height: 7em; width: 7em;" >
+        </div>
+        <style>
+        div.box {
+            width: 500px;
+            height: 500px;
+            display: inline-block;
+        }
+        </style>
     </p>
 </section>
 
@@ -48,8 +66,7 @@
   <p>
     📈
     <b>Python e R como ferramentas de análise da precipitação em Rondônia</b>.
-  </p>
-  <p>
+  <br>
     <small>
       MONTEIRO, Luiz Augusto Ferreira.
       <br /><b
@@ -57,10 +74,17 @@
         Rondônia</b
       >. <br />Anais do XV ENANPEGE: ENCONTRO NACIONAL DE PÓS-GRADUAÇÃO <br />E
       PESQUISA EM GEOGRAFIA, 15., 2023, <br />Campina Grande. <br />Realize
-      Editora, 2023. <br />p. (Páginas não especificadas). <br />Disponível em:
+      Editora, 2023. <br />Disponível em:
       <a href="https://editorarealize.com.br/artigo/visualizar/94351"
         >https://editorarealize.com.br/artigo/visualizar/94351</a
       >
+      
+      <!--
+      <div>
+        <img  src="{{ url_for('static', filename='images/artigo/qrcode_editora.png') }}"
+                    alt="Repositorio"  style="height: 6em; width: 6em;" >
+      </div>
+      -->
       <br />Acesso em: 05 out. 2025.
       <hr />
       <br />Publicado em 12 de dezembro de 2023 <br />ISSN 2175-8875
@@ -79,7 +103,8 @@
   </span><br>
   <span class="fragment">
     
-      A análise de séries temporais de chuva, baseada em dados da plataforma HidroWeb da ANA
+      A análise de séries temporais de chuva, baseada em dados da plataforma HidroWeb 
+      da Agência Nacional de Águas(ANA)
         (1980-2020), em municípios como Porto Velho,
         Mirante da Serra e Cerejeiras.
       
@@ -106,38 +131,63 @@
 <!-- Slide Introdução -->
 <section id="introducao" data-auto-animate>
   <h4>3. Introdução</h4>
-  <span>A sociedade demonstra crescente preocupação com extremos climáticos
-      (secas e enchentes), que acarretam sérias consequências como aumento de
-      incêndios e destruição de propriedades.</span>
-  </br>
-  <span class="fragment">Estes eventos estão associados a padrões e fenômenos
-        atmosférico-oceânicos como ENOS, OMA e ODP.</span>
-  <br>
-  <span class="fragment">O estudo da precipitação é crítico, mas desafiador na Amazônia Legal
-        devido à escassez de dados confiáveis.</span>
-  <br>
-  <span class="fragment">Foi conduzida uma análise detalhada dos registros diários de precipitação
-        em Rondônia (1980-2020) para identificar padrões, anomalias e
-        tendências, explorando a relação com fenômenos climáticos.
-    </span>
+  <section style="margin-top:1.5em">
+    <span class="fragment">A sociedade demonstra crescente preocupação com extremos climáticos
+        (secas e enchentes), que acarretam sérias consequências como aumento de
+        incêndios e destruição de propriedades.</span>
+    </br>
+    <span class="fragment">Estes eventos estão associados a padrões e fenômenos
+          atmosférico-oceânicos como ENOS, OMA e ODP.</span>
+    <br>
+  </section>
+  <section style="margin-top:1.5em">
+    <span >O estudo da precipitação é crítico, mas desafiador na Amazônia Legal
+          devido à escassez de dados confiáveis.</span>
+    <br>
+    <img  src="{{ url_for('static', filename='images/artigo/1.png') }}"
+                    alt="Editora" class="slide-image" style="height: 15em; width: 25em;" >
+  </section>
+  <section style="margin-top:1.5em">
+    <span >Foi conduzida uma análise detalhada dos registros diários de precipitação
+          em Rondônia (1980-2020) para identificar padrões, anomalias e
+          tendências, explorando a relação com fenômenos climáticos.
+      </span>
+      <br>
+    <img  src="{{ url_for('static', filename='images/artigo/2.png') }}"
+                    alt="Editora" class="slide-image" style="height: 450px; width: 700px;" >
+  </section>
 </section>
-
 <!-- Slide Referencial Teórico - Eventos Extremos -->
 <section id="referencial-teorico/eventos" data-auto-animate>
   <h4>4. Referencial Teórico</h4>
   <h5>Eventos Extremos</h5>
-  <p>
-    Inundações e estiagens prolongadas têm grande impacto na sociedade,
-      causando danos a comunidades e infraestrutura (DE SOUZA et al., 2014;
-      SERRÃO, 2017).
-  </p>
-  <div class="fragment">
-    <p>
-      A variabilidade climática na Amazônia, e consequentemente em Rondônia,
-        é influenciada por diversos sistemas atmosféricos (Foley et al.,
-        2002).
+  <div class="box">
+       <p>
+          Inundações e estiagens prolongadas têm grande impacto na sociedade,
+          causando danos a comunidades e infraestrutura (DE SOUZA et al., 2014;
+          SERRÃO, 2017).
     </p>
   </div>
+  <div class="box">
+      <img  src="{{ url_for('static', filename='images/artigo/7.png') }}"
+                    alt="Editora" class="slide-image" style="height: 250px;" >
+  </div>
+  <br>
+  <span>
+        A variabilidade climática na Amazônia, e consequentemente em Rondônia,
+        é influenciada por diversos sistemas atmosféricos (Foley et al.,
+        2002).
+  </span>
+  <style>
+  div.box {
+      width: 600px;
+      height:300px;
+      display: inline-block;
+  }
+  </style>
+  
+  
+  
 </section>
 
 <!-- Slide Referencial Teórico - ENOS -->
@@ -151,7 +201,7 @@
     </li>
     <li class="fragment" style="font-size:1em;">
       La Niña: Oposto do El Niño, com baixas temperaturas na superfície do
-        oceano e aumento de chuvas na AL (ALVES, CABRAL e NASCIMENTO,
+        oceano e aumento de chuvas na Amazônia (ALVES, CABRAL e NASCIMENTO,
         2022).
     </li>
     <li class="fragment" style="font-size:1em;">
@@ -166,23 +216,37 @@
   <span style="font-size:1.6em;"><b>4. Referencial Teórico</b></span><br>
     <span style="font-size:1em;">Oscilação Multidecadal do Atlântico (OMA) e Oscilação Decadal do Pacífico
     (ODP)
-  </span><br>
-  <ul>
-    <li class="fragment" style="font-size:0.95em;">
-      <strong>OMA:</strong> Variação de temperatura na superfície do
-        Atlântico Norte, com ciclos de 60-80 anos (KAYANO e CAPISTRANO,
-        2014).
-    </li>
-    <li class="fragment" style="font-size:0.95em;">
-      <strong>ODP:</strong> Padrão de variabilidade climática no Pacífico,
-        com fases quentes e frias que duram 20-30 anos (MANTUA e HARE,
-        2002).
-    </li>
-    <li class="fragment" style="font-size:0.95em;">
-      Ambos influenciam significativamente o regime de chuvas na
-        Amazônia.
-    </li>
-  </ul>
+  </span>
+  <section style="margin-top:1.5em;">
+    <div class="box">
+    
+      <span class="fragment" style="font-size:0.95em;">
+        <strong>OMA:</strong> Variação de temperatura na superfície do
+          Atlântico Norte, com ciclos de 60-80 anos (KAYANO e CAPISTRANO,
+          2014).
+      </span>
+    
+    </div>
+    <div class="box fragment">
+      <img  src="{{ url_for('static', filename='images/artigo/3.png') }}"
+                    alt="Editora" class="slide-image" style="margin-top:3.5em; height: 250px;" >
+    </div><br>
+    <span class="fragment" style="font-size:0.95em;">
+        <strong>ODP:</strong> Padrão de variabilidade climática no Pacífico,
+          com fases quentes e frias que duram 20-30 anos (MANTUA e HARE,
+          2002).<br>
+          <span class="fragment">Ambos influenciam significativamente o regime de chuvas na
+        Amazônia.</span>
+      </span>
+    <style>
+      div.box {
+          width: 650px;
+          height:270px;
+          display: inline-block;
+      }
+    </style>
+  </section>
+  
 </section>
 
 <!-- Slide Metodologia - Área de Estudo -->
@@ -194,7 +258,7 @@
     <p class="fragment">
         O estudo focou no estado de Rondônia, 
         <br>localizado na região Norte do
-        <br>Brasil, parte da Amazônia Legal.
+        <br>Brasil, parte da Amazônia.
       
      </p> 
   </div>
@@ -219,7 +283,7 @@
   <h5>Dados Utilizados</h5>
   <div>
     <ul>
-      <li class="fragment"><strong>Fonte:</strong> Plataforma HidroWeb da Agência Nacional de Águas(ANA)</li>
+      <li class="fragment"><strong>Fonte:</strong> Plataforma HidroWeb da ANA</li>
         <li class="fragment"><strong>Período:</strong> 1980 a 2020 (40 anos)</li>
         <li class="fragment"><strong>Variável:</strong> Precipitação diária (mm)</li>
         <li class="fragment"><strong>Tratamento:</strong> Limpeza de dados, preenchimento de lacunas, agregação temporal</li>
@@ -231,8 +295,8 @@
 <section id="metodologia/analise" data-auto-animate>
   <h4>5. Metodologia</h4>
   <h5>Ferramentas de Análise</h5>
-  <div class="content-grid">
-    <div>
+  <div class="content-grid box">
+    <div >
       <h6><i class="fa-brands fa-python"></i> Python</h6>
       <ul style="font-size: 0.8em">
         <li>Pandas: manipulação de dados</li>
@@ -242,13 +306,25 @@
       </ul>
     </div>
    </div> 
+   <div class="box">
+      <br>
+      <img  src="{{ url_for('static', filename='images/artigo/4.png') }}"
+                    alt="Editora" class="slide-image fragment" style="height:350px; width:450px;">
+   </div>
+   <style>
+      div.box {
+          width: 650px;
+          
+          display: inline-block;
+      }
+    </style>
 </section>
 <!-- Slide Metodologia - Análise R-->
-<section id="metodologia/analise" data-auto-animate>
+<section data-auto-animate>
   <h4>5. Metodologia</h4>
   <h5>Ferramentas de Análise</h5>
-  <div class="content-grid">
-    <div>    
+  <div class="content-grid box">
+    <div >
       <h6><i class="fa-brands fa-r-project"></i> R</h6>
       <ul style="font-size: 0.8em">
         <li>dplyr: manipulação de dados</li>
@@ -257,9 +333,20 @@
         <li>corrplot: correlações</li>
       </ul>
     </div>
-  </div>
+   </div> 
+   <div class="box">
+      <br>
+      <img  src="{{ url_for('static', filename='images/artigo/5.png') }}"
+                    alt="Editora" class="slide-image fragment" style="height:350px; width:450px;">
+   </div>
+   <style>
+      div.box {
+          width: 650px;
+          
+          display: inline-block;
+      }
+    </style>
 </section>
-
 <!-- Slide Resultados - Análise Temporal -->
 <section id="resultados-discussao/temporal" data-auto-animate>
   <span><strong style="font-size:1.6em; color:black;">6. Resultados e Discussão</strong>
@@ -314,11 +401,23 @@
 <!-- Slide Resultados - Correlações -->
 <section id="resultados-discussao/correlacao" data-auto-animate>
   <span style="font-size:1.6em;"><strong>6. Resultados e Discussão</strong><br>Correlações com Fenômenos Climáticos</span><br>
-  <ul>
+  <div class="box">
     <li class="fragment"><strong>El Niño:</strong> Correlação negativa significativa (-0.65) com precipitação</li>
     <li class="fragment"><strong>La Niña:</strong> Correlação positiva moderada (+0.48) com precipitação</li>
     <li class="fragment"><strong>OMA/ODP:</strong> Influência de longo prazo na tendência de precipitação</li>
-  </ul>
+  </div>
+  <div class="box">
+  <br>
+      <img  src="{{ url_for('static', filename='images/artigo/6.png') }}"
+                    alt="Editora" class="slide-image fragment" style="height:350px; width:450px;">
+   </div>
+   <style>
+      div.box {
+          width: 650px;
+          
+          display: inline-block;
+      }
+    </style>
 </section>
 <!-- Slide Gabriel -->
 <section id="consideracoes/gabriel" data-auto-animate>
