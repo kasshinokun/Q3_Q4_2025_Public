@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ title }} - Início{% endblock %}
+{% block title %}{{ title }} - Apresentação{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -13,8 +13,9 @@
         <p class="hero-author">{{ author2 }}</p>
         <br>
         <img src="https://wallpapers.com/images/featured/github-logo-png-s8wb6yxlatsyp8s1.jpg" alt="Github Logo" width="100em" height="40em"><br>
-        <a href="https://github.com/kasshinokun/praticagraduacao" target="_blank">Repositório no GitHub</a>
+        <a href={{ url_repositorio }} target="_blank">Repositório no GitHub</a>
     </div>
+
 </div>
 {% endblock %}
 

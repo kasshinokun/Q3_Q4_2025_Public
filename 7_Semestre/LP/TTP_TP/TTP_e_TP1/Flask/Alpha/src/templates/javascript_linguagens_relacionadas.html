@@ -8,7 +8,7 @@
         <div class="slide-header">
             <h1 class="slide-title">{{ data.title }}</h1>
         </div>
-        
+
         <div class="slide-content">
             <p>JavaScript, como linguagem ubíqua da web, foi profundamente influenciado por outras linguagens e, por sua vez, influenciou uma geração de novas linguagens e tecnologias. Essa rede de influências é fundamental para entender sua evolução e ecossistema.</p>
         </div>
@@ -20,7 +20,7 @@
                 <h2 class="slide-title">Linguagens que Influenciaram o JavaScript</h2>
                 <p class="slide-subtitle">JavaScript foi criado em apenas 10 dias, sintetizando características de várias linguagens</p>
             </div>
-            
+
             <div class="languages-grid">
                 {% for influence in data.influences %}
                 <div class="language-category">
@@ -47,7 +47,7 @@
                 <h2 class="slide-title">Linguagens Influenciadas pelo JavaScript</h2>
                 <p class="slide-subtitle">JavaScript gerou um ecossistema inteiro de linguagens transpiláveis e alternativas</p>
             </div>
-            
+
             <div class="languages-grid">
                 {% for influenced in data.influenced %}
                 <div class="language-category">
@@ -68,10 +68,10 @@
             <div class="slide-header">
                 <h2 class="slide-title">Ecossistema de Linguagens Transpiláveis</h2>
             </div>
-            
+
             <div class="slide-content">
                 <p>Uma das características mais únicas do JavaScript é seu vasto ecossistema de linguagens que podem ser transpiladas para ele, permitindo que desenvolvedores usem diferentes sintaxes e paradigmas enquanto mantêm compatibilidade com a plataforma web.</p>
-                
+
                 <div class="paradigms-grid">
                     <div class="paradigm-card">
                         <div class="paradigm-name">TypeScript</div>
@@ -85,7 +85,7 @@
                             <li>Usado por Angular, React, Vue</li>
                         </div>
                     </div>
-                    
+
                     <div class="paradigm-card">
                         <div class="paradigm-name">CoffeeScript</div>
                         <div class="paradigm-description">
@@ -98,7 +98,7 @@
                             <li>Popular no início do Node.js</li>
                         </div>
                     </div>
-                    
+
                     <div class="paradigm-card">
                         <div class="paradigm-name">Elm</div>
                         <div class="paradigm-description">
@@ -111,7 +111,7 @@
                             <li>Inspirou Redux no React</li>
                         </div>
                     </div>
-                    
+
                     <div class="paradigm-card">
                         <div class="paradigm-name">PureScript</div>
                         <div class="paradigm-description">
@@ -132,31 +132,31 @@
             <div class="slide-header">
                 <h2 class="slide-title">JavaScript como Plataforma</h2>
             </div>
-            
+
             <div class="slide-content">
                 <p>JavaScript evoluiu além de uma simples linguagem para se tornar uma plataforma completa, com várias implementações e ambientes de execução:</p>
-                
+
                 <div class="key-points">
                     <div class="key-point">
                         <h4>🌐 V8 (Google Chrome/Node.js)</h4>
                         <p>Motor JavaScript de alto desempenho escrito em C++ que compila código JavaScript para código de máquina nativo, também usado no Node.js.</p>
                     </div>
-                    
+
                     <div class="key-point">
                         <h4>🦊 SpiderMonkey (Firefox)</h4>
                         <p>O primeiro motor JavaScript, originalmente desenvolvido por Brendan Eich na Netscape e mantido pela Mozilla.</p>
                     </div>
-                    
+
                     <div class="key-point">
                         <h4>🦁 JavaScriptCore (Safari)</h4>
                         <p>Motor JavaScript da Apple, também conhecido como Nitro, otimizado para macOS e iOS.</p>
                     </div>
-                    
+
                     <div class="key-point">
                         <h4>🟦 Chakra (Microsoft Edge - legado)</h4>
                         <p>Motor JavaScript desenvolvido pela Microsoft para o Internet Explorer e Edge original, posteriormente substituído pelo V8.</p>
                     </div>
-                    
+
                     <div class="key-point">
                         <h4>⚡ Deno & Bun</h4>
                         <p>Novos ambientes de execução JavaScript/TypeScript construídos sobre o V8, oferecendo alternativas modernas ao Node.js.</p>
