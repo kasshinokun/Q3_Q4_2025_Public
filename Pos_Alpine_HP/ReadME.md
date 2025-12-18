@@ -31,18 +31,18 @@ Este script automatiza a configuração de um ambiente de desktop completo (KDE 
 
 1.  **Baixe o script:**
     ```bash
-    wget <URL_DO_SCRIPT>/setHP_Compaq_6005_Pro_SFF_AMD_B95.sh
+    wget <URL_DO_SCRIPT>/runAlpine.sh
     ```
     *(Se você já o tem, pule esta etapa)*
 
 2.  **Dê permissão de execução:**
     ```bash
-    chmod +x setHP_Compaq_6005_Pro_SFF_AMD_B95.sh
+    chmod +x runAlpine.sh
     ```
 
 3.  **Execute o script como root:**
     ```bash
-    ./setHP_Compaq_6005_Pro_SFF_AMD_B95.sh
+    ./runAlpine.sh
     ```
 
 O script fará perguntas interativas sobre a instalação de pacotes KDE completos, configuração de `locale` e criação de um novo usuário.
