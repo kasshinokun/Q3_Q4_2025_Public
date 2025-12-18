@@ -86,20 +86,22 @@ apk add sudo bash bash-completion nano htop curl wget git
 # Instalar drivers e bibliotecas gráficas (otimizado para Radeon)
 log_info "Instalando drivers gráficos Radeon..."
 apk add mesa-dri-gallium mesa-va-gallium mesa-vdpau-gallium mesa-egl
-apk add mesa-va-radeon mesa-vdpau-radeon  # Específico para Radeon
+#apk add mesa-va-radeon mesa-vdpau-radeon  # Específico para Radeon(indisponível na v3.22)
+apk add mesa-vulkan-ati linux-firmaware-radeon linux-firmaware-amdgpu # substituti
 apk add xf86-video-ati xf86-video-vesa xf86-video-fbdev
 apk add libdrm
 
 # Instalar áudio - Realtek ALC261/Similar
 log_info "Instalando drivers de áudio..."
 apk add alsa-utils alsa-ucm-conf alsa-tools alsa-tools-doc
-apk add pulseaudio pulseaudio-alsa pulseaudio-bluetooth
+apk add alsa-plugins-pulse pulseaudio-utils bluez
+apk add pulseaudio pulseaudio-alsa pulseaudio-bluez
 apk add pavucontrol
 
 # Instalar rede - Broadcom BCM5761
 log_info "Instalando drivers de rede..."
-apk add bcom-firmware broadcom-net
-apk add networkmanager networkmanager-wifi networkmanager-tui
+#apk add bcom-firmware broadcom-net #sem suporte(v3.22)
+apk add networkmanager networkmanager-cli networkmanager-wifi networkmanager-tui
 apk add wireless-tools wpa_supplicant  # Para Wi-Fi se necessário
 
 # Instalar KDE Plasma (otimizado - menos pacotes desnecessários)
@@ -108,7 +110,8 @@ apk add plasma-desktop plasma-desktop-doc
 apk add plasma-nm plasma-pa  # Integração NetworkManager e PulseAudio
 apk add sddm sddm-breeze
 apk add kdegraphics-thumbnailers kde-cli-tools
-apk add breeze-icons oxygen-icons
+apk add breeze-icons
+# apk add oxygen-icons # sem suporte via .sh
 
 # Pacotes KDE opcionais (reduzir tempo de instalação)
 if confirm "Instalar pacotes KDE completos (recomendado para desktop completo)?"; then
@@ -122,7 +125,8 @@ fi
 
 # Instalar codecs de mídia
 log_info "Instalando codecs de mídia..."
-apk add vlc vlc-lang
+apk add vlc 
+# apk add vlc-lang # sem suporte na v3.22
 apk add gst-plugins-base gst-plugins-good gst-plugins-bad gst-plugins-ugly
 apk add ffmpeg ffmpeg-libs
 
@@ -131,10 +135,14 @@ log_info "Configurando serviços..."
 rc-update add dbus default
 rc-update add udev sysinit
 rc-update add udev-trigger sysinit
-rc-update add NetworkManager default
+rc-update add networkmanager default
+rc-service networkmanager start
+rc-service networkmanager status
 rc-update add sddm default
 rc-update add acpid default
 rc-update add alsa default
+
+apk add cups # Só se tiver impressora
 rc-update add cupsd default  # Só se tiver impressora
 
 # Configurar áudio - MELHORIA: detectar usuário atual
@@ -218,14 +226,15 @@ chmod 440 /etc/sudoers.d/wheel
 # Configurações regionais
 if confirm "Configurar locale para pt_BR?"; then
     log_info "Configurando locale para pt_BR..."
-    apk add locale lang
+    apk add musl-locales
+    apk add lang
     echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen
     locale-gen
     setup-locale LANG=pt_BR.UTF-8
 fi
 
 log_info "Configurando teclado..."
-setup-keymap us us
+setup-keymap br br
 
 log_info "Configurando fuso horário..."
 setup-timezone America/Sao_Paulo
