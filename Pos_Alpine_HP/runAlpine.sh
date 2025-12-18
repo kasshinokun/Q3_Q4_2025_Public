@@ -72,7 +72,7 @@ fi
 # CORREÇÃO: Linha 73 - faltou 'add' antes de firefox
 log_info "Instalando aplicativos essenciais..."
 apk add dolphin konsole kate kcalc ksystemlog partitionmanager
-apk add firefox libreoffice libreoffice-l10n-pt-br  # CORRIGIDO
+apk add firefox libreoffice libreoffice-lang-pt_br  # CORRIGIDO
 
 # Instalar kernel e firmwares (corrigir ordem - antes de X11)
 log_info "Instalando kernel Linux e firmwares..."
