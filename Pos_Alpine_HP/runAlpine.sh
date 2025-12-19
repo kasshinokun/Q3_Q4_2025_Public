@@ -2,7 +2,7 @@
 # runAlpine.sh
 # Script de pós-instalação para Alpine Linux com KDE no HP Compaq 6005 Pro SFF
 # Execute como root após a instalação básica do Alpine
-# ----------------------------------------------------------> Em teste - Revisão 1 19-12-2025
+# ----------------------------------------------------------> Em teste - Revisão 5 19-12-2025
 set -e
 
 # Cores para output
@@ -95,16 +95,56 @@ log_info "Instalando X11 e utilitários básicos..."
 
 setup-xorg-base # Todos os pacotes necessários para rodar o ambiente de desktop serão instalados automaticamente.
 
-apk add xorg-server xrandr xset xinit xauth
+apk add xorg-server 
+apk add xorg-server-xephyr
+apk add xrandr xset xinit xauth
 apk add sudo bash bash-completion nano htop curl wget git
+
+apk add dbus-x11 polkit gvfs-fuse gvfs-smb fuse-openrc udisks2
+# apk add consolekit2 # ate v3.20
 
 # Instalar drivers e bibliotecas gráficas (otimizado para Radeon)
 log_info "Instalando drivers gráficos Radeon..."
 apk add mesa-dri-gallium mesa-va-gallium mesa-vdpau-gallium mesa-egl
 #apk add mesa-va-radeon mesa-vdpau-radeon  # Específico para Radeon(indisponível na v3.22)
 apk add mesa-vulkan-ati linux-firmware-radeon linux-firmware-amdgpu # substituti
-apk add xf86-video-ati xf86-video-vesa xf86-video-fbdev
-apk add libdrm
+apk add xf86-video-ati 
+# apk add xf86-video-intel # caso use Intel
+apk add xf86-video-sis # Video Legacy
+apk xf86-video-fbdev # Hyper-V
+apk add xf86-video-vesa 
+apk add libdrm 
+apk add pciutils # PCI-e
+
+
+# Se a seleção automática de drivers não funcionar, 
+# por exemplo, se o cursor do mouse não aparecer no Sway ou similares
+# pode ser necessário selecionar o driver manualmente:
+# =========================================================> Intel
+# apk mesa-vulkan-intel # Vulkan - Intel
+# apk add intel-media-driver # VAAPI driver, desde Intel Broadwell.
+# apk add libva-intel-driver # VAAPI driver, para Broadwell.
+# apk add linux-firmware-i915 # Intel i915 driver 
+# export MESA_LOADER_DRIVER_OVERRIDE=crocus # Para todos os Intel Graphics acima da Haswell
+# export MESA_LOADER_DRIVER_OVERRIDE=iris # Para todos os Intel Graphics Iris
+
+# ===========================================================> AMD
+# export MESA_LOADER_DRIVER_OVERRIDE=r300 # para GPUs AMD Radeon R300, R400 e R500.
+# export MESA_LOADER_DRIVER_OVERRIDE=r600 # para GPUs AMD Radeon R600 até a arquitetura Northern Islands. Suporte oficial da AMD.
+# export MESA_LOADER_DRIVER_OVERRIDE=radeonsi # para GPUs AMD Southern Island e posteriores. Suporte oficial da AMD.
+
+# Para VA-API:
+# export LIBVA_DRIVER_NAME=r300
+# export LIBVA_DRIVER_NAME=r600
+# export LIBVA_DRIVER_NAME=radeonsi
+
+#adicionar modulos para o boot
+# echo radeon >> /etc/modules
+# echo fbcon >> /etc/modules
+# echo amdgpu >> /etc/modules
+# echo pci >> /etc/modules
+# echo drv >> /etc/modules
+# echo netflt >> /etc/modules
 
 # Instalar áudio - Realtek ALC261/Similar
 log_info "Instalando drivers de áudio..."
@@ -124,6 +164,12 @@ log_info "Instalando KDE Plasma..."
 apk add plasma-desktop plasma-desktop-doc
 apk add plasma elogind polkit-elogind
 
+# ============================================> XFCE4
+# apk add faenza-icon-theme
+# apk add lightdm-gtk-greeter
+# apk add xfce4 xfce4-terminal xfce-screensaver
+# =====================================================
+
 # fontes
 apk add font-terminus font-inconsolata 
 apk add font-dejavu font-noto font-noto-cjk 
@@ -133,6 +179,8 @@ apk add plasma-nm plasma-pa  # Integração NetworkManager e PulseAudio
 apk add sddm sddm-breeze
 apk add kdegraphics-thumbnailers kde-cli-tools
 apk add breeze-icons
+
+# indicações geralmente informadas mas não suportadas via ssh
 # apk add plasma-framework # sem suporte na v3.22
 # apk add oxygen-icons # sem suporte na v3.22(só até v3.18)
 # Instalar componentes tema/estilo Oxygen # sem suporte
@@ -164,8 +212,11 @@ rc-update add networkmanager default
 rc-service networkmanager start
 rc-service networkmanager status
 rc-update add sddm default
+# rc-update add lightdm default
 rc-update add acpid default
 rc-update add alsa default
+rc-update add dbus
+rc-update add fuse
 
 apk add cups # Só se tiver impressora
 rc-update add cupsd default  # Só se tiver impressora
