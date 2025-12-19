@@ -1,8 +1,8 @@
 #!/bin/sh
-# install-alpine-kde-hp6005.sh
+# runAlpine.sh
 # Script de pós-instalação para Alpine Linux com KDE no HP Compaq 6005 Pro SFF
 # Execute como root após a instalação básica do Alpine
-
+# ----------------------------------------------------------> Em teste - Revisão 1 19-12-2025
 set -e
 
 # Cores para output
@@ -62,6 +62,15 @@ echo "========================================="
 log_info "Atualizando repositórios..."
 apk update
 
+
+# Adicionar repositório main se não existir
+if ! grep -q "^http.*/main$" /etc/apk/repositories; then
+    log_info "Adicionando repositório main..."
+    echo "http://dl-cdn.alpinelinux.org/alpine/v$(cut -d'.' -f1,2 /etc/alpine-release)/main" >> /etc/apk/repositories
+    apk update
+fi
+
+
 # Adicionar repositório community se não existir
 if ! grep -q "^http.*/community$" /etc/apk/repositories; then
     log_info "Adicionando repositório community..."
@@ -111,7 +120,10 @@ apk add plasma-nm plasma-pa  # Integração NetworkManager e PulseAudio
 apk add sddm sddm-breeze
 apk add kdegraphics-thumbnailers kde-cli-tools
 apk add breeze-icons
-# apk add oxygen-icons # sem suporte via .sh
+# apk add plasma-framework # sem suporte na v3.22
+# apk add oxygen-icons # sem suporte na v3.22(só até v3.18)
+# Instalar componentes tema/estilo Oxygen
+apk add oxygen oxygen-theme oxygen5-style oxygen5-config
 
 # Pacotes KDE opcionais (reduzir tempo de instalação)
 if confirm "Instalar pacotes KDE completos (recomendado para desktop completo)?"; then
@@ -176,7 +188,7 @@ pcm.!default {
 EOF
 
 # Configuração específica para Radeon HD 4200/7660D (melhorada)
-log_info "Criando configuração X11 para Radeon..."
+log_info "Criando configuração X11 para Radeon A(radeon.conf)..."
 mkdir -p /etc/X11/xorg.conf.d
 
 cat > /etc/X11/xorg.conf.d/10-radeon.conf << 'EOF'
@@ -201,6 +213,7 @@ Section "Extensions"
 EndSection
 EOF
 
+log_info "Criando configuração X11 para Radeon B(15-kde-compat.conf)..."
 # Configuração para evitar tela preta no KDE com Radeon antigo
 cat > /etc/X11/xorg.conf.d/15-kde-compat.conf << 'EOF'
 Section "Screen"
@@ -234,7 +247,17 @@ if confirm "Configurar locale para pt_BR?"; then
 fi
 
 log_info "Configurando teclado..."
-setup-keymap br br
+
+# apk add setxkbmap # Ambiente X11
+# setxkbmap -model abnt2 -layout br
+# ~/.xinitrc
+
+# Outras Formas
+# setup-keymap br br # Default
+
+# loadkeys br-abnt2 # Outra opção A
+
+setup-keymap br br-abnt2 # Outra opção B
 
 log_info "Configurando fuso horário..."
 setup-timezone America/Sao_Paulo
@@ -287,14 +310,14 @@ log_info "3. Testar áudio: pavucontrol"
 log_info "4. Atualizar sistema: sudo apk update && sudo apk upgrade"
 log_info ""
 
-if confirm "Reiniciar o sistema agora?"; then
-    log_info "Reiniciando em 10 segundos..."
-    sleep 10
-    reboot
-else
-    log_warn "Reinicie manualmente quando pronto:"
-    log_warn "  reboot"
-    log_warn ""
-    log_warn "Para iniciar o KDE manualmente:"
-    log_warn "  rc-service sddm start"
-fi
+# if confirm "Reiniciar o sistema agora?"; then
+  #  log_info "Reiniciando em 10 segundos..."
+  #  sleep 10
+  #  reboot
+# else
+  #  log_warn "Reinicie manualmente quando pronto:"
+  #  log_warn "  reboot"
+  #  log_warn ""
+  #  log_warn "Para iniciar o KDE manualmente:"
+  #  log_warn "  rc-service sddm start"
+# fi
