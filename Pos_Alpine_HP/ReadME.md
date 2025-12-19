@@ -12,9 +12,16 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](http
 
 ## Sobre
 
-Este script automatiza a configuração de um ambiente de desktop completo (KDE Plasma) no **Alpine Linux**, especificamente otimizado para o hardware do **HP Compaq 6005 Pro SFF**. Ele instala drivers essenciais, o ambiente gráfico, software básico e aplica otimizações de sistema.
+Este script automatiza a configuração de um ambiente de desktop completo (KDE Plasma) no **Alpine Linux (ISO: v3.22 Extended)**, especificamente otimizado para o hardware do **HP Compaq 6005 Pro SFF**. Ele instala drivers essenciais, o ambiente gráfico, software básico e aplica otimizações de sistema.
 
 ---
+## Versão do Alpine Linux
+
+Alpine Linux 3.22 - ISO Extended(Futuramente será atualizado para o release de 12-2025 do SO)
+<br>[Autores: (Alpine Linux Developers Team)](https://wiki.alpinelinux.org/wiki/Alpine_Linux:Developers)
+<br>[About do SO](https://www.alpinelinux.org/about/)
+<br>[Link para download](https://www.alpinelinux.org/downloads/)
+<br>[Documentação SO](https://wiki.alpinelinux.org/wiki/Main_Page)
 
 ## Compatibilidade
 
