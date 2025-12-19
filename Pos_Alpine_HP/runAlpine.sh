@@ -89,6 +89,9 @@ apk add linux-firmware linux-firmware-other linux-firmware-radeon
 
 # Instalar X11 e utilitários básicos primeiro
 log_info "Instalando X11 e utilitários básicos..."
+
+setup-xorg-base # Todos os pacotes necessários para rodar o ambiente de desktop serão instalados automaticamente.
+
 apk add xorg-server xrandr xset xinit xauth
 apk add sudo bash bash-completion nano htop curl wget git
 
@@ -116,14 +119,21 @@ apk add wireless-tools wpa_supplicant  # Para Wi-Fi se necessário
 # Instalar KDE Plasma (otimizado - menos pacotes desnecessários)
 log_info "Instalando KDE Plasma..."
 apk add plasma-desktop plasma-desktop-doc
+apk add plasma elogind polkit-elogind
+
+# fontes
+apk add font-terminus font-inconsolata 
+apk add font-dejavu font-noto font-noto-cjk 
+apk add font-awesome font-noto-extra font-liberation
+
 apk add plasma-nm plasma-pa  # Integração NetworkManager e PulseAudio
 apk add sddm sddm-breeze
 apk add kdegraphics-thumbnailers kde-cli-tools
 apk add breeze-icons
 # apk add plasma-framework # sem suporte na v3.22
 # apk add oxygen-icons # sem suporte na v3.22(só até v3.18)
-# Instalar componentes tema/estilo Oxygen
-apk add oxygen oxygen-theme oxygen5-style oxygen5-config
+# Instalar componentes tema/estilo Oxygen # sem suporte
+# apk add oxygen oxygen-theme oxygen5-style oxygen5-config # sem suporte
 
 # Pacotes KDE opcionais (reduzir tempo de instalação)
 if confirm "Instalar pacotes KDE completos (recomendado para desktop completo)?"; then
