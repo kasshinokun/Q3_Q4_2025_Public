@@ -102,7 +102,7 @@ apk add sudo bash bash-completion nano htop curl wget git
 log_info "Instalando drivers gráficos Radeon..."
 apk add mesa-dri-gallium mesa-va-gallium mesa-vdpau-gallium mesa-egl
 #apk add mesa-va-radeon mesa-vdpau-radeon  # Específico para Radeon(indisponível na v3.22)
-apk add mesa-vulkan-ati linux-firmaware-radeon linux-firmaware-amdgpu # substituti
+apk add mesa-vulkan-ati linux-firmware-radeon linux-firmware-amdgpu # substituti
 apk add xf86-video-ati xf86-video-vesa xf86-video-fbdev
 apk add libdrm
 
