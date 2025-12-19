@@ -62,7 +62,6 @@ echo "========================================="
 log_info "Atualizando repositórios..."
 apk update
 
-
 # Adicionar repositório main se não existir
 if ! grep -q "^http.*/main$" /etc/apk/repositories; then
     log_info "Adicionando repositório main..."
@@ -78,7 +77,11 @@ if ! grep -q "^http.*/community$" /etc/apk/repositories; then
     apk update
 fi
 
-# CORREÇÃO: Linha 73 - faltou 'add' antes de firefox
+log_info "Instalando os scripts de configuração do Alpine..."
+
+# Instalar os scripts de configuração do Alpine
+apk add alpine-conf
+
 log_info "Instalando aplicativos essenciais..."
 apk add dolphin konsole kate kcalc ksystemlog partitionmanager
 apk add firefox libreoffice libreoffice-lang-pt_br  # CORRIGIDO
@@ -166,6 +169,13 @@ rc-update add alsa default
 
 apk add cups # Só se tiver impressora
 rc-update add cupsd default  # Só se tiver impressora
+
+#===================================================== For Gnome Desktop
+# setup-desktop gnome
+# Uma vez que todos os pacotes tenham sido baixados e instalados, 
+# execute o seguinte comando para permitir que o GNOME Software gerencie pacotes APK
+# rc-update add apk-polkit-server default
+#===================================================== 
 
 # Configurar áudio - MELHORIA: detectar usuário atual
 log_info "Configurando áudio..."
@@ -261,7 +271,7 @@ if confirm "Configurar locale para pt_BR?"; then
     # 3. Configura o sistema permanentemente (escolha UMA das opções abaixo)
     
     # OPÇÃO A (Recomendada): Usa o utilitário nativo do Alpine
-    setup-locale LANG=pt_BR.UTF-8
+    # setup-locale LANG=pt_BR.UTF-8 # erro em análise
     
     # OPÇÃO B (Manual): Se preferir manter o seu método no /etc/profile
     # echo "export LANG=pt_BR.UTF-8" >> /etc/profile
@@ -274,7 +284,25 @@ fi
 
 log_info "Configurando teclado..."
 
-setup-keymap br br # Default
+# 1. Garante que o pacote de mapas de teclado esteja presente
+apk add kbd-bkeymaps
+
+# 2. Bloco condicional para verificar a existência do arquivo customizado
+if [ -f "/etc/keymap/br.bmap.gz" ]; then
+    echo "Arquivo de teclado encontrado. Aplicando configuração..."
+    
+    # Grava a configuração no arquivo de inicialização do OpenRC
+    echo 'KEYMAP="/etc/keymap/br.bmap.gz"' > /etc/conf.d/loadkmap
+    
+    # Adiciona o serviço ao boot (se ainda não estiver) e tenta iniciar
+    # (para funcionar no próximo boot, é preciso ativá-lo)
+    rc-update add loadkmap boot
+    /etc/init.d/loadkmap start
+else
+    echo "ERRO: /etc/keymap/br.bmap.gz não encontrado!"
+    echo "Usando configuração padrão do sistema..."
+    # setup-keymap br br
+fi
 
 # Outras Formas
 
@@ -286,6 +314,7 @@ setup-keymap br br # Default
 
 # setup-keymap br br-abnt2 # Outra opção C
 
+#===================================================== Time / Host
 log_info "Configurando fuso horário..."
 setup-timezone -z America/Sao_Paulo
 
