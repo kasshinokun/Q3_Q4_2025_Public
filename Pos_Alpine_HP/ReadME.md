@@ -1,5 +1,11 @@
 # Script de Pós-Instalação para Alpine Linux no HP Compaq 6005 Pro SFF
 
+Versão 18-12-2025 Revisão 1 19-12-2025
+
+## Motivo e observação
+
+Necessidade de configurar um desktop com GUI no Alpine Linux, e **ainda está em testes**.
+
 ## 📄 Licença
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](https://github.com/kasshinokun/Q3_Q4_2025_Public/blob/main/LICENSE.md) para detalhes.
