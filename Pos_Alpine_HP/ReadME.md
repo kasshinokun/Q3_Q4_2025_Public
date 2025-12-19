@@ -49,17 +49,23 @@ Alpine Linux 3.23 - ISO Extended(release de 19-12-2025 do SO)
 ## Uso
 
 1.  **Baixe o script:**
+    <br>*Default*
+     ```bash
+    wget -O runAlpine.sh https://raw.githubusercontent.com/kasshinokun/Q3_Q4_2025_Public/refs/heads/main/Pos_Alpine_HP/runAlpine.sh
+    ```
+    *(Se estiver em outra URL)*
+
     ```bash
-    wget <URL_DO_SCRIPT>/runAlpine.sh
+    wget -O <NOME_PARA_ARQUIVO>.sh <URL_DO_SCRIPT>
     ```
     *(Se você já o tem, pule esta etapa)*
 
-2.  **Dê permissão de execução:**
+3.  **Dê permissão de execução:**
     ```bash
     chmod +x runAlpine.sh
     ```
 
-3.  **Execute o script como root:**
+4.  **Execute o script como root:**
     ```bash
     ./runAlpine.sh
     ```
@@ -71,7 +77,7 @@ O script fará perguntas interativas sobre a instalação de pacotes KDE complet
 O script realiza as seguintes ações:
 
 ### 1. Configuração do Sistema
-*   Atualiza os repositórios e adiciona o repositório `community`.
+*   Atualiza os repositórios e adiciona o repositório `main` e `community`.
 *   Instala o kernel Linux e firmwares essenciais.
 *   Habilita serviços críticos: `dbus`, `udev`, `NetworkManager`, `sddm`, `alsa`, `acpid` (e opcionalmente `cupsd`).
 *   Configura o `sudo` para o grupo `wheel`.
@@ -90,7 +96,7 @@ O script realiza as seguintes ações:
 *   **Multimídia:** `vlc`, `ffmpeg`, codecs de mídia.
 *   **Utilitários:** `sudo`, `bash`, `nano`, `htop`, `curl`, `wget`, `git`.
 *   **KDE Apps:** `dolphin`, `konsole`, `kate`, `partitionmanager`, etc.
-
+*   **Extra:** `setup-desktop gnome`(Setup Gnome Desktop Início)
 ### 4. Configuração de Usuário
 *   Opcionalmente, cria um novo usuário e o adiciona aos grupos necessários (`wheel`, `audio`, `video`, `pulse`, etc.) para garantir o funcionamento correto do áudio e do ambiente gráfico.
 
