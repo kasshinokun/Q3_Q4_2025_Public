@@ -1,10 +1,16 @@
 # Script de Pós-Instalação para Alpine Linux no HP Compaq 6005 Pro SFF
 
-Versão 18-12-2025 Revisão 1 19-12-2025
+Versão 18-12-2025 Revisão 4 19-12-2025
 
 ## Motivo e observação
 
-Necessidade de configurar um desktop com GUI no Alpine Linux, e **ainda está em testes**.
+Necessidade de configurar um desktop com GUI no Alpine Linux, e **ainda está em testes(pode haver erros)**.
+
+### Melhorias
+- ```v4-19-12-2025```: Roda até o final, mas leia o próximo tópico por favor
+  
+### Bugs a serem corrigidos
+ - ```v4-19-12-2025```: Carrega interface gráfica, porém não exibe corretamente e não permite manuseio
 
 ## 📄 Licença
 
@@ -17,7 +23,7 @@ Este script automatiza a configuração de um ambiente de desktop completo (KDE 
 ---
 ## Versão do Alpine Linux
 
-Alpine Linux 3.22 - ISO Extended(Futuramente será atualizado para o release de 12-2025 do SO)
+Alpine Linux 3.23 - ISO Extended(release de 19-12-2025 do SO)
 <br>[Autores: (Alpine Linux Developers Team)](https://wiki.alpinelinux.org/wiki/Alpine_Linux:Developers)
 <br>[About do SO](https://www.alpinelinux.org/about/)
 <br>[Link para download](https://www.alpinelinux.org/downloads/)
