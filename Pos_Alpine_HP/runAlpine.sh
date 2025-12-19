@@ -249,28 +249,45 @@ chmod 440 /etc/sudoers.d/wheel
 # Configurações regionais
 if confirm "Configurar locale para pt_BR?"; then
     log_info "Configurando locale para pt_BR..."
-    apk add musl-locales
-    apk add lang
-    echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen
-    locale-gen
+    
+    # 1. Instala o suporte a locales da biblioteca musl
+    apk add musl-locales musl-locales-lang
+    
+    # 2. Define as variáveis para a sessão atual
+    export LANG=pt_BR.UTF-8
+    # export LANGUAGE=pt_BR.UTF-8
+    export LC_ALL=pt_BR.UTF-8
+    
+    # 3. Configura o sistema permanentemente (escolha UMA das opções abaixo)
+    
+    # OPÇÃO A (Recomendada): Usa o utilitário nativo do Alpine
     setup-locale LANG=pt_BR.UTF-8
+    
+    # OPÇÃO B (Manual): Se preferir manter o seu método no /etc/profile
+    # echo "export LANG=pt_BR.UTF-8" >> /etc/profile
+    # echo "export LANGUAGE=pt_BR.UTF-8" >> /etc/profile
+    # echo "export LC_ALL=pt_BR.UTF-8" >> /etc/profile
+    
+    # 4. Verifica a configuração
+    locale
 fi
 
 log_info "Configurando teclado..."
 
-# apk add setxkbmap # Ambiente X11
+setup-keymap br br # Default
+
+# Outras Formas
+
+# apk add setxkbmap # Ambiente X11 - Outra opção A
 # setxkbmap -model abnt2 -layout br
 # ~/.xinitrc
 
-# Outras Formas
-# setup-keymap br br # Default
+# loadkeys br-abnt2 # Outra opção B
 
-# loadkeys br-abnt2 # Outra opção A
-
-setup-keymap br br-abnt2 # Outra opção B
+# setup-keymap br br-abnt2 # Outra opção C
 
 log_info "Configurando fuso horário..."
-setup-timezone America/Sao_Paulo
+setup-timezone -z America/Sao_Paulo
 
 log_info "Configurando hostname..."
 setup-hostname alpine-hp6005
